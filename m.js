@@ -1898,7 +1898,7 @@ return string;
 
 }
 function setCol(s){
-u.canvasState.setActiveColorRgb(s);
+c.canvasState.setActiveColorRgb(s);
 $("#pallette").spectrum("set",s);
 var defaultColor = $("#pallette").spectrum("get")
                     for (var t = new Array, a = 0; a < r().project.selectedItems.length; a++)
