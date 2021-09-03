@@ -1904,16 +1904,16 @@ var defaultColor = $("#pallette").spectrum("get")
                     for (var t = new Array, a = 0; a < r().project.selectedItems.length; a++)
                         r().project.selectedItems[a].name && (t.push({
                             name: r().project.selectedItems[a].name,
-                            color: u.canvasState.activeColorRgb
+                            color: c.canvasState.activeColorRgb
                         }),
-                        r().project.selectedItems[a].name.indexOf("text:") > -1 ? r().project.selectedItems[a].fillColor = u.canvasState.activeColorRgb : r().project.selectedItems[a].name.indexOf("arrow:") > -1 ? (r().project.selectedItems[a].fillColor = u.canvasState.activeColorRgb,
-                        r().project.selectedItems[a].strokeColor = u.canvasState.activeColorRgb) : r().project.selectedItems[a].name.indexOf("signature:") > -1 ? (r().project.selectedItems[a].name.indexOf("signature-box:signature:") > -1 && (r().project.selectedItems[a].fillColor = u.canvasState.activeColorRgb,
+                        r().project.selectedItems[a].name.indexOf("text:") > -1 ? r().project.selectedItems[a].fillColor = c.canvasState.activeColorRgb : r().project.selectedItems[a].name.indexOf("arrow:") > -1 ? (r().project.selectedItems[a].fillColor = c.canvasState.activeColorRgb,
+                        r().project.selectedItems[a].strokeColor = c.canvasState.activeColorRgb) : r().project.selectedItems[a].name.indexOf("signature:") > -1 ? (r().project.selectedItems[a].name.indexOf("signature-box:signature:") > -1 && (r().project.selectedItems[a].fillColor = c.canvasState.activeColorRgb,
                         r().project.selectedItems[a].opacity = .2),
-                        r().project.selectedItems[a].name.indexOf("signature-border:signature:") > -1 && (r().project.selectedItems[a].strokeColor = u.canvasState.activeColorRgb)) : r().project.selectedItems[a].strokeColor = u.canvasState.activeColorRgb);
-                    x.draw(),
-                    l.globalSocketObj.emit("item:color:set", Me(), JSON.stringify(t)),
+                        r().project.selectedItems[a].name.indexOf("signature-border:signature:") > -1 && (r().project.selectedItems[a].strokeColor = c.canvasState.activeColorRgb)) : r().project.selectedItems[a].strokeColor = c.canvasState.activeColorRgb);
+                    _.draw(),
+                    i.globalSocketObj.emit("item:color:set", Ve(), JSON.stringify(t)),
                     localStorage.setItem("spectrum.defaultColor", JSON.stringify(s));
-                    u.canvasState.setActiveColorJson({
+                    c.canvasState.setActiveColorJson({
                         red: defaultColor.toRgb().r / 255,
         green: defaultColor.toRgb().g / 255,
         blue: defaultColor.toRgb().b / 255,
