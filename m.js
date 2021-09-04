@@ -2530,6 +2530,7 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
                 (t = e.point).y = t.y + c.staticGlobals.CursorOffsetY / r().project.view.getZoom(),
                 Y || (Y = new a.Path),
                 Y.add(t),
+                (e.modifiers.shift?M.path.push([t.x,t.y]):0),
                 Y.closed = !1,
                 Y.simplify(),
                 r().project.view.draw(),
