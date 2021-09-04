@@ -2807,6 +2807,7 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
         }
         ,
         A.onKeyDown = function(e) {
+		if(window.calcToolFocus) return;
             if (ye())
                 switch (e.key) {
                 case "+":
