@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         NewConexEd-Tutor - Source
+// @name         NewConexEd-Tutor - Sour
 // @match        *.craniumcafe.com/d/*
 // @match        *.craniumcafe.com/meetings/*
 // @grant        none
@@ -1948,8 +1948,8 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
                 for (var o = 0; o < a.length; o++) {
                     var n = a[o];
                     n.fontSize = t,
-                    l.globalSocketObj.emit("item:font:change", Me(), n.name, t),
-                    x.draw()
+                    i.globalSocketObj.emit("item:font:change", Ve(), n.name, t),
+                    _.draw()
                 }
             $(".font-size").prop("selectedIndex",nextIndex);
 }          
