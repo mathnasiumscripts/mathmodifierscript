@@ -7,6 +7,7 @@
 // ==/UserScript==
 
 
+var wbClient = "/client/js/app-ae23a59d4efb7d24e0b9.js";
 
 var modInfo = {
     "table1":{col:"#00ff00",inl:"KC",tnum:"T1",tutoring:true,super:true,incenter:true},
@@ -514,13 +515,16 @@ Array.from(document.querySelectorAll('script')).forEach(s => {
    setTimeout(function(){document.getElementById("tool-hints-modal").outerHTML = "<div id=\"tool-hints-modal\" style=\"display: flex;\" onclick=\"window.changeScriptAllowance();window.location.reload()\"><i class=\"far fa-3x\" style=\"color:green;font-weight:bold;font-size:56px\">✓</i></div>"},5000);
         }
 });
+
+window.unstableScript = window.stableSource.indexOf(wbClient) < 0;
+
 if(window.unstableScript)
 {
    document.getElementById("tool-hints-modal").outerHTML = "<div id=\"tool-hints-modal\" style=\"display: flex;\" onclick=\"window.changeScriptAllowance();window.location.reload();\"><i class=\"far fa-3x\" style=\"color:red;font-weight:bold;font-size:56px\">X</i></div>"
    setTimeout(function(){document.getElementById("tool-hints-modal").outerHTML = "<div id=\"tool-hints-modal\" style=\"display: flex;\" onclick=\"window.changeScriptAllowance();window.location.reload()\"><i class=\"far fa-3x\" style=\"color:red;font-weight:bold;font-size:56px\">X</i></div>"},5000);
 }
 if(window.scriptLoaded)wb();
-else loadUnstableScript();
+else loadStableScript();
 
 window.onbeforeunload = function(){
     if(window.openclonewindows)window.openclonewindows.forEach(function(w){w.close()});
