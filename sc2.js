@@ -516,7 +516,7 @@ Array.from(document.querySelectorAll('script')).forEach(s => {
         }
 });
 
-window.unstableScript = window.stableSource.indexOf(wbClient) < 0;
+if(window.stableSource)window.unstableScript = window.stableSource.indexOf(wbClient) < 0;
 
 if(window.unstableScript)
 {
