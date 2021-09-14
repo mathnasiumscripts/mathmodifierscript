@@ -2921,7 +2921,7 @@ case "e":
 window.updateTool("eraser");
 break;
 case "h":
-window.updateTool("highlighter");
+window.updateTool("draw");
 M = "draw";
 break;
 case "m":
