@@ -7,7 +7,7 @@
 // ==/UserScript==
 
 
-var wbClient = "/client/js/app-980b0747c1a8a2b50664.js";
+var wbClient = "/client/js/app-03e1ad0f29281a4ce7df.js";
 
 var modInfo = {
     "table1":{col:"#00ff00",inl:"KC",tnum:"T1",tutoring:true,super:true,incenter:true},
@@ -417,7 +417,18 @@ function UserMetric(u)
         this.name = u.name;
         this.id = u.id;
         this.room = u.room;
-        if(u.room)this.roomName = window.breakoutRooms.filter(r => r.id == u.room)[0].name;
+        if(u.room)
+	{
+		var breakoutRoom = window.breakoutRooms.filter(r => r.id == u.room);
+		if(breakoutRoom.length > 0 && breakoutRoom[0].name)
+		{
+			this.roomName = breakoutRoom[0].name;
+		}
+		else
+		{
+			this.room = false;
+		}
+	}
         this.isOnline = u.isOnline;
         this.isMod = window.userInfo.modsList.includes(u.id)||u.id == "1205645";
     }
