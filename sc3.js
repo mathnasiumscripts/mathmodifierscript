@@ -1246,7 +1246,7 @@ facs: function(n1)
 {
 	n1 = Math.abs(n1);
 	var fac = [];
-    var d = n1;
+    var d = n1;
 	while(d >= 1)
 	{
 		if((n1 % d == 0))
@@ -1691,7 +1691,8 @@ var histChoice = 0;
 
 function wb()
 {
-	
+
+
 //-font paste glitch x
 //-font line paste glitch x
 //-replaceMathML x
@@ -1709,10 +1710,10 @@ function wb()
 //-set page confirm for adding page x
 //-line tool x
 //-paper object global reference x
-//-cursor speed 
+//-cursor speed
 //-shortkeys x
 
- 
+
 // * Branch: release
 // * Version: d93d663
 // * Commit: d93d6631f277d5f512301518bca41160e5f23176
@@ -1727,7 +1728,7 @@ function wb()
                 return he
             },
             onWindowResize: function() {
-                return ve
+                return me
             },
             removeGridLines: function() {
                 return Ie
@@ -1742,7 +1743,7 @@ function wb()
                 return Ve
             },
             repairCurrentPDFMatrices: function() {
-                return ut
+                return pt
             }
         });
         var a = o(3267)
@@ -1760,8 +1761,8 @@ function wb()
           , g = o(6074)
           , h = o(9444)
           , f = o(2496)
-          , m = o(8663)
-          , v = o(3128)
+          , v = o(8663)
+          , m = o(3128)
           , b = o(8449)
           , y = o(3554)
           , w = o(4007)
@@ -1980,7 +1981,7 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
                     _.draw()
                 }
             $(".font-size").prop("selectedIndex",nextIndex);
-}          
+}
 
         function O(e) {
             return (O = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
@@ -2020,7 +2021,7 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
             return a
         }
         (0,
-        v.initializeJspdfFonts)(),
+        m.initializeJspdfFonts)(),
         s.Z.subscribe(),
         r().tool = new a.Tool;
         var A = r().tool;
@@ -2454,12 +2455,12 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
                 }
             else if ("cursor" == z) {
                 if (ne + c.staticGlobals.SOCKET_UPDATE_INTERVAL < e.timeStamp) {
-                    var m = e.point.y
-                      , v = e.point.x;
+                    var v = e.point.y
+                      , m = e.point.x;
                     ne = e.timeStamp,
                     re({
-                        x: v,
-                        y: m,
+                        x: m,
+                        y: v,
                         color: c.canvasState.activeColorRgb,
                         userFullname: c.userState.myFullName
                     })
@@ -2790,7 +2791,7 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
                                     if (i.item.name.indexOf("signature:") > -1) {
                                         if (i.item.parent.data && i.item.parent.data.forUserId && i.item.parent.data.forUserId == c.userState.uid)
                                             return $("#the-canvas").css("cursor", "pointer"),
-                                            void vt(c.userState.uid)
+                                            void bt(c.userState.uid)
                                     } else
                                         $("#the-canvas").css("cursor", "grab")
                             } else
@@ -2847,11 +2848,9 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
                 case "left":
                     if ($("#text-editor").is(":hidden"))
                         if (e.event.ctrlKey) {
-                            if ($("#select-page")[0].selectedIndex > 0) {
-                                $("#select-page").prop("selectedIndex",$("#select-page")[0].selectedIndex-1);
-                                $("#select-page").change();
-                                //var t = parseInt($("#select-page option:selected").val()) - 1;
-                                //$('#select-page option[value="' + t + '"]').prop("selected", !0).change()
+                            if ($("#select-page option").length > 0 && $("#select-page option:selected").val() > 0) {
+                                var t = parseInt($("#select-page option:selected").val()) - 1;
+                                $('#select-page option[value="' + t + '"]').prop("selected", !0).change()
                             }
                         } else
                             Be(-100, "x");
@@ -2859,11 +2858,9 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
                 case "right":
                     if ($("#text-editor").is(":hidden"))
                         if (e.event.ctrlKey) {
-                            if ($("#select-page")[0].selectedIndex < $("#select-page option").length-1) {
-                                $("#select-page").prop("selectedIndex",$("#select-page")[0].selectedIndex+1);
-                                $("#select-page").change();
-                               // t = parseInt($("#select-page option:selected").val()) + 1;
-                                //$('#select-page option[value="' + t + '"]').prop("selected", !0).change()
+                            if ($("#select-page option").length > 0 && $("#select-page option:selected").val() < $("#select-page option").length) {
+                                t = parseInt($("#select-page option:selected").val()) + 1;
+                                $('#select-page option[value="' + t + '"]').prop("selected", !0).change()
                             }
                         } else
                             Be(100, "x");
@@ -3069,7 +3066,7 @@ break;
                 for (var e = "page-" + $("#select-page").val(), t = 0; t < r().project.layers[e].children.length; t++)
                     r().project.layers[e].children[t].name.indexOf("pdf-page") > -1 && "raster" == r().project.layers[e].children[t].className.toLowerCase() && (c.canvasState.setAspectRatio(r().project.layers[e].data.aspectRatio),
                     console.log("view: %dx%d, raster: %dx%d, aspect ratio: %f", r().project.view.bounds.width, r().project.view.bounds.height, r().project.layers[e].children[t].bounds.width, r().project.layers[e].children[t].bounds.height, c.canvasState.aspectRatio),
-                    me(!1, !1),
+                    ve(!1, !1),
                     r().project.layers[e].children[t].position = r().project.view.center,
                     r().project.layers[e].children[t].fitBounds(r().project.view.bounds))
             }
@@ -3197,7 +3194,7 @@ break;
                   , o = $("#user-signature-dialog").data("signatureTarget");
                 if ("ALL" === $("#user-signature-dialog").data("signatureTarget"))
                     try {
-                        st.forEach((function(e, t) {
+                        ct.forEach((function(e, t) {
                             a(o = e.itemName, t)
                         }
                         ))
@@ -3237,15 +3234,15 @@ break;
                     }
                     i.globalSocketObj.emit("signature:signed", Ve(), o, JSON.stringify(l)),
                     c.canvasState.setActiveSigning(!1),
-                    null !== a ? a === st.length - 1 && ($("#user-signature-dialog").modal("hide"),
+                    null !== a ? a === ct.length - 1 && ($("#user-signature-dialog").modal("hide"),
                     e.clear(),
                     c.canvasState.setSignatureFieldCount(0),
-                    ct(r().project.activeLayer.name.split("-")[1], c.userState.uid),
+                    lt(r().project.activeLayer.name.split("-")[1], c.userState.uid),
                     $("#finished-signing-dialog").modal("show"),
                     $("#switch-signature-type").click()) : ($("#user-signature-dialog").modal("hide"),
                     e.clear(),
                     c.canvasState.setSignatureFieldCount(c.canvasState.mySignatureFieldCount - 1),
-                    c.canvasState.mySignatureFieldCount <= 0 && (ct(r().project.activeLayer.name.split("-")[1], c.userState.uid),
+                    c.canvasState.mySignatureFieldCount <= 0 && (lt(r().project.activeLayer.name.split("-")[1], c.userState.uid),
                     $("#finished-signing-dialog").modal("show"),
                     $("#switch-signature-type").click()))
                 }
@@ -3361,7 +3358,7 @@ break;
                         fontSize: 50
                     })
                 }
-                "ALL" === $("#user-signature-dialog").data("signatureTarget") ? (st.length > 1 ? $("#add-user-signature").text("Sign ALL and Complete") : $("#add-user-signature").text("Sign and Complete"),
+                "ALL" === $("#user-signature-dialog").data("signatureTarget") ? (ct.length > 1 ? $("#add-user-signature").text("Sign ALL and Complete") : $("#add-user-signature").text("Sign and Complete"),
                 $(".signature-form-title").text("Signing ALL assigned Fields"),
                 $(".signature-form-subtitle").show(),
                 $("#switch-signature-type").show()) : ($(".signature-form-title").text("Signature Form"),
@@ -3432,10 +3429,10 @@ break;
                     userFullname: c.userState.myFullName
                 };
                 c.userState.showWhiteboardControls && re(t),
-                vt(c.userState.uid),
+                bt(c.userState.uid),
                 setTimeout((function() {
                     c.userState.showWhiteboardControls && re(t),
-                    vt(c.userState.uid)
+                    bt(c.userState.uid)
                 }
                 ), 100)
             }
@@ -3451,7 +3448,7 @@ break;
             )),
             r().project.view.setCenter(0, 0),
             $(window).resize((function(e) {
-                ve(!1, !1, !0)
+                me(!1, !1, !0)
             }
             ))
         }
@@ -3478,8 +3475,8 @@ break;
         }
         )),
         i.globalSocketObj.on("canvas:send:view-sizing", (function(e, t, o, a, r) {
-            ye() || (me(!1, !1),
-            me(!1, !1),
+            ye() || (ve(!1, !1),
+            ve(!1, !1),
             t && o && Re(t, o),
             e && (ye() || h.handlePresenterGesture(a, r, N)))
         }
@@ -3708,7 +3705,7 @@ break;
                 }
             }
         }
-        function me(e, t) {
+        function ve(e, t) {
             if (t) {
                 o = r().project.view.center;
                 $("#canvas-scroller").css("overflow-x", "hidden"),
@@ -3784,12 +3781,12 @@ break;
                 r().project.view.setZoom(Math.min(n, s) / c.staticGlobals.ZoomConstant)
             }
         }
-        function ve(e, t, o) {
+        function me(e, t, o) {
             if (!ye() && !Ke)
                 return i.globalSocketObj.emit("canvas:request:view-sizing");
             if (Fe(),
             T = r().project.view.center,
-            o || (me(e, t),
+            o || (ve(e, t),
             T = r().project.view.center),
             r().project.view.draw(),
             c.canvasState.setToolsDropDownOpen(!1),
@@ -4008,10 +4005,10 @@ break;
                     return ze(),
                     _e(a),
                     void (c.userState.userIsPresenter && i.globalSocketObj.emit("canvas:gesture", d.center, d.zoom / N));
-                var f, m = u / h;
+                var f, v = u / h;
                 f = g.subtract(p);
-                var v = g.subtract(f.multiply(m)).subtract(p);
-                d.center = e ? d.center.add(v) : f,
+                var m = g.subtract(f.multiply(v)).subtract(p);
+                d.center = e ? d.center.add(m) : f,
                 c.userState.userIsPresenter && i.globalSocketObj.emit("canvas:gesture", d.center, d.zoom / N)
             }
             _e(a)
@@ -4133,9 +4130,8 @@ break;
                 k.isCurrentPagePDFLoaded)(e)))
                     return;
                 r().project.view.center = T,
-                me(!1, !1),
+                ve(!1, !1),
                 Ee(null, null, "zoom-out", !1, !0),
-                Ee(null, null, "zoom-in", !1, !0),
                 c.userState.userIsPresenter && i.globalSocketObj.emit("canvas:gesture", r().project.view.center, null)
             }
         }
@@ -4172,7 +4168,7 @@ break;
                         r().project.layers[t].children[o].name && -1 == r().project.layers[t].children[o].name.indexOf("pdf-page") && (r().project.layers[t].children[o].remove(),
                         o--);
             _.draw(),
-            ve(!1, !1, !0)
+            me(!1, !1, !0)
         }
         function Ze() {
             r().project.activeLayer.children["border-box"] && r().project.activeLayer.children["border-box"].remove()
@@ -4201,7 +4197,7 @@ break;
         $("body").bind("drop", (function(e) {
             (e = e || window.event).preventDefault && e.preventDefault();
             for (var t = (e = e.originalEvent).dataTransfer.files, o = 0; o < t.length; o++) {
-                at(t[o])
+                rt(t[o])
             }
         }
         )),
@@ -4347,8 +4343,8 @@ break;
         }
         )),
         $(".signature-tool").on("click", (function() {
-            var dt = new Date();
-            window.createTBox(window.mod.inl + " " + (dt.getMonth()+1)+"/"+dt.getDate()+"/"+(dt.getYear()%100), window.mod.col,12,0,-240);
+            Ge(".signature-tool"),
+            localStorage.setItem("selectedTool", "signature"),
             Je(),
             z = "signature",
             $("#the-canvas").css("cursor", "crosshair"),
@@ -4372,7 +4368,6 @@ break;
         $(".toggle-whiteboard-lock").on("click", (function() {
             if (window.localStorage.setItem("lock-whiteboard-gotit", !0),
             $(this).data("locked"))
-                ve(!1, !1, !0),
                 $("#tooltip-lock-button-header").hide(),
                 $(this).data("locked", !1),
                 $(".toggle-whiteboard-lock i").removeClass("fa-lock"),
@@ -4386,9 +4381,10 @@ break;
                     ratioObject: null,
                     initiatorUid: c.userState.uid
                 }),
-                h.handlePresenterChange(!1, c.userState.myFullName, !0);
+                h.handlePresenterChange(!1, c.userState.myFullName, !0),
+                me(!1, !1, !0);
             else {
-                ve(!1, !1, !0);
+                me(!1, !1, !0);
                 for (var e = 0; e < r().project.activeLayer.children.length; e++)
                     r().project.activeLayer.children[e].name && r().project.activeLayer.children[e].name.indexOf("cursor") > -1 && r().project.activeLayer.children[e].remove();
                 $(this).data("locked", !0),
@@ -4472,23 +4468,23 @@ break;
         var Ke = !1;
         var Xe = function() {
             Ke = !0,
-            ve(!0, !0, !1),
-            Ot("Exporting to PDF ... ", 10),
+            me(!0, !0, !1),
+            Ct("Exporting to PDF ... ", 10),
             $("#canvas-container").hide();
             var e = (0,
             b.populateJspdfDoc)()
               , t = r().project.activeLayer.getName();
             t && (t = t.substr(5)),
             (0,
-            v.setProjectSvg)(),
+            m.setProjectSvg)(),
             (0,
-            v.setPageSvgArray)(),
+            m.setPageSvgArray)(),
             qe(e, 0, (function() {
                 t && p.pageInteractions.changePage(t, !1, !0),
                 j().createPdf(e).download("conexed-whiteboard-export-" + (new Date).toISOString().slice(0, 10) + ".pdf"),
                 d.VG(),
                 Ke = !1,
-                ve(!1, !1, !1),
+                me(!1, !1, !1),
                 $("#canvas-container").show()
             }
             ))
@@ -4496,13 +4492,13 @@ break;
           , qe = function e(t, o, a) {
             setTimeout((function() {
                 p.pageInteractions.changePage(o, !0, !0),
-                ve(!0, !0, !1),
+                me(!0, !0, !1),
                 (0,
-                v.createTempBackgroundForExport)(),
+                m.createTempBackgroundForExport)(),
                 t.content[o] = (0,
-                v.generateJspdfPageJSON)(o, I, c.canvasState.aspectRatio),
+                m.generateJspdfPageJSON)(o, I, c.canvasState.aspectRatio),
                 (0,
-                v.removeTempWhiteBackground)(),
+                m.removeTempWhiteBackground)(),
                 o < r().project.layers.length - 1 ? e(t, o + 1, a) : a()
             }
             ), 50),
@@ -4514,7 +4510,7 @@ break;
         $("#image-input").bind("change", (function(e) {
             for (var t = document.getElementById("image-input").files, o = 0; o < t.length; o++) {
                 var a = t[o];
-                a.type.indexOf("image/") > -1 ? at(a) : r().project.layers.length < 150 && et(a)
+                a.type.indexOf("image/") > -1 ? rt(a) : r().project.layers.length < 100 && et(a)
             }
         }
         ));
@@ -4525,9 +4521,9 @@ break;
             i.globalSocketObj.emit("file:request-upload", e.name, e.size)
         }
         i.globalSocketObj.on("file:upload-authorized", (function(e) {
-            if (ve(!0, !0, !1),
+            if (me(!0, !0, !1),
             d.L8(),
-            Ot("File Upload in Progress...", 0),
+            Ct("File Upload in Progress...", 0),
             e.uid === c.userState.uid) {
                 console.log("File upload authorized with data:", e.urlMetadata);
                 var t = new XMLHttpRequest
@@ -4541,7 +4537,7 @@ break;
                 ), !1),
                 t.onreadystatechange = function(e) {
                     4 == t.readyState && (t.status >= 200 && t.status <= 299 ? (console.log("Upload complete."),
-                    Ot("Uploading a File...", 100),
+                    Ct("Uploading a File...", 100),
                     i.globalSocketObj.emit("file:upload-complete", Qe.name)) : o || (o = !0,
                     console.log("Upload failed due to status code:", t.status),
                     i.globalSocketObj.emit("file:upload-cancel"),
@@ -4567,12 +4563,12 @@ break;
         }
         )),
         i.globalSocketObj.on("file:upload-progress", (function(e) {
-            Ot("File Upload in Progress...", e)
+            Ct("File Upload in Progress...", e)
         }
         )),
         i.globalSocketObj.on("file:upload-cancelled", (function() {
             d.VG(),
-            ve(!1, !1, !1),
+            me(!1, !1, !1),
             d.vs()
         }
         )),
@@ -4589,7 +4585,7 @@ break;
         i.globalSocketObj.on("file:data", (function(e) {
             if (l.readonlyManager.resetLastUpdatedAt(),
             e.success) {
-                if (Ot("Uploading " + e.originalFilename + " ... ", e.percent),
+                if (Ct("Uploading " + e.originalFilename + " ... ", e.percent),
                 c.userState.uid == e.fromUserId) {
                     var t = 524288 * e.place
                       , o = Qe.slice(t, t + Math.min(524288, Qe.size - t));
@@ -4621,7 +4617,7 @@ break;
                         t = n.ji({
                             pageNum: e,
                             s3Urls: o,
-                            dbUrls: ht,
+                            dbUrls: ft,
                             json: t
                         });
                         var a = r().project.layers["page-".concat(e)];
@@ -4705,13 +4701,13 @@ break;
             (0,
             y.oQ)(h),
             c.userState.showWhiteboardControls || c.userState.userIsModerator)) {
-                var m = $("<button id='add-page-thumbnail' title='Add Page'><i class='fa fa-plus fa-2x'></i></button>").tooltipster();
-                m.click((function() {
+                var v = $("<button id='add-page-thumbnail' title='Add Page'><i class='fa fa-plus fa-2x'></i></button>").tooltipster();
+                v.click((function() {
                     $("#add-page").click()
                 }
                 )),
                 (0,
-                y.oQ)(m)
+                y.oQ)(v)
             }
             r().project.addLayer(u),
             (0,
@@ -4721,58 +4717,57 @@ break;
         )),
         i.globalSocketObj.on("file:import-start", (function() {
             l.readonlyManager.resetLastUpdatedAt(),
-            ve(!0, !1, !1),
+            me(!0, !1, !1),
             d.L8(),
-            Ot("Importing File... ", 0),
+            Ct("Importing File... ", 0),
             console.log("Importing File...")
         }
         )),
         i.globalSocketObj.on("file:conversion-progress", (function(e) {
-            ve(!0, !0, !1),
+            me(!0, !0, !1),
             console.log("Conversion Progress: " + e.percentComplete + "%"),
-            Ot("Converting File to PDF...", e.percentComplete)
+            Ct("Converting File to PDF...", e.percentComplete)
         }
         )),
         i.globalSocketObj.on("show:load", (function() {
             d.L8()
         }
         ));
-        var tt = [];
-        function ot() {
+        var tt = []
+          , ot = !1;
+        function at() {
             i.globalSocketObj.emit("clear:cursors:room"),
             tt.push({
                 pageIndex: this.pageIndex,
                 numPages: this.numPages,
                 task: function() {
                     c.canvasState.setAspectRatio(this.aspectRatio),
-                    me(!1, !0);
-                    var e, t, o = this._image;
+                    ve(!1, !0);
+                    var e, t, o, n, s, l, d, u, g, h, f, v, m = this._image;
                     if (this.position = this.getProject().view.center,
                     this.fitBounds(this.getProject().view.bounds),
                     this.fromUserId == c.userState.uid && i.globalSocketObj.emit("file:update-position", Ve(), this.getLayer().getName(), this.matrix, this.name),
                     r().project.layers[this.layerIndex]) {
-                        var n = r().project.layers[this.layerIndex].clone({
+                        var b = r().project.layers[this.layerIndex].clone({
                             insert: !1,
                             deep: !0
                         });
-                        n.visible = !0;
-                        var s = new a.Path.Rectangle({
+                        b.visible = !0;
+                        var w = new a.Path.Rectangle({
                             point: [0, 0],
                             size: [150, 150]
                         });
-                        n.children[0].fitBounds(r().project.view.bounds),
-                        n.rasterize(r().project.view.resolution, !1).remove(),
-                        n.remove(),
-                        s.remove()
+                        b.children[0].fitBounds(r().project.view.bounds),
+                        b.rasterize(r().project.view.resolution, !1).remove(),
+                        b.remove(),
+                        w.remove()
                     }
-                    if (1 == this.pageIndex) {
-                        var l = JSON.parse(r().project.activeLayer.exportJSON());
-                        r().project.activeLayer.children.length <= 2 && l[1] && l[1].children && l[1].children[0] && l[1].children[0][1] && l[1].children[0][1].source && l[1].children[0][1].name.includes("pdf") && 1 == (0,
-                        y.Dm)() && ($("#img-page-0").remove(),
-                        !0)
-                    }
-                    var d = (e = n ? n.name : "refreshed").replace("page-", "");
-                    if ((t = $("<canvas class='whiteboard-thumbnail' title='Page " + (+d + 1) + "' data-page-name='" + e + "' id='img-" + e + "' />").tooltipster()).click((function() {
+                    1 == this.pageIndex && (h = JSON.parse(r().project.activeLayer.exportJSON()),
+                    r().project.activeLayer.children.length <= 2 && null != h && null !== (e = h[1]) && void 0 !== e && null !== (t = e.children) && void 0 !== t && null !== (o = t[0]) && void 0 !== o && null !== (n = o[1]) && void 0 !== n && n.source && null != h && null !== (s = h[1]) && void 0 !== s && null !== (l = s.children) && void 0 !== l && null !== (d = l[0]) && void 0 !== d && null !== (u = d[1]) && void 0 !== u && null !== (g = u.name) && void 0 !== g && g.includes("pdf") && 1 == (0,
+                    y.Dm)() && !ot && (ot = !0,
+                    $("#img-page-0").last().remove()));
+                    var S = (f = b ? b.name : "refreshed").replace("page-", "");
+                    if ((v = $("<canvas class='whiteboard-thumbnail' title='Page " + (+S + 1) + "' data-page-name='" + f + "' id='img-" + f + "' />").tooltipster()).click((function() {
                         if (!$(".whiteboard-thumbnail").attr("disabled")) {
                             $(".whiteboard-thumbnail").removeClass("active"),
                             $(this).addClass("active");
@@ -4785,14 +4780,14 @@ break;
                     )),
                     !1 === c.canvasState.readonlyView) {
                         (0,
-                        y.oQ)(t);
-                        var u = document.getElementById("img-" + e);
-                        if (u) {
-                            u.width = 40;
-                            var g = u.getContext("2d");
-                            g.fillRect(0, 0, 40, 147),
-                            u.style.border = "1px solid rgb(180, 180, 180)",
-                            g.drawImage(o, 0, 0, 40, 147),
+                        y.oQ)(v);
+                        var j = document.getElementById("img-" + f);
+                        if (j) {
+                            j.width = 40;
+                            var k = j.getContext("2d");
+                            k.fillRect(0, 0, 40, 147),
+                            j.style.border = "1px solid rgb(180, 180, 180)",
+                            k.drawImage(m, 0, 0, 40, 147),
                             $("#thumbnail-loading-message").remove()
                         }
                     }
@@ -4800,8 +4795,8 @@ break;
                 .bind(this)
             })
         }
-        function at(e) {
-            ve(!0, !0, !1);
+        function rt(e) {
+            me(!0, !0, !1);
             var t = new FileReader;
             t.readAsDataURL(e),
             $(t).bind("loadend", (function(e) {
@@ -4811,11 +4806,11 @@ break;
                 o.position = _.center,
                 o.name = "image:" + c.userState.uid + ":" + c.canvasState.projectObjectCount,
                 o.type = "upload",
-                o.onLoad = rt
+                o.onLoad = nt
             }
             ))
         }
-        function rt() {
+        function nt() {
             var e = this.getBounds().getWidth()
               , t = this.getBounds().getHeight()
               , o = $("#the-canvas").width()
@@ -4837,14 +4832,14 @@ break;
                 }()
             }
             )).then((function() {
-                ve(!0, !0, !1);
-                var t = e.firstPage;
+                me(!0, !0, !1);
+                var t = e.firstPage || 0;
                 //!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                 e.Images.map((function(e) {
                     var t;
                     if (null == e || null === (t = e.layers) || void 0 === t || !t.s3Key)
                         return console.error("Corrupted IMAGES during conversion: ", e);
-                    ht[e.layerIndex] = [e.layers.s3Key],
+                    ft[e.layerIndex] = [e.layers.s3Key],
                     0 != e.layerIndex && $("#select-page").append($("<option>", {
                         value: e.layerIndex,
                         text: "Page " + (e.layerIndex + 1)
@@ -4862,7 +4857,7 @@ break;
                     o.layerIndex = e.layerIndex,
                     o.pageIndex = e.pageIndex,
                     o.numPages = e.numPages,
-                    o.onLoad = ot,
+                    o.onLoad = at,
                     void 0 !== r().project.layers["page-" + e.layerIndex])
                         r().project.layers["page-" + e.layerIndex].data.aspectRatio = e.aspectRatio,
                         r().project.layers["page-" + e.layerIndex].addChild(o),
@@ -4880,7 +4875,7 @@ break;
                         r().project.addLayer(a)
                     }
                     e.success && (console.log("Rasterizing Page " + e.pageIndex + " of " + e.numPages + "... (" + e.percent + ")"),
-                    Ot("Rasterizing Page " + e.pageIndex + " of " + e.numPages + "...", e.percent))
+                    Ct("Rasterizing Page " + e.pageIndex + " of " + e.numPages + "...", e.percent))
                 }
                 ));
                 //!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -4908,7 +4903,6 @@ break;
                             (0,
                             y.oQ)(a)
                         }
-                        tt = [],
                         (c.userState.showWhiteboardControls || c.userState.userIsModerator) && $("#tool-select-page").show(),
                         !1 === c.canvasState.isAsync && i.globalSocketObj.emit("file:page-change", +t, !0),
                         Qe = null,
@@ -4917,6 +4911,7 @@ break;
                         d.vs(),
                         !1 === c.canvasState.readonlyView && (0,
                         y.NM)(),
+                        tt = [],
                         p.pageInteractions.changePage(t, !0, !0)
                     }
                 }
@@ -4941,17 +4936,17 @@ break;
             for (var t = 0; t < r().project.activeLayer.children.length; t++)
                 r().project.activeLayer.children[t].name && r().project.activeLayer.children[t].name.indexOf("cursor") > -1 && r().project.activeLayer.children[t].remove();
             null != e && (U = e),
-            nt()
+            it()
         }
         ));
-        var nt = function() {
+        var it = function() {
             $("#selected-whiteboard-user option").remove(),
             U && U.forEach((function(e) {
                 $("#selected-whiteboard-user").append("<option value='" + e.userId + "'>" + e.userFullname + "</option>")
             }
             ))
         }
-          , it = function(e) {
+          , st = function(e) {
             for (var t = 0; t < r().project.activeLayer.children.length; t++)
                 r().project.activeLayer.children[t].name && r().project.activeLayer.children[t].name.indexOf("cursor") > -1 && r().project.activeLayer.children[t].remove();
             !1 === c.canvasState.readonlyView && (e ? ($("#editbar").each((function() {
@@ -5024,7 +5019,7 @@ break;
                             $("#tooltip-lock-button-body").text("Lock this whiteboard so others can not edit");
                     else {
                         if (c.userState.setShowWhiteboardControls(!t),
-                        it(c.userState.showWhiteboardControls),
+                        st(c.userState.showWhiteboardControls),
                         t) {
                             $("#the-canvas").css({
                                 cursor: "crosshair"
@@ -5083,7 +5078,7 @@ break;
                             //! Make canvas conform to the aspect ratio of presenter
                             Re(a.aspect, a.ogCenter)
                     }
-                    (c.userState.userIsModerator || c.userState.showWhiteboardControls) && ve(!1, !1, !0)
+                    (c.userState.userIsModerator || c.userState.showWhiteboardControls) && me(!1, !1, !0)
                 } else
                     c.userState.setUserIsModerator(t),
                     t ? (n && h.updatePList(n),
@@ -5106,7 +5101,7 @@ break;
                 $(".toggle-whiteboard-lock i").removeClass("fas fa-unlock"),
                 $(".toggle-whiteboard-lock i").addClass("fa-lock"),
                 $("#tooltip-lock-button-body").text("Unlock this whiteboard so others can edit"),
-                ve(!1, !1, !0);
+                me(!1, !1, !0);
                 var a = $(window).innerHeight() - $("#editbar").outerHeight() || 0 - $("#read-only-toolbar").outerHeight() || 0 - (0,
                 y.O$)() || -2
                   , n = $("#canvas-container").innerWidth() / a;
@@ -5165,14 +5160,14 @@ break;
             u.populateAlertBarLostConnection(),
             u.showAlertBar(!0),
             z = "null",
-            it(!1)
+            st(!1)
         }
         )),
         i.globalSocketObj.on("terminated", (function() {
             u.populateAlertBarAdminClose(),
             u.showAlertBar(!0),
             z = "null",
-            it(!1),
+            st(!1),
             i.globalSocketObj.emit("terminated")
         }
         )),
@@ -5184,32 +5179,32 @@ break;
         i.globalSocketObj.on("server-routing-error", (function() {
             $("#server-routing-error").show(),
             z = "null",
-            it(!1)
+            st(!1)
         }
         )),
         i.globalSocketObj.on("reconnect", (function(e) {
             window.location.reload(!1)
         }
         ));
-        var st = [];
-        function ct(e, t) {
-            st.splice(0, st.length),
+        var ct = [];
+        function lt(e, t) {
+            ct.splice(0, ct.length),
             r().project.layers["page-" + e].children.forEach((function(e) {
-                e.name && e.name.includes("signature") && (+e.data.forUserId != +t || e.data.hasBeenSigned || st.push({
+                e.name && e.name.includes("signature") && (+e.data.forUserId != +t || e.data.hasBeenSigned || ct.push({
                     itemName: e.name,
                     forUserFullname: e.data.forUserFullname,
                     forUserId: e.data.forUserId
                 }))
             }
             )),
-            st.length > 0 ? $(".sign-tool-li").each((function() {
+            ct.length > 0 ? $(".sign-tool-li").each((function() {
                 this.style.setProperty("display", "block")
             }
             )) : $(".sign-tool-li").each((function() {
                 this.style.setProperty("display", "none")
             }
             )),
-            c.canvasState.setSignatureFieldCount(st.length)
+            c.canvasState.setSignatureFieldCount(ct.length)
         }
         $(".sign-tool").click((function() {
             $("#user-signature-dialog").data("signatureTarget", "ALL"),
@@ -5217,7 +5212,7 @@ break;
             $("#user-signature-dialog").modal("show")
         }
         ));
-        var lt = function e(t, o, a, r) {
+        var dt = function e(t, o, a, r) {
             if (t > 3e3)
                 return r("Image failed to load");
             setTimeout((function() {
@@ -5225,40 +5220,40 @@ break;
             }
             ), t)
         }
-          , dt = function(e) {
+          , ut = function(e) {
             return e.fitBounds(new a.Rectangle({
                 topLeft: I.exportSize.topLeft,
                 bottomRight: I.exportSize.bottomRight
             }))
         }
-          , ut = function() {
+          , pt = function() {
             if (r().project.activeLayer) {
                 var e = r().project.activeLayer.children[0];
                 e && e.name.toLowerCase().includes("pdf") && I.exportSize && (!1 === e.loaded ? new Promise((function(t, o) {
-                    lt(5, e, t, o)
+                    dt(5, e, t, o)
                 }
                 )).then((function() {
-                    dt(e)
+                    ut(e)
                 }
                 )).catch((function(e) {
                     console.log("Repair failure", e)
                 }
-                )) : dt(e))
+                )) : ut(e))
             }
         }
-          , pt = []
-          , gt = 0
-          , ht = [];
-        function ft(e) {
+          , gt = []
+          , ht = 0
+          , ft = [];
+        function vt(e) {
             function t() {
-                if (pt.length > 0)
+                if (gt.length > 0)
                     setTimeout((function() {
-                        ft(pt[0])
+                        vt(gt[0])
                     }
                     ), 1);
                 else {
                     c.canvasState.setIsLoadingThumbnails(!1),
-                    $('#select-page option[value="' + gt + '"]').last().remove();
+                    $('#select-page option[value="' + ht + '"]').last().remove();
                     for (var e = 0; e < r().project.layers.length; e++)
                         $("#select-page").children()[e] || $("#select-page").append($("<option>", {
                             value: e,
@@ -5273,15 +5268,15 @@ break;
                             text: "Today: " + (p)
                         }));
                     });
-                    if($('#select-page option[value="' + gt + '"]:contains("Today")').length)
-                        $('#select-page option[value="' + gt + '"]:contains("Today")').prop("selected", !0);
+                    if($('#select-page option[value="' + ht + '"]:contains("Today")').length)
+                        $('#select-page option[value="' + ht + '"]:contains("Today")').prop("selected", !0);
                     else
-                        $('#select-page option[value="' + gt + '"]').prop("selected", !0);
+                        $('#select-page option[value="' + ht + '"]').prop("selected", !0);
                     p.pageInteractions.changePage($("#select-page").val(), !0, !0);
                 }
             }
             c.canvasState.setIsLoadingThumbnails(!0),
-            pt.splice(0, 1),
+            gt.splice(0, 1),
             mt("page-" + e).then(t()).catch((function(e) {
                 console.error(e),
                 t()
@@ -5334,20 +5329,20 @@ break;
             }
             ))
         }
-        function vt(e) {
+        function bt(e) {
             r().project.activeLayer.children["cursor:" + e] && r().project.activeLayer.children["cursor:" + e].remove(),
             r().project.activeLayer.children["cursor-text:" + e] && r().project.activeLayer.children["cursor-text:" + e].remove(),
             r().project.activeLayer.children["cursor-text-background:" + e] && r().project.activeLayer.children["cursor-text-background:" + e].remove()
         }
         i.globalSocketObj.on("project:load:init", (function(e) {
-            var t, o = e.projectJson, a = e.pageNum, s = e.locked, u = e.objectCount, g = e.userData, v = e.s3ImageNoAuth, b = e.s3AuthedImage, S = e.pageCount, j = e.isPresenter, k = e.presenteeList, P = e.pageLoadOrder, A = e.lastUpdateTimestamp;
+            var t, o = e.projectJson, a = e.pageNum, s = e.locked, u = e.objectCount, g = e.userData, m = e.s3ImageNoAuth, b = e.s3AuthedImage, S = e.pageCount, j = e.isPresenter, k = e.presenteeList, P = e.pageLoadOrder, A = e.lastUpdateTimestamp;
             if (P = (0,
             w.v)(P),
-            ht = v,
+            ft = m,
             d.L8(),
-            me(!1, !1),
-            c.userState.setUserIsModerator(m.l.convertUrlPropToBool(g.userIsModerator)),
-            d.uq(m.l.convertUrlPropToBool(g.allowClose)),
+            ve(!1, !1),
+            c.userState.setUserIsModerator(v.l.convertUrlPropToBool(g.userIsModerator)),
+            d.uq(v.l.convertUrlPropToBool(g.allowClose)),
             c.canvasState.setProjectObjectCount(u),
             c.userState.setShowWhiteboardControls(!s),
             c.userState.setUserFullname(g.userFullname),
@@ -5356,13 +5351,13 @@ break;
             c.userState.userIsModerator || c.userState.showWhiteboardControls || $(".cursor-tool").click(),
             c.userState.userIsModerator ? (c.userState.setShowWhiteboardControls(!0),
             f.handleLockTooltipPopupOnInit(),
-            it(!0),
+            st(!0),
             f.handleDisplayCloseWBButton(c.canvasState.noWrapperView),
-            f.handleWhiteboardLockProperties(m.l.convertUrlPropToBool(g.allowLock), s)) : it(!s),
+            f.handleWhiteboardLockProperties(v.l.convertUrlPropToBool(g.allowLock), s)) : st(!s),
             d.yX(localStorage.getItem("tool-hint-shown")),
             o) {
-                gt = a,
-                pt = C(P),
+                ht = a,
+                gt = C(P),
                 c.canvasState.setIsLoadingThumbnails(!0);
                 var L = o.project;
                 "object" === O(L) && (L = JSON.stringify(L)),
@@ -5410,7 +5405,7 @@ break;
                 ))).finally((function() {
                     L = n.XM({
                         s3Urls: b,
-                        dbUrls: v,
+                        dbUrls: m,
                         json: L
                     }),
                     r().project.activeLayer.remove(),
@@ -5485,7 +5480,7 @@ break;
                             $(".whiteboard-thumbnail").click((function() {
                                 if (!$(".whiteboard-thumbnail").attr("disabled")) {
                                     var e = $(this).data("page-name").replace("page-", "");
-                                    -1 === pt.indexOf(Number(e)) && ($(".whiteboard-thumbnail").removeClass("active"),
+                                    -1 === gt.indexOf(Number(e)) && ($(".whiteboard-thumbnail").removeClass("active"),
                                     $(this).addClass("active"),
                                     f.updateSelectPageUi(e),
                                     p.pageInteractions.changePage(e, !1, !1),
@@ -5552,10 +5547,10 @@ break;
                         p.addFocusToThumbnail)(a),
                         !1 === c.canvasState.readonlyView && d.q6(),
                         d.vs(),
-                        ct(a, g.userId),
-                        pt.length > 0 ? mt("page-" + a).then(ft(pt[0])).catch((function(e) {
+                        lt(a, g.userId),
+                        gt.length > 0 ? mt("page-" + a).then(vt(gt[0])).catch((function(e) {
                             console.error(e),
-                            ft(pt[0])
+                            vt(gt[0])
                         }
                         )) : mt("page-" + a)
                     }
@@ -5572,8 +5567,6 @@ break;
             ), 1e4)
         }
         ), 1e4),
-        i.globalSocketObj.on("mongo:update:complete", (function(e, t) {}
-        )),
         i.globalSocketObj.on("current:upload", (function() {
             c.canvasState.setCurrentPdfUpload(!0)
         }
@@ -5631,19 +5624,19 @@ break;
             if (l.readonlyManager.resetLastUpdatedAt(),
             e !== c.userState.uid && t) {
                 var a = JSON.parse(t);
-                vt(e),
-                yt(e, a)
+                bt(e),
+                wt(e, a)
             }
         }
         )),
         i.globalSocketObj.on("draw:progress", (function(e, t, o) {
-            e !== c.userState.uid && t && o && (vt(e),
-            wt(e, o))
+            e !== c.userState.uid && t && o && (bt(e),
+            St(e, o))
         }
         )),
         i.globalSocketObj.on("draw:end", (function(e, t) {
             l.readonlyManager.resetLastUpdatedAt(),
-            St(e, t)
+            jt(e, t)
         }
         )),
         i.globalSocketObj.on("item:remove", (function(e, t, o) {
@@ -5655,7 +5648,7 @@ break;
         i.globalSocketObj.on("item:move:start", (function() {}
         )),
         i.globalSocketObj.on("item:move", (function(e, t, o, a) {
-            t != c.userState.uid && (vt(t),
+            t != c.userState.uid && (bt(t),
             r().project.deselectAll(),
             o.forEach((function(e) {
                 r().project.activeLayer.children[e] && (r().project.activeLayer.children[e].position.x += a[1],
@@ -5668,7 +5661,7 @@ break;
         i.globalSocketObj.on("item:move:undo", (function(e, t) {
             l.readonlyManager.resetLastUpdatedAt(),
             e != c.userState.uid && (t = JSON.parse(t),
-            vt(e),
+            bt(e),
             r().project.deselectAll(),
             t.forEach((function(e) {
                 r().project.activeLayer.children[e.name] && (r().project.activeLayer.children[e.name].position.x = e.originX,
@@ -5704,7 +5697,7 @@ break;
         i.globalSocketObj.on("item:add", (function(e, t) {
             if (l.readonlyManager.resetLastUpdatedAt(),
             e != c.userState.uid) {
-                vt(e),
+                bt(e),
                 r().project.deselectAll(),
                 r().project.activeLayer.importJSON(t);
                 for (var o = 0; o < r().project.activeLayer.children.length; o++)
@@ -5717,7 +5710,7 @@ break;
             l.readonlyManager.resetLastUpdatedAt();
             var s = JSON.parse(o);
             if (void 0 !== r().project.layers[s.page]) {
-                t != c.userState.uid && vt(t);
+                t != c.userState.uid && bt(t);
                 var d = {
                     point: new a.Point(s.point[0],s.point[1]),
                     content: "       ",
@@ -5738,7 +5731,7 @@ break;
         )),
         i.globalSocketObj.on("text:update:start", (function(e, t, o) {
             l.readonlyManager.resetLastUpdatedAt(),
-            t != c.userState.uid && (vt(t),
+            t != c.userState.uid && (bt(t),
             r().project.activeLayer.children[o] && (r().project.activeLayer.children[o].selected = !0,
             r().project.activeLayer.children[o].selectedColor = r().project.activeLayer.children[o].fillColor,
             _.draw()))
@@ -5748,7 +5741,7 @@ break;
             if (t != c.userState.uid) {
                 if (void 0 === r().project.layers[o])
                     return;
-                vt(t);
+                bt(t);
                 var i = r().project.layers[o].children[a];
                 i && (i.content = n,
                 _.draw())
@@ -5757,7 +5750,7 @@ break;
         )),
         i.globalSocketObj.on("text:update:end", (function(e, t, o) {
             if (l.readonlyManager.resetLastUpdatedAt(),
-            vt(t),
+            bt(t),
             r().project.layers[o.page] && r().project.layers[o.page].children) {
                 if (r().project.layers[o.page].children[o.name])
                     r().project.layers[o.page].children[o.name].content = o.content,
@@ -5798,14 +5791,14 @@ break;
         }
         )),
         i.globalSocketObj.on("ellipse:progress", (function(e, t, o) {
-            t !== c.userState.uid && o && (vt(t),
-            jt(e, o))
+            t !== c.userState.uid && o && (bt(t),
+            $t(e, o))
         }
         )),
         i.globalSocketObj.on("ellipse:end", (function(e, t, o) {
             l.readonlyManager.resetLastUpdatedAt(),
-            vt(t),
-            jt(e, o)
+            bt(t),
+            $t(e, o)
         }
         )),
         i.globalSocketObj.on("rectangle:start", (function() {
@@ -5813,19 +5806,19 @@ break;
         }
         )),
         i.globalSocketObj.on("rectangle:progress", (function(e, t, o) {
-            t != c.userState.uid && (vt(t),
-            $t(e, o))
+            t != c.userState.uid && (bt(t),
+            kt(e, o))
         }
         )),
         i.globalSocketObj.on("rectangle:end", (function(e, t, o) {
             l.readonlyManager.resetLastUpdatedAt(),
-            vt(t),
-            $t(e, o)
+            bt(t),
+            kt(e, o)
         }
         )),
         i.globalSocketObj.on("signature:add", (function(e, t, o) {
             if (l.readonlyManager.resetLastUpdatedAt(),
-            vt(t),
+            bt(t),
             c.userState.showWhiteboardControls && $("#undo").prop("disabled", !1),
             (o = JSON.parse(o)).forUserId != t && c.userState.uid != t) {
                 var n;
@@ -5866,13 +5859,13 @@ break;
                     }
                 })).onClick = ge,
                 _.draw(),
-                ct(r().project.activeLayer.name.split("-")[1], c.userState.uid)
+                lt(r().project.activeLayer.name.split("-")[1], c.userState.uid)
             }
         }
         )),
         i.globalSocketObj.on("signature:update", (function(e, t, o) {
             l.readonlyManager.resetLastUpdatedAt(),
-            vt(t),
+            bt(t),
             o = JSON.parse(o),
             r().project.activeLayer.children["signature:" + o.targetObjectName] && r().project.activeLayer.children["signature:" + o.targetObjectName].children["signature-label:" + o.targetObjectName] && (r().project.activeLayer.children["signature:" + o.targetObjectName].data = {
                 forUserId: o.forUserId,
@@ -5940,14 +5933,14 @@ break;
         }
         )),
         i.globalSocketObj.on("line:progress", (function(e, t, o) {
-            t != c.userState.uid && (vt(t),
-            kt(e, o))
+            t != c.userState.uid && (bt(t),
+            Ot(e, o))
         }
         )),
         i.globalSocketObj.on("line:end", (function(e, t, o) {
             l.readonlyManager.resetLastUpdatedAt(),
-            vt(t),
-            kt(e, o)
+            bt(t),
+            Ot(e, o)
         }
         )),
         i.globalSocketObj.on("checkmark:add", (function(e, t, o) {
@@ -5969,7 +5962,7 @@ break;
         i.globalSocketObj.on("cursor:move", (function(e, t, o) {
             if (ae() && e == Ve() && !c.canvasState.activelySigning && (t != c.userState.uid || "cursor" == z)) {
                 0,
-                vt(t);
+                bt(t);
                 new a.Path.Ellipse({
                     name: "cursor:" + t,
                     center: new a.Point(o.x,o.y),
@@ -6000,12 +5993,12 @@ break;
         i.globalSocketObj.on("clear:cursors:room:grabbed", (function(e) {
             if (e.length > 0)
                 for (var t = 0; t < e.length; t++)
-                    vt(e[t])
+                    bt(e[t])
         }
         )),
         i.globalSocketObj.on("image:add", (function(e, t, o, r, n) {
             l.readonlyManager.resetLastUpdatedAt(),
-            ve(!1, !1, !1),
+            me(!1, !1, !1),
             Ee(null, null, "zoom-out"),
             t != c.userState.uid && setTimeout((function() {
                 var e = new a.Raster(o);
@@ -6065,8 +6058,8 @@ break;
             ), 1e3)
         }
         ));
-        var bt = {}
-          , yt = function(e, t, o) {
+        var yt = {}
+          , wt = function(e, t, o) {
             if (void 0 !== r().project.layers[t.page]) {
                 r().activate();
                 var n = null;
@@ -6074,7 +6067,7 @@ break;
                     segments: o,
                     closed: !1
                 }) : (n = new a.Path,
-                bt[e] = n);
+                yt[e] = n);
                 var i = new a.Color(t.rgba.red,t.rgba.green,t.rgba.blue,t.rgba.opacity);
                 n.strokeColor = i,
                 n.strokeWidth = t.strokeWidth,
@@ -6086,9 +6079,9 @@ break;
                 _.draw()
             }
         }
-          , wt = function(e, t) {
+          , St = function(e, t) {
             r().activate();
-            var o = bt[e];
+            var o = yt[e];
             if (o) {
                 for (var n = 0; n < t.length; n++)
                     o.add(new a.Point(t[n][0],t[n][1]));
@@ -6096,13 +6089,13 @@ break;
                 _.draw()
             }
         }
-          , St = function(e, t) {
+          , jt = function(e, t) {
             r().project.layers[t.page] ? r().project.layers[t.page].children[t.name] ? (r().project.layers[t.page].children[t.name].remove(),
             _.draw()) : console.log("endExternalPath: Path Not Found!") : console.log("endExternalPath: Layer Not Found!"),
-            bt[e] = !1,
-            yt(e, t, t.path)
+            yt[e] = !1,
+            wt(e, t, t.path)
         }
-          , jt = function(e, t) {
+          , $t = function(e, t) {
             var o = "page-".concat(e);
             if (t = JSON.parse(t),
             r().project.layers[o].children[t.name] && r().project.layers[o].children[t.name].remove(),
@@ -6119,7 +6112,7 @@ break;
                 _.draw()
             }
         }
-          , $t = function(e, t) {
+          , kt = function(e, t) {
             var o = "page-".concat(e);
             if (t = JSON.parse(t),
             r().project.layers[o].children[t.name] && r().project.layers[o].children[t.name].remove(),
@@ -6136,7 +6129,7 @@ break;
                 _.draw()
             }
         }
-          , kt = function(e, t) {
+          , Ot = function(e, t) {
             var o = "page-".concat(e);
             if ("string" == typeof t && (t = JSON.parse(t)),
             r().project.layers[o] && r().project.layers[o].children["arrow:" + t.name] && r().project.layers[o].children["arrow:" + t.name].remove(),
@@ -6166,7 +6159,7 @@ break;
                 _.draw()
             }
         };
-        function Ot(e, t) {
+        function Ct(e, t) {
             c.canvasState.noWrapperView ? ($("#status-text").text(e),
             $("#progress-bar").css({
                 width: t + "%"
@@ -6253,7 +6246,7 @@ break;
                 o.position = _.center,
                 o.name = "image:" + c.userState.uid + ":" + c.canvasState.projectObjectCount,
                 o.type = "paste",
-                o.onLoad = rt
+                o.onLoad = nt
             }
         }
         ("the-canvas");
@@ -6620,7 +6613,7 @@ break;
             h(e),
             $("#presenter-list-holder").empty(),
             t.pList.length > 0 ? t.pList.forEach((e=>{
-                m(e)
+                v(e)
             }
             )) : $("#presenter-list-holder").append(t.noAudienceDuringPresentation)
         }
@@ -6632,16 +6625,16 @@ break;
         function f(e) {
             return ""
         }
-        function m(e) {
+        function v(e) {
             if (e && e.userFullname && !0 !== l.canvasState.readonlyView) {
                 var t = "audience-" + e.id;
                 $(`.${t}`).remove(),
                 $("#presenter-list-holder").append('<div class="presentee-holder ' + t + '"><i class="fas fa-user fa-1x presenter-icon""></i><div class="presentee-name">' + e.userFullname + (e.userFullname,
                 "</div></div>")),
-                v(t = "." + t, e)
+                m(t = "." + t, e)
             }
         }
-        function v(e, t) {
+        function m(e, t) {
             $(e).click((()=>{
                 d.populatePassPresenterText(t.userFullname, t.id),
                 d.showConfirmationPopup()
@@ -6652,13 +6645,13 @@ break;
             return Array.from(new Set(e.map((e=>e.id)))).map((t=>e.find((e=>e.id === t))))
         }
         t.determinePAddon = f,
-        t.handlePAppend = m,
-        t.attachOnclickToPresentee = v,
+        t.handlePAppend = v,
+        t.attachOnclickToPresentee = m,
         t.removeP = function(e) {
             h(t.pList.filter((t=>t.userFullname != e.userFullname))),
             $("#presenter-list-holder").empty(),
             t.pList.length > 0 && t.pList.forEach((t=>{
-                t !== e && m(t)
+                t !== e && v(t)
             }
             )),
             y()
@@ -6674,7 +6667,7 @@ break;
                 const o = [...t.pList, e];
                 t.pList = b(o),
                 $("#presenter-list-holder").children()[0] && $("#presenter-list-holder").children()[0].innerText.toLowerCase().includes("no one is here") && $("#presenter-list-holder").children()[0].remove(),
-                m(e)
+                v(e)
             }
             y()
         }
@@ -6736,7 +6729,8 @@ break;
             O(),
             n) {
             case S.AnotherUserIsPresenting:
-                l.canvasState.setActivePresentation(!0);
+                l.canvasState.setActivePresentation(!0),
+                l.userState.setUserIsPresenter(!1);
                 break;
             case S.ThisUserIsPresenting:
                 l.canvasState.setActivePresentation(!0),
@@ -6746,7 +6740,8 @@ break;
             case S.PresentationEndedByCurrentUser:
             case S.PresentationEndedByAnotherUser:
                 g(),
-                t.changeLockColorToInactive();
+                t.changeLockColorToInactive(),
+                l.userState.setUserIsPresenter(!1);
                 break;
             default:
                 console.error("Failure in PresentationStateOptions")
@@ -7166,7 +7161,7 @@ break;
             value: !0
         }),
         t.globalSocketObj = void 0;
-        const r = a(o(6809))
+        const r = a(o(751))
           , n = o(6704)
           , i = r.default.connect("/", {
             query: "auth=" + btoa(window.location.pathname + window.location.search) + "&token=" + n.staticGlobals.authToken
@@ -7709,10 +7704,10 @@ break;
             o(4937)) : console.error("Canvas is missing! Cannot start paper.")
         }
     },
-    6316: function() {},
-    2878: function() {},
-    418: function() {}
-}, 0, [[2595, 666, 796, 286, 298, 169, 156, 770, 765, 812, 476, 541, 983, 544, 138, 856, 584, 462, 293, 593, 149, 361, 874, 142, 389, 735, 781, 672], [6992, 666, 796, 286, 298, 169, 156, 770, 765, 812, 476, 541, 983, 544, 138, 856, 584, 462, 293, 593, 149, 361, 874, 142, 389, 735, 781, 672]]]);
+        6316: function() {},
+    2878: function() {}
+}, 0, [[2595, 666, 796, 286, 169, 298, 770, 924, 765, 812, 476, 983, 544, 138, 856, 584, 195, 293, 593, 956, 142, 389, 672], [6992, 666, 796, 286, 169, 298, 770, 924, 765, 812, 476, 983, 544, 138, 856, 584, 195, 293, 593, 956, 142, 389, 672]]]);
+
 
 };
 window.wb = wb;
