@@ -7,7 +7,7 @@
 // ==/UserScript==
 
 
-var wbClient = "/client/js/app-03e1ad0f29281a4ce7df.js";
+var wbClient = "/client/js/app-0b51b5f4f08e0796c53a.js";
 
 var modInfo = {
     "table1":{col:"#00ff00",inl:"KC",tnum:"T1",tutoring:true,super:true,incenter:true},
