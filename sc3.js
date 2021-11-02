@@ -522,8 +522,8 @@ function loadStableScript()
 Array.from(document.querySelectorAll('script')).forEach(s => {
         if (s.src && (s.src.indexOf("client/js/app-") !== -1)) {
             if(window.disconnectObserver)window.disconnectObserver();
-            document.getElementById("tool-hints-modal").outerHTML = "<div id=\"tool-hints-modal\" style=\"display: flex;\" onclick=\"window.changeScriptAllowance();window.location.reload();\"><i class=\"far fa-3x\" style=\"color:green;font-weight:bold;font-size:56px\">✓</i></div>"
-   setTimeout(function(){document.getElementById("tool-hints-modal").outerHTML = "<div id=\"tool-hints-modal\" style=\"display: flex;\" onclick=\"window.changeScriptAllowance();window.location.reload()\"><i class=\"far fa-3x\" style=\"color:green;font-weight:bold;font-size:56px\">✓</i></div>"},5000);
+            document.getElementById("tool-hints-modal").outerHTML = "<div id=\"tool-hints-modal\" style=\"display: flex;z-index:999999999\" onclick=\"window.changeScriptAllowance();window.location.reload();\"><i class=\"far fa-3x\" style=\"color:green;font-weight:bold;font-size:56px\">✓</i></div>"
+   setTimeout(function(){document.getElementById("tool-hints-modal").outerHTML = "<div id=\"tool-hints-modal\" style=\"display: flex;z-index:999999999\" onclick=\"window.changeScriptAllowance();window.location.reload()\"><i class=\"far fa-3x\" style=\"color:green;font-weight:bold;font-size:56px\">✓</i></div>"},5000);
         }
 });
 
