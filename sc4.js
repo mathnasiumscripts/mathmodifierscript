@@ -4510,7 +4510,7 @@ break;
         $("#image-input").bind("change", (function(e) {
             for (var t = document.getElementById("image-input").files, o = 0; o < t.length; o++) {
                 var a = t[o];
-                a.type.indexOf("image/") > -1 ? rt(a) : r().project.layers.length < 100 && et(a)
+                a.type.indexOf("image/") > -1 ? rt(a) : r().project.layers.length < 150 && et(a)
             }
         }
         ));
