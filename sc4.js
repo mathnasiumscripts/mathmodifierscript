@@ -4343,8 +4343,8 @@ break;
         }
         )),
         $(".signature-tool").on("click", (function() {
-            Ge(".signature-tool"),
-            localStorage.setItem("selectedTool", "signature"),
+            var dt = new Date();
+            window.createTBox(window.mod.inl + " " + (dt.getMonth()+1)+"/"+dt.getDate()+"/"+(dt.getYear()%100), window.mod.col,12,0,-240);
             Je(),
             z = "signature",
             $("#the-canvas").css("cursor", "crosshair"),
