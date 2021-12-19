@@ -59,7 +59,7 @@ window.userInfo = {
         if(typeof u == "object")
             return u.isOnline;
         if(typeof u == "string")
-            return !!Array.from(document.getElementsByClassName("classroom-user-info")).filter(c => c.title.indexOf(u)>-1 && c.title.indexOf(" is online")>-1).length;
+            return !!Array.from(document.getElementsByClassName("user-list-entry")).filter(c => c.innerText.indexOf(u)>-1 && c.className.indexOf("offline")==-1).length;
         return false;
     },
     getAltNames: function(u)
@@ -188,6 +188,20 @@ Alerter.prototype.update = function()
         AlertBox.open(this.msg, this.key), this.lastSwitch = timer + this.repeatInterval, this.onalert(), speak(this.msg);
     this.lastState = condition;
 }
+
+var Conexed = {
+    getUserTabElement: function(){
+        var sidebarMod = document.getElementById("sidebar-modules-tabs");
+        if(!sidebarMod) return null;
+        return Array.from(sidebarMod.children).filter(u => u.innerText == "USERS")[0];
+    },
+    getSelectedTabElements: function(){
+        var sidebarMod = document.getElementById("sidebar-modules-tabs");
+        if(!sidebarMod) return null;
+        return Array.from(sidebarMod.getElementsByClassName("active"));
+    },
+};
+window.Conexed = Conexed;
 function TimeReader(str)
 {
     if(typeof str == "string")
@@ -293,12 +307,12 @@ function RoomMetric(rm)
 {
     if(typeof rm == "string")
         this.name = rm, this.ref = "string";
-    else if(rm.className && rm.className == "breakout-room")
+    else if(rm.className && rm.className == "room")
     {
         this.ref = "div";
-        this.name = rm.getElementsByClassName("breakout-room-title")[0].innerHTML;
-        this.users = Array.from(rm.getElementsByClassName("classroom-user-name")).map(p => p.innerHTML);
-        button = rm.getElementsByClassName("classroom-user-button");
+        this.name = rm.getElementsByClassName("room-heading")[0].innerText;
+        this.users = Array.from(rm.getElementsByClassName("user-list-entry")).map(p => p.innerHTML);
+        button = rm.getElementsByTagName("button");
         this.entryButton = (button ? button[0] : {click:function(){}});
     }
     else
@@ -401,17 +415,16 @@ RoomMetric.prototype.hasTutor = function()
 }
 function UserMetric(u)
 {
-    if(u.className && u.className == "classroom-user-info")
+    if(u.className && u.className == "user-entry-list")
     {
         this.ref = "div";
-        this.name = u.getElementsByClassName("classroom-user-name")[0].innerText;
-        this.isOnline = u.title.indexOf("is online") != -1;
-        var breakoutRoom = u.parentNode.parentNode.parentNode.parentNode;
+        this.name = u.innerText;
+        this.isOnline = u.className.indexOf("offline") == -1;
+        var breakoutRoom = u.parentNode;
         this.roomName = null;
-        if(breakoutRoom.className == "breakout-room")
-            this.roomName = breakoutRoom.getElementsByClassName("breakout-room-title")[0].innerText;
+        if(breakoutRoom.className == "room")
+            this.roomName = breakoutRoom.getElementsByClassName("room-heading")[0].innerText;
         this.isMod = window.userInfo.modNames.includes(this.name.toLowerCase().replace(/[ _]/g,""));
-        this.timeOnline = u.getElementsByClassName("classroom-user-wait-time")[0].innerText
     }
     else
     {
@@ -455,7 +468,7 @@ function getUsers(chooseDOM)
     }
     else
     {
-        return Array.from(document.getElementsByClassName("classroom-user-info")).map(r => new UserMetric(r));
+        return Array.from(document.getElementsByClassName("user-list-entry")).map(r => new UserMetric(r));
     }
 }
 function getRooms(chooseDOM)
@@ -466,14 +479,14 @@ function getRooms(chooseDOM)
     }
     else
     {
-        return Array.from(document.getElementsByClassName("breakout-room")).map(r => new RoomMetric(r));
+        return Array.from(document.getElementsByClassName("room")).map(r => new RoomMetric(r));
     }
 }
 function getCurrentRoom()
 {
     var titleEle = document.getElementById("breakout-room-banner");
-    var pad = document.getElementById("pad-frame");
-    return {name: titleEle&&titleEle.innerHTML.replace("You are in Breakout Room:  ", ""), pad: pad&&pad.src};
+    var pad = document.getElementById("tile-grid-pad").getElementsByTagName("iframe")[0];
+    return {name: titleEle&&titleEle.innerText.replace("You are in breakout room: ", ""), pad: pad&&pad.src};
 }
 function getPages(){
     var pagesGroup = new RegExp('[0-9][0-9]?:[0-9][0-9][ ]*T[0-9][0-9]?/?(T[0-9][0-9]?)?[ ]*[A-Za-z]*(.*)','');
@@ -544,7 +557,6 @@ window.onbeforeunload = function(){
 }
 
 var currentName = window.location.href.split("&").filter(t=>t.indexOf("fullname")!=-1)[0].split("=")[1].toLowerCase().replace(/%[A-Za-z0-9][A-Za-z0-9]/g,"").replace(/[^0-9A-Za-z]/g,"");
-console.log(currentName);
 if(window.injak)currentName = window.injak;
 if(!modInfo[currentName])currentName = 'default';
 window.mod = modInfo[currentName];
@@ -657,7 +669,7 @@ function getUnsigned()
         wbs.forEach(w => {
             var title = (new RoomMetric(w)).getName();
             if(!rms.filter(r => w.indexOf(r)>-1).length)return;
-            var pad = document.getElementById("pad-frame");
+            var pad = document.getElementById("tile-grid-pad").getElementsByTagName("iframe")[0];
             var wb = window.WBList[w];
             var matchPad = pad && wb.split("?")[0] == pad.src.split("?")[0];
             selections += "<option value = '" + wb + "' "+ (matchPad ? "selected='selected'" : "") +">" + title + "</option>";
@@ -848,7 +860,7 @@ function getUnsigned()
     var setThemes = false;
     function inlVar()
     {
-        if(document.getElementsByClassName("breakout-room").length == 0)return window.setTimeout(inlVar,100);
+        if(!document.getElementsByClassName("room").length)return window.setTimeout(inlVar,100);
         inlVar2();
     }
     function inlVar2()
@@ -871,49 +883,30 @@ function getUnsigned()
             window.WBList = JSON.parse(localStorage.getItem("wblist"));
             window.openedRooms = JSON.parse(localStorage.getItem("openedrooms"));
             window.hideTutorEle = localStorage.getItem("hidetutors")=="true";
-            Array.prototype.slice.call(document.getElementsByClassName("breakout-room")).filter(n=>n.getElementsByClassName("breakout-room-title")[0].innerHTML.toLowerCase().indexOf("wait room") != -1)[0].getElementsByClassName("classroom-user-button")[0].click();
+            var wait = getRooms(true).filter(r => r.name.toLowerCase() == "wait room");
+            if(wait.length)wait[0].entryButton.click();
         }
         window.initializedLocals = true;
-    }
-    function setTheme()
-    {
-        if(!document.getElementById("cafe-streams")) return false;
-        if(window.themeBG)document.getElementById("cafe-streams").style.background = "url('"+window.themeBG+"') repeat";
-        return true;
     }
     function setups()
     {
         var openWBFrame = document.createElement("div");
         openWBFrame.style = "position:absolute;left:0;right:0;top:0;bottom:0;margin:0 20vh;display:none";
         openWBFrame.id = "openWB-whiteboard-menu";
-        var modalFrame = document.createElement("div");
-        modalFrame.style = "position:absolute;left:0;right:0;top:0;bottom:0;margin:0 20vh;display:none";
-        modalFrame.id = "split-whiteboard-menu";
-        modalFrame.innerHTML = "<div tabindex=\"-1\" class=\"modal-box\" id=\"split-whiteboard-dialog\">\n<div class=\"modal-header\">\n<h1 class=\"modal-title\">Split Whiteboards</h1>\n<button aria-label=\"Click to close this window\" type=\"button\" aria-keyshortcuts=\"esc\" class=\"modal-close\" onmouseup=\"document.getElementById('split-whiteboard-menu').style.display='none'\">\n<i class=\"fa fa-remove fa-lg\"></i></button></div>\n<div class=\"modal-content\">\n<div class=\"document-library\">\n<div role=\"tabpanel\" class=\"document-library-content\">\n<div class=\"library-header-container\"><div class=\"library-header\"><span>Open Whiteboard</span> </div></div>\n<div style=\"width:500px\"><button class=\"document-option-button\" title=\"Open all whiteboards\" onmouseup=\"window.openWB()\"><i class=\"fa fa-edit\"></i>Open</button></br></br>\n<select id=\"split-whiteboard-sel1\" multiple size=\"20\" ondblclick=\"window.openWB()\">\n</select>\n</div>\n<br><div></div></div></div></div></div></div><div class=\"modal-backdrop\"  onmouseup=\"document.getElementById('split-whiteboard-menu').style.display='none'\"></div>";
         openWBFrame.innerHTML = "<div tabindex=\"-1\" class=\"modal-box\" id=\"openWB-whiteboard-dialog\">\n<div class=\"modal-header\">\n<h1 class=\"modal-title\">Open All Whiteboards</h1>\n<button aria-label=\"Click to close this window\" type=\"button\" aria-keyshortcuts=\"esc\" class=\"modal-close\" onmouseup=\"document.getElementById('openWB-whiteboard-menu').style.display='none'\">\n<i class=\"fa fa-remove fa-lg\"></i></button></div>\n<div class=\"modal-content\">\n<div id = \"openwbrows\" style=\"text-align:left;font-size:20px\">\n</div>\n<button class=\"document-option-button\" title=\"Open all whiteboards\" onmouseup=\"window.openWBAll()\"><i class=\"fa fa-edit\"></i>Open</button>\n</div></div><div class=\"modal-backdrop\" ></div>";
-        modalFrame.style.display = "none";
-        document.getElementById("cafe-content").appendChild(modalFrame);
-        document.getElementById("cafe-content").appendChild(openWBFrame);
-        var specialButtons = document.getElementById("meeting-invite-button");
-        specialButtons.outerHTML = "<button id=\"split-whiteboards\" class=\"menu-button\" aria-keyshortcuts=\"ctrl+shift+6\" onclick=\"window.populate();var d = document.getElementById('split-whiteboard-menu');d.style.display = (d.style.display=='none'?'':'none');\"><i class=\"fa fa-th-large\"></i>Split Whiteboards</button>";
-        specialButtons = document.getElementById("split-whiteboards");
-        if(window.mod.tnum == "T5") specialButtons.style.display = "none";
-        if((window.mod.hasTable8 || window.mod.ismaster) && !window.flipnameflag)specialButtons.outerHTML += "<button id=\"down-timesheet\" class=\"menu-button\" aria-keyshortcuts=\"ctrl+shift+6\" onclick=\"window.openStudentPage()\"><i class=\"fa fa-link\"></i>View Timesheet</button>";
-        if(window.flipnameflag)specialButtons.outerHTML = "";
-        var cloneButtons = document.getElementById("shortcuts-button");
+        document.body.appendChild(openWBFrame);
+        var cloneButtons = Array.from(document.getElementsByClassName("menu-button")).filter(b => b.innerText == "KEYBOARD SHORTCUTS")[0]
         if(window.breakoutRooms && !window.flipnameflag)cloneButtons.outerHTML = (window.mod.extraTables?"<button id=\"clone-self\" class=\"menu-button\" aria-keyshortcuts=\"ctrl+shift+6\" onclick=\"window.closemic=true;window.open(window.summa[window.summal++],'_blank')\"><i class=\"fa fa-keyboard-o\"></i>Clone</button> <button id=\"clone-self\" class=\"menu-button\" aria-keyshortcuts=\"ctrl+shift+6\" onclick=\"window.closemic=true;window.summa.forEach((c,i)=>window.openclonewindows[i]=window.open(c,'_blank'))\"><i class=\"fa fa-keyboard-o\"></i>Open All Clones</button>":"")+" <button id=\"add-all-rooms\" class=\"menu-button\" aria-keyshortcuts=\"ctrl+shift+6\" onclick=\"window.makeRoomsFromExcel()\"><i class=\"fa fa-keyboard-o\"></i><span id = \"nroomamount\" >Add Rooms</div></button> <button id=\"open-a-whiteboard\" class=\"menu-button\" aria-keyshortcuts=\"ctrl+shift+6\" onclick=\"window.roomWBPrompt()\"><i class=\"fa fa-keyboard-o\"></i>Open Whiteboard</button> <button id=\"open-all-whiteboards\" class=\"menu-button\" aria-keyshortcuts=\"ctrl+shift+6\" onclick=\"window.openWBFrame()\"><i class=\"fa fa-keyboard-o\"></i>Open All Whiteboards</button> <button id=\"del-rooms\" class=\"menu-button\" aria-keyshortcuts=\"ctrl+shift+6\" onclick=\"window.undeleteRooms()\"><i class=\"fa fa-keyboard-o\"></i>Undelete Rooms</button>";
         if(window.flipnameflag) cloneButtons.outerHTML = "<button id=\"clone-self\" class=\"menu-button\" aria-keyshortcuts=\"ctrl+shift+6\"><i class=\"fa fa-keyboard-o\"></i>This is a clone</button>";
         var cafeAddon = document.createElement("div");
         cafeAddon.id = "cafe-header-submenu";
         cafeAddon.style = "font-size:32pt;font-weight:bold;width:100%;position:absolute;z-index:1000";
-        document.getElementById("cafe").appendChild(cafeAddon);
-        if(window.mod.tnum == "T5")document.getElementById("cafe").style.background = "black";
+        document.body.appendChild(cafeAddon);
 
-        if(window.mod.incenter) document.getElementById("cafe").appendChild(document.getElementById("menu-toggle-button")),document.getElementById("menu-toggle-button").style="position:absolute;left:0px;top:0px;z-index:1000;background:none;color:white;border: 1px outset #ffffff90",document.getElementById("cafe-header").innerHTML = "";
         if(window.mod.super&&!window.flipnameflag)
             alerters = [
-                new Alerter(20, "The Main Account is disconnected!! Check on the main computer!",10000,function(){return !!Array.from(document.getElementsByClassName("classroom-user-info")).filter(d=>d.title.indexOf("Mathnasium@Home Burbank is online")>-1).length||!document.getElementsByClassName("menu-user-tab-selected").length||document.getElementsByClassName("menu-user-tab-selected")[0].innerHTML != "Users"}),
-                new Alerter(30, "Table 8 is disconnected; students are not being logged.",65000-(!!window.isTheChosenOne)*56000,function(){return (!window.utils.getRooms().filter(r => r.isActiveRoom()&&(r.time.getMinutesElapsed() > -5 && !r.endTime.isPassed())).length||!!Array.from(document.getElementsByClassName("classroom-user-info")).filter(d=>d.title.indexOf("Mathnasium is online")>-1).length)||!document.getElementsByClassName("menu-user-tab-selected").length||document.getElementsByClassName("menu-user-tab-selected")[0].innerHTML != "Users"}),
+                new Alerter(20, "The Main Account is disconnected!! Check on the main computer!",10000,function(){return !!Array.from(document.getElementsByClassName("user-list-entry")).filter(d=>d.innerText == "Mathnasium@Home Burbank" && d.className.indexOf("offline")==-1).length||!document.getElementsByClassName("active").length||document.getElementsByClassName("active")[0].innerText != "USERS"}),
+                new Alerter(30, "Table 8 is disconnected; students are not being logged.",65000-(!!window.isTheChosenOne)*56000,function(){return (!window.utils.getRooms().filter(r => r.isActiveRoom()&&(r.time.getMinutesElapsed() > -5 && !r.endTime.isPassed())).length||!!Array.from(document.getElementsByClassName("user-list-entry")).filter(d=>d.innerText == "Mathnasium" && d.className.indexOf("offline")==-1).length||!document.getElementsByClassName("active").length||document.getElementsByClassName("active")[0].innerText != "USERS")}),
                 new Alerter(35, "Students are waiting to be assigned.",60000,function(){if(window.mod.tnum=="T2")return true; return !window.utils.getUsers().filter(p=>!p.isMod&&p.isOnline&&(!p.roomName)).length}),
                 new Alerter(36, "Students are online and in the wait room.",11*60000,function(){return !window.utils.getUsers().filter(p=>!p.isMod&&p.isOnline&&(p.inWaitingRoom())).length}),
                 new Alerter(40, "An instructor is not online!", 180000, function(){if(!window.tablesOnline)return true; var time = Date.now();return Object.keys(window.tablesOnline).filter(w=>window.tablesOnline[w] + 5000 < time)}),
@@ -932,12 +925,13 @@ function getUnsigned()
     }
     function clickCheck()
     {
-        var c = document.getElementsByClassName("menu-user-tab")[1];
+        var c = Conexed.getUserTabElement();
+        console.log(c);
         if(!c) return setTimeout(clickCheck,1000);
         c.click();
         if(document.body.outerHTML.indexOf("Mathnasium is online") == -1 && window.mod.super && window.mod.hasTable8 && window.isTheChosenOne)
         {
-            if(document.getElementsByClassName("menu-user-tab-selected")[0].innerHTML == "Users")
+            if(document.getElementsByClassName("active")[0].innerText == "USERS")
             {
                 window.open(window.table8,"_blank");
                 window.closemic=true;
@@ -951,41 +945,8 @@ function getUnsigned()
     {
         clickCheck();
         setInterval(function(){
-
-            var titls = document.getElementsByClassName("breakout-room-title");
-            for(i = 0; i < titls.length; i++)
-            {
-                titls[i].innerHTML = titls[i].innerHTML.substring(0,28);
-            }
             if(!setupped){
                 setupped = setups();
-            }
-            if(!setThemes)
-            {
-                setThemes = setTheme();
-            }
-            if(window.closemic||window.flipnameflag)
-            {
-                if(document.hidden)
-                {
-                    var v = Array.prototype.slice.call(document.getElementsByClassName("participant-stream-video"));
-                    v.forEach(function(n){n.volume=0.2});
-                    var d = document.getElementById("i-am-speaking");
-                    if(d)
-                    {
-                        if(d.getElementsByTagName("i")[0].classList.contains("fa-microphone"))d.click();
-                    }
-                }
-                else
-                {
-                    var d = document.getElementById("i-am-speaking");
-                    if(d)
-                    {
-                        if(d.getElementsByTagName("i")[0].classList.contains("fa-microphone-slash"))d.click();
-                    }
-                    var v = Array.prototype.slice.call(document.getElementsByClassName("participant-stream-video"));
-                    v.forEach(function(n){n.volume=1});
-                }
             }
             var d = document.getElementById("cafe-header-submenu");
             var t = new Date();
@@ -998,7 +959,7 @@ function getUnsigned()
                 d.innerHTML = "";
                 if(window.mod.hasTable8)
                 {
-                    d.innerHTML = "<div onclick='window.showCtrls=!window.showCtrls' style='position:absolute;right:0%;top:0%;background-color:#2b343b;border:1px solid black;z-index:500;user-select:none'  onmouseup=''>" + (t.getMonth()+1) + "/" + t.getDate() + " &nbsp;&nbsp;&nbsp;" + (t.getHours()%12+(t.getHours()%12 == 0?12:0)) + ":" + (t.getMinutes() < 10?"0":"") + t.getMinutes() + ":" + (t.getSeconds() < 10?"0":"") + t.getSeconds() + (t.getHours() > 11? " PM":" AM") + "</div>";
+                    d.innerHTML = "<div onclick='window.showCtrls=!window.showCtrls' style='position:absolute;left:0%;top:0%;background-color:#2b343b;border:1px solid black;z-index:500;user-select:none'  onmouseup=''>" + (t.getMonth()+1) + "/" + t.getDate() + " &nbsp;&nbsp;&nbsp;" + (t.getHours()%12+(t.getHours()%12 == 0?12:0)) + ":" + (t.getMinutes() < 10?"0":"") + t.getMinutes() + ":" + (t.getSeconds() < 10?"0":"") + t.getSeconds() + (t.getHours() > 11? " PM":" AM") + "</div>";
                 }
             }
             if(setupped && window.initializedLocals)
@@ -1019,12 +980,12 @@ function getUnsigned()
         if(window.flipnameflag)
         {
             var dban = document.getElementById("breakout-room-banner");
-            if(dban&&dban.innerHTML.indexOf("You are in Breakout Room:  ")!=-1)
+            if(dban&&dban.innerHTML.indexOf("You are in Breakout Room: ")!=-1)
             {
-                document.getElementsByTagName("title")[0].innerHTML =  dban.innerHTML = dban.innerHTML.replace("You are in Breakout Room:  ", "");
+                document.getElementsByTagName("title")[0].innerHTML =  dban.innerText = dban.innerText.replace("You are in Breakout Room: ", "");
             }
         }
-        var outp = "<div style='position:absolute;top:50px;right:0px;'>";
+        var outp = "<div style='position:absolute;top:70px;left:0px;'>";
         if(window.mod.tutoring)
         {
             var current = getCurrentRoom();
@@ -1034,7 +995,8 @@ function getUnsigned()
                 if(window.themeColor)dban.style.backgroundColor = window.themeColor;
                 dban.style.fontSize = "18pt";
                 dban.style.fontWeight = "bold";
-                if(dban.innerHTML.indexOf("You are in Breakout Room:  ")!=-1)dban.innerHTML = dban.innerHTML.replace("You are in Breakout Room:  ", "");
+                dban.style.textAlign = "center";
+                if(dban.innerText.indexOf("You are in breakout room: ")!=-1)dban.innerText = dban.innerText.replace("You are in breakout room: ", "");
             }
             var tn = window.mod.tnum;
             var rms = window.utils.getRooms(true).filter(r => (r.isActiveRoom() && r.hasStudents() && r.getCurrentTable() == tn) || r.filteredName == "breakroom" || (current.name && current.name.indexOf(r.name)!=-1));
@@ -1064,7 +1026,7 @@ function getUnsigned()
                     if(window.mod.immune)lastMin = "";
                     outp += "<tr><td style='cursor:pointer;border:3px outset "+hasFlash2+";padding:7px;font-size:12pt;user-select:none;color:black;background-color:"+hasFlash+";font-weight:normal' onmouseup = 'window.clickables[" + i + "].click()' >" + r.getName() + lastMin + "</td>";
                 }
-                if(window.WBList[r.name] && r.filteredName != "breakroom") outp += "<td style='cursor:pointer;padding:7px;font-size:12pt;border:3px outset #f4f4f4;padding:7px;font-size:12pt;user-select:none;color:black;background-color:#eee' onmouseup = 'window.open(\"" + window.WBList[r.name] + "\",\"_blank\")'><i class='fa fa-link'></i></td>";
+                if(window.WBList[r.name] && r.filteredName != "breakroom") outp += "<td style='cursor:pointer;padding:7px;font-size:12pt;border:3px outset #f4f4f4;padding:7px;font-size:12pt;user-select:none;color:black;background-color:#eee' onmouseup = 'window.open(\"" + window.WBList[r.name] + "\",\"_blank\")'>🔗</td>";
                 outp += "</tr>"
             });
             outp += "</table>";
@@ -1189,7 +1151,7 @@ function getUnsigned()
                     outp += "<div style='padding:7px;font-size:14pt;user-select:none;color:black;background-color:LightBlue;font-weight:bold' >Waiting Students:</div>";
                 for(var i = 0; i < unassigned.length; i++)
                 {
-                    outp += "<div style='padding:7px;font-size:14pt;user-select:none;color:black;background-color:DodgerBlue;font-weight:bold' >" + unassigned[i].name + " " + unassigned[i].timeOnline + "</div>";
+                    outp += "<div style='padding:7px;font-size:14pt;user-select:none;color:black;background-color:DodgerBlue;font-weight:bold' >" + unassigned[i].name + "</div>";
                 }
             }
         }
