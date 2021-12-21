@@ -344,7 +344,7 @@ function RoomMetric(rm)
         this.endTime = this.secondTableEndTime;
     }
 }
-RoomMetric.prototype.validator = new RegExp('([0-9][0-9]?:[0-9][0-9])[ ]*(T[0-9][0-9]?)/?(T[0-9][0-9]?)?[ ]*([A-Za-z]*)','');
+RoomMetric.prototype.validator = new RegExp(/([0-9][0-9]?:[0-9][0-9])\s+(T[0-9][0-9]?)\/?(T[0-9][0-9]?)?\s+([A-Za-z]*)/,'');
 RoomMetric.prototype.otherRoomNames = ["wait room","break room"];
 RoomMetric.prototype.isNoShow = function()
 {
@@ -368,6 +368,10 @@ RoomMetric.prototype.getName = function()
         return (this.isNoShow()?"NO SHOW ":"") + this.time.getString() + " " + this.tableString + " " + this.student + (this.is2Hour ? " (<u>2 HR</u>) " : "");
     else
         return this.name;
+}
+RoomMetric.prototype.getUniName = function()
+{
+    return this.name.replace(/\s+/g," ");
 }
 RoomMetric.prototype.getSimpleName = function()
 {
@@ -415,7 +419,7 @@ RoomMetric.prototype.hasTutor = function()
 }
 function UserMetric(u)
 {
-    if(u.className && u.className == "user-entry-list")
+    if(u.className && u.className.indexOf("user-list-entry")>-1)
     {
         this.ref = "div";
         this.name = u.innerText;
@@ -447,6 +451,10 @@ function UserMetric(u)
         this.isOnline = u.isOnline;
         this.isMod = window.userInfo.modsList.includes(u.id)||u.id == "1205645";
     }
+}
+UserMetric.prototype.isInRoom = function()
+{
+    return this.roomName && this.roomName != "Main Room";
 }
 UserMetric.prototype.inWaitingRoom = function()
 {
@@ -485,7 +493,8 @@ function getRooms(chooseDOM)
 function getCurrentRoom()
 {
     var titleEle = document.getElementById("breakout-room-banner");
-    var pad = document.getElementById("tile-grid-pad").getElementsByTagName("iframe")[0];
+    var padEle = document.getElementById("tile-grid-pad");
+    var pad = padEle && padEle.getElementsByTagName("iframe")[0];
     return {name: titleEle&&titleEle.innerText.replace("You are in breakout room: ", ""), pad: pad&&pad.src};
 }
 function getPages(){
@@ -709,9 +718,9 @@ function getUnsigned()
     }
     window.openWBFrame = function()
     {
-        var wbcont = document.getElementById("openWB-whiteboard-menu");
-        wbcont.style.display = "";
-        var wbrows = document.getElementById("openwbrows");
+        var wbrows = window.promptBox("",function(){
+            window.openWBAll();
+        });
         wbrows.innerHTML = "";
         var unpadRooms = window.breakoutRooms.filter(r=>{
             return !r.pad && r.name.match(/[0-9]?[0-9]:[0-9][0-9][ ]*T/);
@@ -891,10 +900,8 @@ function getUnsigned()
     function setups()
     {
         var openWBFrame = document.createElement("div");
-        openWBFrame.style = "position:absolute;left:0;right:0;top:0;bottom:0;margin:0 20vh;display:none";
-        openWBFrame.id = "openWB-whiteboard-menu";
-        openWBFrame.innerHTML = "<div tabindex=\"-1\" class=\"modal-box\" id=\"openWB-whiteboard-dialog\">\n<div class=\"modal-header\">\n<h1 class=\"modal-title\">Open All Whiteboards</h1>\n<button aria-label=\"Click to close this window\" type=\"button\" aria-keyshortcuts=\"esc\" class=\"modal-close\" onmouseup=\"document.getElementById('openWB-whiteboard-menu').style.display='none'\">\n<i class=\"fa fa-remove fa-lg\"></i></button></div>\n<div class=\"modal-content\">\n<div id = \"openwbrows\" style=\"text-align:left;font-size:20px\">\n</div>\n<button class=\"document-option-button\" title=\"Open all whiteboards\" onmouseup=\"window.openWBAll()\"><i class=\"fa fa-edit\"></i>Open</button>\n</div></div><div class=\"modal-backdrop\" ></div>";
-        document.body.appendChild(openWBFrame);
+        var specialButtons = Array.from(document.getElementsByClassName("menu-button")).filter(b => b.innerText == "CLASSROOM INVITE LINK")[0]
+        if((window.mod.hasTable8 || window.mod.ismaster) && !window.flipnameflag)specialButtons.outerHTML += "<button id=\"down-timesheet\" class=\"menu-button\" aria-keyshortcuts=\"ctrl+shift+6\" onclick=\"window.openStudentPage()\"><i class=\"fa fa-link\"></i>View Timesheet</button>";
         var cloneButtons = Array.from(document.getElementsByClassName("menu-button")).filter(b => b.innerText == "KEYBOARD SHORTCUTS")[0]
         if(window.breakoutRooms && !window.flipnameflag)cloneButtons.outerHTML = (window.mod.extraTables?"<button id=\"clone-self\" class=\"menu-button\" aria-keyshortcuts=\"ctrl+shift+6\" onclick=\"window.closemic=true;window.open(window.summa[window.summal++],'_blank')\"><i class=\"fa fa-keyboard-o\"></i>Clone</button> <button id=\"clone-self\" class=\"menu-button\" aria-keyshortcuts=\"ctrl+shift+6\" onclick=\"window.closemic=true;window.summa.forEach((c,i)=>window.openclonewindows[i]=window.open(c,'_blank'))\"><i class=\"fa fa-keyboard-o\"></i>Open All Clones</button>":"")+" <button id=\"add-all-rooms\" class=\"menu-button\" aria-keyshortcuts=\"ctrl+shift+6\" onclick=\"window.makeRoomsFromExcel()\"><i class=\"fa fa-keyboard-o\"></i><span id = \"nroomamount\" >Add Rooms</div></button> <button id=\"open-a-whiteboard\" class=\"menu-button\" aria-keyshortcuts=\"ctrl+shift+6\" onclick=\"window.roomWBPrompt()\"><i class=\"fa fa-keyboard-o\"></i>Open Whiteboard</button> <button id=\"open-all-whiteboards\" class=\"menu-button\" aria-keyshortcuts=\"ctrl+shift+6\" onclick=\"window.openWBFrame()\"><i class=\"fa fa-keyboard-o\"></i>Open All Whiteboards</button> <button id=\"del-rooms\" class=\"menu-button\" aria-keyshortcuts=\"ctrl+shift+6\" onclick=\"window.undeleteRooms()\"><i class=\"fa fa-keyboard-o\"></i>Undelete Rooms</button>";
         if(window.flipnameflag) cloneButtons.outerHTML = "<button id=\"clone-self\" class=\"menu-button\" aria-keyshortcuts=\"ctrl+shift+6\"><i class=\"fa fa-keyboard-o\"></i>This is a clone</button>";
@@ -996,7 +1003,8 @@ function getUnsigned()
                 dban.style.fontSize = "18pt";
                 dban.style.fontWeight = "bold";
                 dban.style.textAlign = "center";
-                if(dban.innerText.indexOf("You are in breakout room: ")!=-1)dban.innerText = dban.innerText.replace("You are in breakout room: ", "");
+                document.getElementsByClassName("explanation")[0].innerText = "";
+                //if(dban.innerText.indexOf("You are in breakout room: ")!=-1)dban.innerText = dban.innerText.replace("You are in breakout room: ", "");
             }
             var tn = window.mod.tnum;
             var rms = window.utils.getRooms(true).filter(r => (r.isActiveRoom() && r.hasStudents() && r.getCurrentTable() == tn) || r.filteredName == "breakroom" || (current.name && current.name.indexOf(r.name)!=-1));
@@ -1006,6 +1014,7 @@ function getUnsigned()
                 window.WBList[current.name.substring(0,28)] = current.pad.replace(/uid\=[0-9]/g,"uid=3") + ("&room=") + encodeURI(current.name);
             outp += "<table style='width:100%' cellspacing='0'>";
             rms.forEach((r,i) => {
+                var uni = r.getUniName().substr(0,28);
                 if(current.name && current.name.indexOf(r.name)!=-1)
                 {
                     if(document.getElementById("menu-share-webcam-video"))outp += "<tr><td colspan='2' style='cursor:pointer;border:3px outset blue;padding:8px 22px;font-size:12pt;user-select:none;color:#fff;background-color:#02a;font-weight:bold;text-align:center' onmouseup='document.getElementById(\"menu-share-webcam-video\").click()'><i class='fa fa-camera fa-lg'></i></td></tr>";
@@ -1026,16 +1035,10 @@ function getUnsigned()
                     if(window.mod.immune)lastMin = "";
                     outp += "<tr><td style='cursor:pointer;border:3px outset "+hasFlash2+";padding:7px;font-size:12pt;user-select:none;color:black;background-color:"+hasFlash+";font-weight:normal' onmouseup = 'window.clickables[" + i + "].click()' >" + r.getName() + lastMin + "</td>";
                 }
-                if(window.WBList[r.name] && r.filteredName != "breakroom") outp += "<td style='cursor:pointer;padding:7px;font-size:12pt;border:3px outset #f4f4f4;padding:7px;font-size:12pt;user-select:none;color:black;background-color:#eee' onmouseup = 'window.open(\"" + window.WBList[r.name] + "\",\"_blank\")'>🔗</td>";
+                if(window.WBList[uni] && r.filteredName != "breakroom") outp += "<td style='cursor:pointer;padding:7px;font-size:12pt;border:3px outset #f4f4f4;padding:7px;font-size:12pt;user-select:none;color:black;background-color:#eee' onmouseup = 'window.open(\"" + window.WBList[uni] + "\",\"_blank\")'>🔗</td>";
                 outp += "</tr>"
             });
             outp += "</table>";
-            if(window.mod.tnum=="T2")outp += "<div style = 'user-select:none;border:8px double #ccffde;background-color:#60ffa0;font-size:12pt;font-family:Times New Roman;text-align:center;color:#008800' onmousedown = 'document.getElementById(\"audio-alert\").play()'>Cause Anxiety</div>";
-        }
-        var titls = document.getElementsByClassName("breakout-room-title");
-        for(i = 0; i < titls.length; i++)
-        {
-            if(titls[i].innerHTML.length > 28)titls[i].innerHTML = titls[i].innerHTML.substring(0,28);
         }
         var warntb = {};
         if(window.mod.super)
@@ -1146,7 +1149,7 @@ function getUnsigned()
                 {
                     outp += "<div style='padding:7px;font-size:14pt;user-select:none;color:black;background-color:yellow;font-weight:bold' >" + misspellList[i] + "</div>";
                 }
-                var unassigned = window.utils.getUsers(true).filter(u => !u.isMod && u.isOnline && (!u.roomName||u.inWaitingRoom()));
+                var unassigned = window.utils.getUsers(true).filter(u => !u.isMod && u.isOnline && (!u.isInRoom()||u.inWaitingRoom()));
                 if(unassigned.length > 0)
                     outp += "<div style='padding:7px;font-size:14pt;user-select:none;color:black;background-color:LightBlue;font-weight:bold' >Waiting Students:</div>";
                 for(var i = 0; i < unassigned.length; i++)
