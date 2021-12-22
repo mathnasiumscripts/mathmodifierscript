@@ -43,7 +43,7 @@ window.userInfo = {
         if(typeof u == "object")
             return this.modsList.includes(u.id)||u.id == "1205645";
         if(typeof u == "string")
-            return this.modNames.includes(u.toLowerCase().replace(/[ _]/g,""));
+            return this.modNames.includes(u.toLowerCase().replace(/\(you\)/g,"").replace(/[ _]/g,""));
         return false;
     },
     isTutor: function(u)
@@ -428,7 +428,7 @@ function UserMetric(u)
         this.roomName = null;
         if(breakoutRoom.className == "room")
             this.roomName = breakoutRoom.getElementsByClassName("room-heading")[0].innerText;
-        this.isMod = window.userInfo.modNames.includes(this.name.toLowerCase().replace(/[ _]/g,""));
+        this.isMod = window.userInfo.isMod(this.name);
     }
     else
     {
@@ -721,6 +721,8 @@ function getUnsigned()
         var wbrows = window.promptBox("",function(){
             window.openWBAll();
         });
+        wbrows.style.height = "700px";
+        wbrows.style.overflowY = "scroll";
         wbrows.innerHTML = "";
         var unpadRooms = window.breakoutRooms.filter(r=>{
             return !r.pad && r.name.match(/[0-9]?[0-9]:[0-9][0-9][ ]*T/);
@@ -757,8 +759,6 @@ function getUnsigned()
                 window.openBoard(sel.value,sel.innerText,room);
             }
         });
-        var wbcont = document.getElementById("openWB-whiteboard-menu");
-        wbcont.style.display = "none";
     };
     var undeletedStack = [];
     window.undeleteRooms = function()
@@ -912,8 +912,8 @@ function getUnsigned()
 
         if(window.mod.super&&!window.flipnameflag)
             alerters = [
-                new Alerter(20, "The Main Account is disconnected!! Check on the main computer!",10000,function(){return !!Array.from(document.getElementsByClassName("user-list-entry")).filter(d=>d.innerText == "Mathnasium@Home Burbank" && d.className.indexOf("offline")==-1).length||!document.getElementsByClassName("active").length||document.getElementsByClassName("active")[0].innerText != "USERS"}),
-                new Alerter(30, "Table 8 is disconnected; students are not being logged.",65000-(!!window.isTheChosenOne)*56000,function(){return (!window.utils.getRooms().filter(r => r.isActiveRoom()&&(r.time.getMinutesElapsed() > -5 && !r.endTime.isPassed())).length||!!Array.from(document.getElementsByClassName("user-list-entry")).filter(d=>d.innerText == "Mathnasium" && d.className.indexOf("offline")==-1).length||!document.getElementsByClassName("active").length||document.getElementsByClassName("active")[0].innerText != "USERS")}),
+                new Alerter(20, "The Main Account is disconnected!! Check on the main computer!",10000,function(){return !!Array.from(document.getElementsByClassName("user-list-entry")).filter(d=>d.innerText.indexOf("Mathnasium@Home Burbank")>-1 && d.className.indexOf("offline")==-1).length||!document.getElementsByClassName("active").length||document.getElementsByClassName("active")[0].innerText != "USERS"}),
+                new Alerter(30, "Table 8 is disconnected; students are not being logged.",65000-(!!window.isTheChosenOne)*56000,function(){return (!window.utils.getRooms().filter(r => r.isActiveRoom()&&(r.time.getMinutesElapsed() > -5 && !r.endTime.isPassed())).length||!!Array.from(document.getElementsByClassName("user-list-entry")).filter(d=>d.innerText.indexOf("Mathnasium")>-1 && d.className.indexOf("offline")==-1).length||!document.getElementsByClassName("active").length||document.getElementsByClassName("active")[0].innerText != "USERS")}),
                 new Alerter(35, "Students are waiting to be assigned.",60000,function(){if(window.mod.tnum=="T2")return true; return !window.utils.getUsers().filter(p=>!p.isMod&&p.isOnline&&(!p.roomName)).length}),
                 new Alerter(36, "Students are online and in the wait room.",11*60000,function(){return !window.utils.getUsers().filter(p=>!p.isMod&&p.isOnline&&(p.inWaitingRoom())).length}),
                 new Alerter(40, "An instructor is not online!", 180000, function(){if(!window.tablesOnline)return true; var time = Date.now();return Object.keys(window.tablesOnline).filter(w=>window.tablesOnline[w] + 5000 < time)}),
@@ -992,7 +992,7 @@ function getUnsigned()
                 document.getElementsByTagName("title")[0].innerHTML =  dban.innerText = dban.innerText.replace("You are in Breakout Room: ", "");
             }
         }
-        var outp = "<div style='position:absolute;top:70px;left:0px;'>";
+        var outp = "<div style='position:absolute;top:70px;left:80px;'>";
         if(window.mod.tutoring)
         {
             var current = getCurrentRoom();
