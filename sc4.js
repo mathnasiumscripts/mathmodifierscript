@@ -311,7 +311,7 @@ function RoomMetric(rm)
     {
         this.ref = "div";
         this.name = rm.getElementsByClassName("room-heading")[0].innerText;
-        this.users = Array.from(rm.getElementsByClassName("user-list-entry")).map(p => p.innerHTML);
+        this.users = Array.from(rm.getElementsByClassName("user-list-entry")).map(p => p.innerText);
         button = rm.getElementsByTagName("button");
         this.entryButton = (button ? button[0] : {click:function(){}});
     }
