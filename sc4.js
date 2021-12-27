@@ -51,7 +51,7 @@ window.userInfo = {
         if(typeof u == "object")
             return this.modsList.includes(u.id)&&!u.id.match(/[0-9]595782/);
         if(typeof u == "string")
-            return this.modNames.includes(u.toLowerCase().replace(/[ _]/g,""))&&u.indexOf("Table 9")==-1&&u.indexOf("Mathnasium@Home")==-1;
+            return this.modNames.includes(u.toLowerCase().replace(/\(you\)/g,"").replace(/[ _]/g,""))&&u.indexOf("Table 9")==-1&&u.indexOf("Mathnasium@Home")==-1;
         return false;
     },
     isOnline: function(u)
