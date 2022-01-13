@@ -22,8 +22,9 @@ var modInfo = {
     "table12":{col:"#a61c00",inl:"QU",tnum:"T12",tutoring:true},
     "table15":{col:"#4a86e8",inl:"NR",tnum:"T15",tutoring:true},
     "table16":{col:"#a18b00",inl:"RA",tnum:"T16",tutoring:true},
-    "table17":{col:"#e79f4c",inl:"AS",tnum:"T17",tutoring:true},
+    "table17":{col:"#e79f4c",inl:"MR",tnum:"T17",tutoring:true},
     "table18":{col:"#34f487",inl:"DO",tnum:"T18",tutoring:true},
+    "table19":{col:"#f1c232",inl:"OR",tnum:"T19",tutoring:true},
     "mathnasiumhomeburbank":{col:"#ff00ff",inl:"🌸 LY",tnum:"T9",super:true,incenter:true,ismaster:true,hasTable8:true,listener:true},
     "default":{col:"#4a86e8",inl:"",tnum:"T0"},
 }
