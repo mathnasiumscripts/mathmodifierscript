@@ -1660,7 +1660,6 @@ var histChoice = 0;
 function wb()
 {
 
-
 //-font paste glitch x
 //-font line paste glitch x
 //-replaceMathML x
@@ -1670,22 +1669,16 @@ function wb()
 //-date stamp x
 //-stamp tool x
 //-show today's pages x
-//-make ctrl+left or right cycle select-page x
+//-make ctrl+left or right cycle select-page 
 //-freeform edit quick toggle x
 //-page loaded flag x
-//-zoom page to center x
+//-zoom page to center 
 //-reset page matrix on load x
 //-set page confirm for adding page x
 //-line tool x
 //-paper object global reference x
-//-cursor speed
 //-shortkeys x
 
-
-// * Branch: release
-// * Version: d93d663
-// * Commit: d93d6631f277d5f512301518bca41160e5f23176
-// * Build: Tue Aug 31 2021 02:53:01 GMT+0000 (Coordinated Universal Time)
 
 (self.webpackChunkconexed_whiteboard_client = self.webpackChunkconexed_whiteboard_client || []).push([[143], {
     4937: function(e, t, o) {
@@ -1696,22 +1689,22 @@ function wb()
                 return he
             },
             onWindowResize: function() {
-                return me
+                return we
             },
             removeGridLines: function() {
-                return Ie
+                return Re
             },
             resetZoomLoop: function() {
-                return We
-            },
-            centerPaperView: function() {
-                return Fe
-            },
-            getPageNum: function() {
                 return Ve
             },
+            centerPaperView: function() {
+                return Je
+            },
+            getPageNum: function() {
+                return Ye
+            },
             repairCurrentPDFMatrices: function() {
-                return pt
+                return vt
             }
         });
         var a = o(3267)
@@ -1736,7 +1729,14 @@ function wb()
           , w = o(4007)
           , S = o(6727)
           , j = o.n(S)
-          , k = o(1857);
+          , k = o(1857)
+          , O = o(1008)
+          , C = o(3151)
+          , P = o(1264);
+
+
+
+
 
 if(window.mod.col)localStorage.setItem("spectrum.defaultColor",JSON.stringify(window.mod.col));
 window.paper = r();
@@ -1764,10 +1764,10 @@ window.setFontCursor = function(iconCode) {
 }
 window.updateTool = function(name)
 {
-Ge("." + name + "-tool"),
+	Ze("." + name + "-tool"),
             localStorage.setItem("selectedTool", name),
-            Je(),
-            z = name,
+            Ke(),
+            J = name,
             $("#the-canvas").css({
                 cursor: "crosshair"
             }),
@@ -1792,7 +1792,7 @@ fontWeight: "bold",
             zoom: r().project.view.getZoom()
         };
 
-        i.globalSocketObj.emit("text:add", Ve(),
+        i.globalSocketObj.emit("text:add", Ye(),
             JSON.stringify(textToAdd),
             size,
             r().project.view.getZoom(),
@@ -1801,7 +1801,7 @@ fontWeight: "bold",
 
 
         });
-i.globalSocketObj.emit("text:update:end", Ve(), n, t);
+i.globalSocketObj.emit("text:update:end", Ye(), n, t);
 }
 function computeText(input)
 {
@@ -1907,8 +1907,8 @@ var defaultColor = $("#pallette").spectrum("get")
                         r().project.selectedItems[a].strokeColor = c.canvasState.activeColorRgb) : r().project.selectedItems[a].name.indexOf("signature:") > -1 ? (r().project.selectedItems[a].name.indexOf("signature-box:signature:") > -1 && (r().project.selectedItems[a].fillColor = c.canvasState.activeColorRgb,
                         r().project.selectedItems[a].opacity = .2),
                         r().project.selectedItems[a].name.indexOf("signature-border:signature:") > -1 && (r().project.selectedItems[a].strokeColor = c.canvasState.activeColorRgb)) : r().project.selectedItems[a].strokeColor = c.canvasState.activeColorRgb);
-                    _.draw(),
-                    i.globalSocketObj.emit("item:color:set", Ve(), JSON.stringify(t)),
+                    N.draw(),
+                    i.globalSocketObj.emit("item:color:set", Ye(), JSON.stringify(t)),
                     localStorage.setItem("spectrum.defaultColor", JSON.stringify(s));
                     c.canvasState.setActiveColorJson({
                         red: defaultColor.toRgb().r / 255,
@@ -1945,14 +1945,18 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
                 for (var o = 0; o < a.length; o++) {
                     var n = a[o];
                     n.fontSize = t,
-                    i.globalSocketObj.emit("item:font:change", Ve(), n.name, t),
-                    _.draw()
+                    i.globalSocketObj.emit("item:font:change", Ye(), n.name, t),
+                    N.draw()
                 }
             $(".font-size").prop("selectedIndex",nextIndex);
 }
 
-        function O(e) {
-            return (O = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
+
+
+
+
+        function A(e) {
+            return (A = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
                 return typeof e
             }
             : function(e) {
@@ -1960,10 +1964,10 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
             }
             )(e)
         }
-        function C(e) {
+        function L(e) {
             return function(e) {
                 if (Array.isArray(e))
-                    return P(e)
+                    return T(e)
             }(e) || function(e) {
                 if ("undefined" != typeof Symbol && Symbol.iterator in Object(e))
                     return Array.from(e)
@@ -1971,18 +1975,18 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
                 if (!e)
                     return;
                 if ("string" == typeof e)
-                    return P(e, t);
+                    return T(e, t);
                 var o = Object.prototype.toString.call(e).slice(8, -1);
                 "Object" === o && e.constructor && (o = e.constructor.name);
                 if ("Map" === o || "Set" === o)
                     return Array.from(e);
                 if ("Arguments" === o || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(o))
-                    return P(e, t)
+                    return T(e, t)
             }(e) || function() {
                 throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")
             }()
         }
-        function P(e, t) {
+        function T(e, t) {
             (null == t || t > e.length) && (t = e.length);
             for (var o = 0, a = new Array(t); o < t; o++)
                 a[o] = e[o];
@@ -1992,80 +1996,80 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
         m.initializeJspdfFonts)(),
         s.Z.subscribe(),
         r().tool = new a.Tool;
-        var A = r().tool;
-        !1 === c.canvasState.readonlyView && (A.onMouseDown = function(e) {
+        var x = r().tool;
+        !1 === c.canvasState.readonlyView && (x.onMouseDown = function(e) {
             if (2 === e.which)
                 return;
             if (1 == e.event.button)
                 return;
-            e.event.touches && (ke.cleared = !1,
-            e.event.touches.length > 1 && (ke.active = !0,
-            ke.cleared = !1));
-            if ("cursor" == z || e.event.ctrlKey || 2 == e.event.button || ke.active) {
+            e.event.touches && (Pe.cleared = !1,
+            e.event.touches.length > 1 && (Pe.active = !0,
+            Pe.cleared = !1));
+            if ("cursor" == J || e.event.ctrlKey || 2 == e.event.button || Pe.active) {
                 he(),
                 $("#the-canvas").css("cursor", "grabbing");
                 var t = e.point;
-                te[0] = [t.x, t.y]
-            } else if ("draw" == z || "pencil" == z) {
+                re[0] = [t.x, t.y]
+            } else if ("draw" == J || "pencil" == J) {
                 t = e.point;
-                if (Y = new a.Path,
-                "draw" == z)
-                    switch (Y.strokeColor = c.canvasState.activeColorRgb,
-                    Y.opacity = .4,
+                if (q = new a.Path,
+                "draw" == J)
+                    switch (q.strokeColor = c.canvasState.activeColorRgb,
+                    q.opacity = .4,
                     localStorage.strokeWidth) {
                     case "small":
-                        Y.strokeWidth = 5;
+                        q.strokeWidth = 5;
                         break;
                     case "large":
-                        Y.strokeWidth = 15;
+                        q.strokeWidth = 15;
                         break;
                     case "extra-large":
-                        Y.strokeWidth = 30;
+                        q.strokeWidth = 30;
                         break;
                     case "giant":
-                        Y.strokeWidth = 48;
+                        q.strokeWidth = 48;
                         break;
                     default:
-                        Y.strokeWidth = 10
+                        q.strokeWidth = 10
                     }
-                else if ("pencil" == z)
-                    switch (Y.strokeColor = c.canvasState.activeColorRgb,
-                    Y.opacity = 1,
+                else if ("pencil" == J)
+                    switch (q.strokeColor = c.canvasState.activeColorRgb,
+                    q.opacity = 1,
                     localStorage.strokeWidth) {
                     case "small":
-                        Y.strokeWidth = .5;
+                        q.strokeWidth = .5;
                         break;
                     case "large":
-                        Y.strokeWidth = 6;
+                        q.strokeWidth = 6;
                         break;
                     case "extra-large":
-                        Y.strokeWidth = 12;
+                        q.strokeWidth = 12;
                         break;
                     case "giant":
-                        Y.strokeWidth = 48;
+                        q.strokeWidth = 48;
                         break;
                     default:
-                        Y.strokeWidth = 2
+                        q.strokeWidth = 2
                     }
-                Y.strokeCap = "butt",
+                q.strokeCap = "butt",
                 t.y += c.staticGlobals.CursorOffsetY / r().project.view.getZoom(),
-                Y.add(t),
+                q.add(t),
                 c.canvasState.incrementProjectObjectCount(),
-                Y.name = c.userState.uid + ":" + c.canvasState.projectObjectCount,
-                M = {
-                    name: Y.name,
-                    page: "page-".concat(Ve()),
+                q.name = c.userState.uid + ":" + c.canvasState.projectObjectCount,
+                F = {
+                    name: q.name,
+                    page: "page-".concat(Ye()),
                     rgba: c.canvasState.activeColorJson,
                     start: [t.x, t.y],
-                    strokeWidth: Y.strokeWidth,
-                    opacity: Y.opacity,
+                    strokeWidth: q.strokeWidth,
+                    opacity: q.opacity,
                     path: [[t.x, t.y]],
                     end: [],
-                    tool: z
+                    tool: J
                 },
-                i.globalSocketObj.emit("draw:start", JSON.stringify(M), z)
-            } else if ("ellipse" == z)
-                K = new a.Path.Ellipse({
+                i.globalSocketObj.emit("draw:start", JSON.stringify(F), J)
+            } else if ("ellipse" == J)
+                Q = new a.Path.Ellipse({
                     center: e.downPoint.divide(2).add(e.point.divide(2)),
                     radius: e.point.subtract(e.downPoint).divide(2),
                     strokeColor: c.canvasState.activeColorRgb,
@@ -2073,16 +2077,16 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
                     opacity: 1
                 }),
                 c.canvasState.incrementProjectObjectCount(),
-                K.name = c.userState.uid + ":" + c.canvasState.projectObjectCount,
-                i.globalSocketObj.emit("ellipse:start", K.name),
-                M = {
-                    name: K.name,
+                Q.name = c.userState.uid + ":" + c.canvasState.projectObjectCount,
+                i.globalSocketObj.emit("ellipse:start", Q.name),
+                F = {
+                    name: Q.name,
                     strokeColor: c.canvasState.activeColorRgb,
                     center: e.downPoint.divide(2).add(e.point.divide(2)),
                     radius: e.point.subtract(e.downPoint).divide(2)
                 };
-            else if ("rectangle" == z)
-                X = new a.Path.Rectangle({
+            else if ("rectangle" == J)
+                ee = new a.Path.Rectangle({
                     topLeft: e.downPoint,
                     bottomRight: e.point,
                     strokeColor: c.canvasState.activeColorRgb,
@@ -2090,19 +2094,19 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
                     opacity: 1
                 }),
                 c.canvasState.incrementProjectObjectCount(),
-                X.name = c.userState.uid + ":" + c.canvasState.projectObjectCount,
+                ee.name = c.userState.uid + ":" + c.canvasState.projectObjectCount,
                 i.globalSocketObj.emit("rectangle:start"),
-                M = {
-                    name: X.name,
+                F = {
+                    name: ee.name,
                     topLeft: e.downPoint,
                     bottomRight: e.point,
                     strokeColor: c.canvasState.activeColorRgb
                 };
-            else if ("signature" == z) {
+            else if ("signature" == J) {
                 var o = r().project.hitTest(e.point);
-                if (H = !1,
+                if (K = !1,
                 o && o.item && o.item.name && o.item.name.indexOf("signature:") > -1)
-                    return void (H = !0);
+                    return void (K = !0);
                 var n = new a.Path.Rectangle({
                     topLeft: e.downPoint,
                     bottomRight: e.point,
@@ -2113,13 +2117,13 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
                 });
                 c.canvasState.incrementProjectObjectCount(),
                 n.name = "signature:" + c.userState.uid + ":" + c.canvasState.projectObjectCount,
-                M = {
+                F = {
                     name: n.name,
                     topLeft: e.downPoint,
                     bottomRight: e.point,
                     strokeColor: "#000000"
                 }
-            } else if ("line" == z) {
+            } else if ("line" == J) {
                 var s = new a.Path.Line({
                     from: e.downPoint,
                     to: e.point,
@@ -2129,17 +2133,17 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
                 c.canvasState.incrementProjectObjectCount(),
                 s.name = "arrow:" + c.userState.uid + ":" + c.canvasState.projectObjectCount,
                 i.globalSocketObj.emit("line:start"),
-                M = {
+                F = {
                     name: s.name,
                     from: e.downPoint,
                     to: e.point,
                     strokeColor: c.canvasState.activeColorRgb
                 }
-            } else if ("text" == z) {
-                if ((o = r().project.hitTest(e.point)) && o.item && o.item.name && o.item.name.indexOf("text:") > -1 && (G = !0),
-                !G)
+            } else if ("text" == J) {
+                if ((o = r().project.hitTest(e.point)) && o.item && o.item.name && o.item.name.indexOf("text:") > -1 && (H = !0),
+                !H)
                     $("#text-editor").is(":visible") && he()
-            } else if ("select" == z) {
+            } else if ("select" == J) {
                 var l = {
                     segments: !0,
                     stroke: !0,
@@ -2148,11 +2152,11 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
                 };
                 if (o = r().project.hitTest(e.point, l)) {
                     if (o.item && o.item.name && (o.item.name.indexOf("pdf-page") > -1 || o.item.name.indexOf("border-box") > -1 || o.item.name.indexOf("cursor") > -1)) {
-                        J = !0,
+                        Y = !0,
                         r().project.activeLayer.selected = !1;
                         for (var d = 0; d < r().project.layers.length; d++)
                             r().project.layers[d].selected = !1;
-                        return void (ee = new a.Path.Rectangle({
+                        return void (ae = new a.Path.Rectangle({
                             name: "select:band",
                             topLeft: e.downPoint,
                             bottomRight: e.point,
@@ -2184,7 +2188,7 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
                             o.item.parent.children[u].name ? o.item.parent.children[u].name.indexOf("signature-label:") > -1 && (o.item.parent.children[u].selected = !1) : o.item.parent.children[u].selected = !0
                     } else
                         o.item.selected = !0;
-                    _.draw();
+                    N.draw();
                     var p = new Array;
                     for (u = 0; u < r().project.selectedItems.length; u++) {
                         var g = r().project.selectedItems[u];
@@ -2194,14 +2198,14 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
                             originY: g.position.y
                         })
                     }
-                    i.globalSocketObj.emit("item:move:start", Ve(), JSON.stringify(p)),
+                    i.globalSocketObj.emit("item:move:start", Ye(), JSON.stringify(p)),
                     $("#the-canvas").css("cursor", "move")
                 } else {
-                    J = !0,
+                    Y = !0,
                     r().project.activeLayer.selected = !1;
                     for (d = 0; d < r().project.layers.length; d++)
                         r().project.layers[d].selected = !1;
-                    ee = new a.Path.Rectangle({
+                    ae = new a.Path.Rectangle({
                         name: "select-band",
                         topLeft: e.downPoint,
                         bottomRight: e.point,
@@ -2211,156 +2215,166 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
                         opacity: 1
                     })
                 }
-            } else if ("eraser" === z) {
+            } else if ("eraser" === J) {
                 if (o = r().project.hitTest(e.point, l)) {
                     var h = o.item;
                     "border-box" === h.name || h.name.includes("pdf-page") || h.name.includes("signature") || h.name.includes("image") || (h._parent && h._parent._name && h._parent._name.includes("arrow") && (h = h._parent),
                     h.remove(),
-                    i.globalSocketObj.emit("item:remove", Ve(), h.name),
-                    _.draw())
+                    i.globalSocketObj.emit("item:remove", Ye(), h.name),
+                    N.draw())
                 }
             }
         }
         ,
-        A.onMouseDrag = function(e) {
-            e.event.touches && e.event.touches.length > 1 && (ke.active = !0);
-            if (e.event.ctrlKey || 3 == e.event.which || ke.active) {
-                if (!ye())
+        x.onMouseDrag = function(e) {
+            e.event.touches && e.event.touches.length > 1 && (Pe.active = !0);
+            if (e.event.ctrlKey || 3 == e.event.which || Pe.active) {
+                if (!je())
                     return;
-                if (!ke.cleared && ("draw" == z || "pencil" == z))
-                    clearInterval(D),
-                    F = !1,
+                if (!Pe.cleared && ("draw" == J || "pencil" == J))
+                    clearInterval(W),
+                    V = !1,
                     (o = e.point).y = o.y + c.staticGlobals.CursorOffsetY / r().project.view.getZoom(),
-                    Y || (Y = new a.Path),
-                    Y.length > 10 ? (Y.add(o),
-                    (e.modifiers.shift?M.path.push([o.x,o.y]):0),
-                    Y.closed = !1,
-                    Y.simplify(),
-                    i.globalSocketObj.emit("draw:end", Ve(), JSON.stringify(M)),
+                    q || (q = new a.Path),
+                    q.length > 10 ? (q.add(o),
+                    (e.modifiers.shift?F.path.push([o.x,o.y]):0),
+                    q.closed = !1,
+                    q.simplify(),
+                    i.globalSocketObj.emit("draw:end", Ye(), JSON.stringify(F)),
                     r().project.view.draw(),
-                    Y = null,
-                    M.end = [o.x, o.y],
-                    M.path.length > 5 && i.globalSocketObj.emit("draw:end", Ve(), JSON.stringify(M)),
-                    M.path = new Array) : (Y.remove(),
-                    M = {});
-                if (ke.cleared = !0,
+                    q = null,
+                    F.end = [o.x, o.y],
+                    F.path.length > 5 && i.globalSocketObj.emit("draw:end", Ye(), JSON.stringify(F)),
+                    F.path = new Array) : (q.remove(),
+                    F = {});
+                if (Pe.cleared = !0,
                 $("#the-canvas").css("cursor", "grabbing"),
                 e.preventDefault(),
-                6 == te.length) {
-                    te.splice(1, 5);
+                6 == re.length) {
+                    re.splice(1, 5);
                     var t = e.point;
-                    return te.push([t.x, t.y]),
-                    void De(te)
+                    return re.push([t.x, t.y]),
+                    void We(re)
                 }
                 t = e.point;
-                return void te.push([t.x, t.y])
+                return void re.push([t.x, t.y])
             }
             if (1 == e.event.button || 2 == e.event.button)
                 return;
             if (!c.userState.showWhiteboardControls)
                 return;
-            if ($e.count > 0)
+            if (Ce.count > 0)
                 return;
-            if ("cursor" == z) {
-                if (!ye())
+            if ("cursor" == J) {
+                if (!je())
                     return;
                 if ($("#the-canvas").css("cursor", "grabbing"),
                 e.preventDefault(),
-                6 == te.length) {
-                    te.splice(1, 5);
+                6 == re.length) {
+                    re.splice(1, 5);
                     t = e.point;
-                    return te.push([t.x, t.y]),
-                    void De(te)
+                    return re.push([t.x, t.y]),
+                    void We(re)
                 }
                 t = e.point;
-                te.push([t.x, t.y])
-            } else if ("draw" == z || "pencil" == z) {
+                re.push([t.x, t.y])
+            } else if ("draw" == J || "pencil" == J) {
                 var o;
-                (o = e.point).y += c.staticGlobals.CursorOffsetY / r().project.view.getZoom();
-                if(Y)
+                (o = e.point).y += c.staticGlobals.CursorOffsetY / r().project.view.getZoom(),
+                q && (q.add(o),
+                F.path.push([o.x, o.y]),
+                V || (i.globalSocketObj.emit("draw:progress", F.name, F.path),
+                W = setInterval((function() {
+                    0 != F.path.length && (i.globalSocketObj.emit("draw:progress", F.name, F.path),
+                    F.path = new Array)
+                }
+                ), c.staticGlobals.SOCKET_UPDATE_INTERVAL)),
+                V = !0)
+                if(q)
                 {
                 	if(!e.modifiers.shift)
 					{
-						(Y.add(o),
-				        M.path.push([o.x, o.y]),
-				        F || (i.globalSocketObj.emit("draw:progress", M.name, M.path),
-				        D = setInterval((function() {
-				            0 != M.path.length && (i.globalSocketObj.emit("draw:progress", M.name, M.path),
-				            M.path = new Array)
+						(q.add(o),
+				        F.path.push([o.x, o.y]),
+				        V || (i.globalSocketObj.emit("draw:progress", F.name, F.path),
+				        W = setInterval((function() {
+				            0 != M.path.length && (i.globalSocketObj.emit("draw:progress", F.name, F.path),
+				            F.path = new Array)
 				        }
 				        ), c.staticGlobals.SOCKET_UPDATE_INTERVAL)),
 				        F = !0)
 					}
 					else
 					{
-						if(M.path.length < 1)
-							M.path.push([o.x,o.y])
-						if(Y.segments.length > 1)
-							Y.removeSegment(Y.segments.length -1);
-						Y.add(o);
+						if(F.path.length < 1)
+							F.path.push([o.x,o.y])
+						if(q.segments.length > 1)
+							q.removeSegment(q.segments.length -1);
+						q.add(o);
 					}
 
                 }
-            } else if ("ellipse" == z)
-                K && K.remove(),
-                K = new a.Path.Ellipse({
-                    name: M.name,
+
+            } else if ("ellipse" == J)
+                Q && Q.remove(),
+                Q = new a.Path.Ellipse({
+                    name: F.name,
                     center: e.downPoint.divide(2).add(e.point.divide(2)),
                     radius: e.point.subtract(e.downPoint).divide(2),
                     strokeColor: c.canvasState.activeColorRgb,
                     strokeWidth: 2,
                     opacity: 1
                 }),
-                M.center = e.downPoint.divide(2).add(e.point.divide(2)),
-                M.radius = e.point.subtract(e.downPoint).divide(2),
-                F || (D = setInterval((function() {
-                    i.globalSocketObj.emit("ellipse:progress", Ve(), JSON.stringify(M))
+                F.center = e.downPoint.divide(2).add(e.point.divide(2)),
+                F.radius = e.point.subtract(e.downPoint).divide(2),
+                V || (W = setInterval((function() {
+                    i.globalSocketObj.emit("ellipse:progress", Ye(), JSON.stringify(F))
                 }
                 ), c.staticGlobals.SOCKET_UPDATE_INTERVAL)),
-                F = !0;
-            else if ("rectangle" == z)
-                X && X.remove(),
-                X = new a.Path.Rectangle({
-                    name: M.name,
+                V = !0;
+            else if ("rectangle" == J)
+                ee && ee.remove(),
+                ee = new a.Path.Rectangle({
+                    name: F.name,
                     topLeft: e.downPoint,
                     bottomRight: e.point,
                     strokeColor: c.canvasState.activeColorRgb,
                     strokeWidth: 2,
                     opacity: 1
                 }),
-                M.topLeft = e.downPoint,
-                M.bottomRight = e.point,
-                F || (D = setInterval((function() {
-                    i.globalSocketObj.emit("rectangle:progress", Ve(), JSON.stringify(M))
+                F.topLeft = e.downPoint,
+                F.bottomRight = e.point,
+                V || (W = setInterval((function() {
+                    i.globalSocketObj.emit("rectangle:progress", Ye(), JSON.stringify(F))
                 }
                 ), c.staticGlobals.SOCKET_UPDATE_INTERVAL)),
-                F = !0;
-            else if ("signature" == z) {
-                if (H)
+                V = !0;
+            else if ("signature" == J) {
+                if (K)
                     return;
-                q && q.remove();
+                te && te.remove();
                 var n = new a.Path.Rectangle({
-                    name: "signature-box:" + M.name,
+                    name: "signature-box:" + F.name,
                     topLeft: e.downPoint,
                     bottomRight: e.point,
                     fillColor: "#f0f0f0",
                     opacity: .5
                 })
                   , s = new a.Path.Rectangle({
-                    name: "signature-border:" + M.name,
+                    name: "signature-border:" + F.name,
                     topLeft: e.downPoint,
                     bottomRight: e.point,
                     strokeColor: "#000000",
                     strokeWidth: 2
                 });
-                q = new a.Group({
-                    name: "signature:" + M.name,
+                te = new a.Group({
+                    name: "signature:" + F.name,
                     children: [n, s]
                 })
-            } else if ("line" == z) {
-                Q && Q.remove();
+            } else if ("line" == J) {
+                oe && oe.remove();
                 var l = new a.Path.Line({
-                    name: "arrow-line:" + M.name,
+                    name: "arrow-line:" + F.name,
                     from: e.downPoint,
                     to: e.point,
                     strokeColor: c.canvasState.activeColorRgb,
@@ -2370,25 +2384,25 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
                   , u = d.normalize(18)
                   , p = d.normalize(4).add(t)
                   , g = new a.Path({
-                    name: "arrow-head:" + M.name,
+                    name: "arrow-head:" + F.name,
                     segments: [p.add(u.rotate(155)), p, p.add(u.rotate(-155))],
                     fillColor: c.canvasState.activeColorRgb,
                     strokeWidth: 2
                 });
-                Q = new a.Group({
-                    name: "arrow:" + M.name,
+                oe = new a.Group({
+                    name: "arrow:" + F.name,
                     children: [l, g]
                 }),
-                M.to = e.point,
-                F || (D = setInterval((function() {
-                    i.globalSocketObj.emit("line:progress", Ve(), JSON.stringify(M))
+                F.to = e.point,
+                V || (W = setInterval((function() {
+                    i.globalSocketObj.emit("line:progress", Ye(), JSON.stringify(F))
                 }
                 ), c.staticGlobals.SOCKET_UPDATE_INTERVAL)),
-                F = !0
-            } else if ("select" == z)
-                if (J) {
-                    ee && ee.remove(),
-                    ee = new a.Path.Rectangle({
+                V = !0
+            } else if ("select" == J)
+                if (Y) {
+                    ae && ae.remove(),
+                    ae = new a.Path.Rectangle({
                         name: "select-band",
                         topLeft: e.downPoint,
                         bottomRight: e.point,
@@ -2398,42 +2412,42 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
                         opacity: 1
                     });
                     for (var h = 0; h < r().project.activeLayer.children.length; h++)
-                        r().project.activeLayer.children[h].name && -1 == r().project.activeLayer.children[h].name.indexOf("pdf-page") && -1 == r().project.activeLayer.children[h].name.indexOf("select-band") && -1 == r().project.activeLayer.children[h].name.indexOf("border-box") && -1 == r().project.activeLayer.children[h].name.indexOf("cursor") && (r().project.activeLayer.children[h].intersects(ee) || r().project.activeLayer.children[h].isInside(ee.handleBounds) ? r().project.activeLayer.children[h].selected = !0 : r().project.activeLayer.children[h].selected = !1);
-                    _.draw()
+                        r().project.activeLayer.children[h].name && -1 == r().project.activeLayer.children[h].name.indexOf("pdf-page") && -1 == r().project.activeLayer.children[h].name.indexOf("select-band") && -1 == r().project.activeLayer.children[h].name.indexOf("border-box") && -1 == r().project.activeLayer.children[h].name.indexOf("cursor") && (r().project.activeLayer.children[h].intersects(ae) || r().project.activeLayer.children[h].isInside(ae.handleBounds) ? r().project.activeLayer.children[h].selected = !0 : r().project.activeLayer.children[h].selected = !1);
+                    N.draw()
                 } else {
                     for (h = 0; h < r().project.selectedItems.length; h++) {
                         var f = r().project.selectedItems[h];
                         f.name && -1 == f.name.indexOf("arrow-line:") && -1 == f.name.indexOf("arrow-head:") && -1 == f.name.indexOf("signature-label:") && -1 == f.name.indexOf("signature-box:") && -1 == f.name.indexOf("signature-border:") && (f.position.x += e.delta.x,
                         f.position.y += e.delta.y)
                     }
-                    r().project.selectedItems && (B ? (B.x += e.delta.x,
-                    B.y += e.delta.y) : B = e.delta),
-                    oe || (W = setInterval((function() {
-                        if (B) {
+                    ze() && (z ? (z.x += e.delta.x,
+                    z.y += e.delta.y) : z = e.delta),
+                    ne || (G = setInterval((function() {
+                        if (z) {
                             for (var e = new Array, t = 0; t < r().project.selectedItems.length; t++) {
                                 var o = r().project.selectedItems[t];
                                 e.push(o._name)
                             }
-                            i.globalSocketObj.emit("item:move:progress", Ve(), e, B),
-                            B = null
+                            i.globalSocketObj.emit("item:move:progress", Ye(), e, z),
+                            z = null
                         }
                     }
                     ), 50)),
-                    oe = !0
+                    ne = !0
                 }
-            else if ("cursor" == z) {
-                if (ne + c.staticGlobals.SOCKET_UPDATE_INTERVAL < e.timeStamp) {
+            else if ("cursor" == J) {
+                if (ce + c.staticGlobals.SOCKET_UPDATE_INTERVAL < e.timeStamp) {
                     var v = e.point.y
                       , m = e.point.x;
-                    ne = e.timeStamp,
-                    re({
+                    ce = e.timeStamp,
+                    se({
                         x: m,
                         y: v,
                         color: c.canvasState.activeColorRgb,
                         userFullname: c.userState.myFullName
                     })
                 }
-            } else if ("eraser" === z) {
+            } else if ("eraser" === J) {
                 var b = {
                     segments: !0,
                     stroke: !0,
@@ -2444,19 +2458,19 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
                 if (y) {
                     var w = y.item;
                     w.name && ("border-box" === w.name || w.name.includes("pdf-page") || w.name.includes("signature") || w.name.includes("image") || (w._parent && w._parent._name && w._parent._name.includes("arrow") && (w = w._parent),
-                    i.globalSocketObj.emit("item:remove", Ve(), w.name),
-                    _.draw(),
+                    i.globalSocketObj.emit("item:remove", Ye(), w.name),
+                    N.draw(),
                     w.remove()))
                 }
             }
         }
         //! Prevent right click context menu in canvas
         ,
-        A.onMouseUp = function(e) {
+        x.onMouseUp = function(e) {
             if (1 == e.event.button)
                 return;
             if (2 === e.event.button) {
-                switch (z) {
+                switch (J) {
                 case "cursor":
                     $("#the-canvas").css("cursor", "grab");
                     break;
@@ -2487,9 +2501,9 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
                         cursor: "crosshair"
                     })
                 }
-                te.splice(0, te.length)
-            } else if ("cursor" == z || e.event.ctrlKey || ke.active) {
-                switch (z) {
+                re.splice(0, re.length)
+            } else if ("cursor" == J || e.event.ctrlKey || Pe.active) {
+                switch (J) {
                 case "cursor":
                     $("#the-canvas").css("cursor", "grab");
                     break;
@@ -2520,33 +2534,33 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
                         cursor: "crosshair"
                     })
                 }
-                te.splice(0, te.length)
-            } else if ("draw" == z || "pencil" == z) {
-                clearInterval(D),
-                F = !1,
+                re.splice(0, re.length)
+            } else if ("draw" == J || "pencil" == J) {
+                clearInterval(W),
+                V = !1,
                 (t = e.point).y = t.y + c.staticGlobals.CursorOffsetY / r().project.view.getZoom(),
-                Y || (Y = new a.Path),
-                Y.add(t),
-                (e.modifiers.shift?M.path.push([t.x,t.y]):0),
-                Y.closed = !1,
-                Y.simplify(),
+                q || (q = new a.Path),
+                q.add(t),
+                (e.modifiers.shift?F.path.push([t.x,t.y]):0),
+                q.closed = !1,
+                q.simplify(),
                 r().project.view.draw(),
-                Y = null,
-                M.end = [t.x, t.y],
-                i.globalSocketObj.emit("draw:end", Ve(), JSON.stringify(M)),
-                M.path = new Array
-            } else if ("ellipse" == z || "rectangle" == z || "line" == z)
-                "ellipse" == z && (K = null),
-                "rectangle" == z && (X = null),
-                "line" == z && (Q = null),
-                i.globalSocketObj.emit(z + ":end", Ve(), JSON.stringify(M)),
-                clearInterval(D),
-                M.path = new Array,
-                F = !1;
-            else if ("signature" == z) {
-                if (null == q || H)
+                q = null,
+                F.end = [t.x, t.y],
+                i.globalSocketObj.emit("draw:end", Ye(), JSON.stringify(F)),
+                F.path = new Array
+            } else if ("ellipse" == J || "rectangle" == J || "line" == J)
+                "ellipse" == J && (Q = null),
+                "rectangle" == J && (ee = null),
+                "line" == J && (oe = null),
+                i.globalSocketObj.emit(J + ":end", Ye(), JSON.stringify(F)),
+                clearInterval(W),
+                F.path = new Array,
+                V = !1;
+            else if ("signature" == J) {
+                if (null == te || K)
                     return;
-                var t, o = "signature-label:" + M.name, n = {
+                var t, o = "signature-label:" + F.name, n = {
                     point: t = new a.Point((e.point.x + e.downPoint.x) / 2,(e.point.y + e.downPoint.y) / 2),
                     content: "Please Sign Here",
                     fillColor: "#000",
@@ -2556,22 +2570,22 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
                     justification: "center",
                     name: o
                 }, s = new a.PointText(n);
-                M.topLeft = e.downPoint,
-                M.bottomRight = e.point,
+                F.topLeft = e.downPoint,
+                F.bottomRight = e.point,
                 s.visible = !0,
-                q.addChild(s),
-                q.onClick = ge,
+                te.addChild(s),
+                te.onClick = ge,
                 ge(null),
-                _.draw(),
-                q = null,
-                clearInterval(D),
-                F = !1
-            } else if ("text" == z) {
-                if (G)
-                    return void (G = !1);
-                if (V)
+                N.draw(),
+                te = null,
+                clearInterval(W),
+                V = !1
+            } else if ("text" == J) {
+                if (H)
+                    return void (H = !1);
+                if (Z)
                     return;
-                V = !0;
+                Z = !0;
                 var l = $("#text-editor");
                 l.text("");
                 var d = 12;
@@ -2600,90 +2614,78 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
                     createdAt: (new Date).getTime(),
                     zoom: r().project.view.getZoom()
                 };
-                i.globalSocketObj.emit("text:add", Ve(), JSON.stringify(g), d, r().project.view.getZoom(), (function(e) {
-                    l.data("current-point-text-name", e).on("blur.updateCanvas", he).on("keydown.updateText", de).on("keyup.updateText", ue).show().focus()
-                }));
-                if(window.firstTime)
-                {
-                	l.data("current-point-text-name", e).on("paste",le);
-                	window.firstTime = false;
+                i.globalSocketObj.emit("text:add", Ye(), JSON.stringify(g), d, r().project.view.getZoom(), (function(e) {
+                    (0,
+                    O.resetTextListeners)(l),
+                    (0,
+                    O.applyTextEditorListeners)(l, e)
                 }
-            } else if ("smiley" == z) {
+                ))
+            } else if ("smiley" == J) {
             console.log(window.smileyStamp);
                 createTBox(window.smileyStamp, c.canvasState.activeColorRgb,24, e.downPoint.x-12,e.downPoint.y+12);
-            }  else if ("checkmark" == z) {
-            	var zoomFactor = 1/(r().project.view.getZoom()*0.18+2);
+			} else if ("checkmark" == J) {
+			    var zoomFactor = 1/(r().project.view.getZoom()*0.18+2);
   				var sf = window.sf*zoomFactor;
+
                 var h = e.downPoint
                   , f = h.x - 3.5 / r().project.view.getZoom()
-                  , m = h.y - 3.5 / r().project.view.getZoom()
-                  , v = [{
+                  , v = h.y - 3.5 / r().project.view.getZoom()
+                  , m = [{
                     x: f,
-                    y: m
+                    y: v
                 }, {
                     x: f + 4 / r().project.view.getZoom(),
-                    y: m + 6 / r().project.view.getZoom()
+                    y: v + 6 / r().project.view.getZoom()
                 }, {
                     x: f + 14 / r().project.view.getZoom(),
-                    y: m - 4 / r().project.view.getZoom()
+                    y: v - 4 / r().project.view.getZoom()
                 }]
                   , b = 4 / r().project.view.getZoom();
                 if(window.altcheck)
                 {
-		            v = [{
-		                x: f,
-		                y: m
-		            }, {
-		                x: f + sf*5,
-		                y: m + sf*5
-		            }, {
-		                x: f + sf*11,
-		                y: m - sf*10
-		            }]
-		        }
+                	m = [{
+                		x: f,
+                		y: v
+                	}, {
+                		x: f + sf*5,
+                		y: v + sf*5
+                	}, {
+                		x: f + sf*11,
+                		y: v - sf*10
+                	}]
+                }
                 c.canvasState.incrementProjectObjectCount();
                 var y = {
                     name: new a.Path({
                         name: "checkmark:" + c.userState.uid + ":" + c.canvasState.projectObjectCount,
                         strokeColor: (window.useAltColor?window.mod.col:c.canvasState.activeColorRgb),
                         strokeWidth: sf*4,
-                        segments: v,
+                        segments: m,
                         closed: !1
                     }).name,
                     pointX: f,
-                    pointY: m,
+                    pointY: v,
                     strokeColor: (window.useAltColor?window.mod.col:c.canvasState.activeColorRgb),
-                    segments: v,
+                    segments: m,
                     strokeWidth: sf*4
                 };
-                i.globalSocketObj.emit("checkmark:add", Ve(), JSON.stringify(y))
-            } else if ("select" == z) {
-                if (J)
-                    J = !1,
-                    void 0 !== r().project.activeLayer.children["select-band"] && r().project.activeLayer.children["select-band"].remove(),
-                    _.draw();
-                else {
-                    if (clearInterval(W),
-                    B) {
-                        for (var w = new Array, S = 0; S < r().project.selectedItems.length; S++) {
-                            var j = r().project.selectedItems[S];
-                            w.push(j._name)
-                        }
-                        i.globalSocketObj.emit("item:move:end", Ve(), w, B)
-                    } else
-                        i.globalSocketObj.emit("item:move:end", Ve(), w, new a.Point(0,0));
-                    B = null,
-                    oe = !1
-                }
-                r().project.selectedItems.length > 0 && $("#the-canvas").css("cursor", "move")
-            }
+                i.globalSocketObj.emit("checkmark:add", Ye(), JSON.stringify(y))
+            } else
+                "select" == J && (Y ? (Y = !1,
+                void 0 !== r().project.activeLayer.children["select-band"] && r().project.activeLayer.children["select-band"].remove(),
+                N.draw()) : (clearInterval(G),
+                me(z),
+                z = null,
+                ne = !1),
+                ze() && $("#the-canvas").css("cursor", "move"))
         }
         ,
-        A.onMouseMove = function(e) {
+        x.onMouseMove = function(e) {
             if (c.userState.showWhiteboardControls) {
                 if (e.event.ctrlKey)
                     return void $("#the-canvas").css("cursor", "grab");
-                if ("select" == z) {
+                if ("select" == J) {
                     var t = {
                         segments: !0,
                         stroke: !0,
@@ -2703,7 +2705,7 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
                             } else
                                 $("#the-canvas").css("cursor", "crosshair")
                         }
-                } else if ("text" == z) {
+                } else if ("text" == J) {
                     t = {
                         segments: !0,
                         stroke: !0,
@@ -2723,7 +2725,7 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
                             } else
                                 $("#the-canvas").css("cursor", "text")
                         }
-                } else if ("signature" == z) {
+                } else if ("signature" == J) {
                     t = {
                         segments: !0,
                         stroke: !0,
@@ -2745,7 +2747,7 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
                             } else
                                 $("#the-canvas").css("cursor", "crosshair")
                         }
-                } else if ("cursor" == z) {
+                } else if ("cursor" == J) {
                     t = {
                         segments: !0,
                         stroke: !0,
@@ -2759,20 +2761,20 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
                                     if (i.item.name.indexOf("signature:") > -1) {
                                         if (i.item.parent.data && i.item.parent.data.forUserId && i.item.parent.data.forUserId == c.userState.uid)
                                             return $("#the-canvas").css("cursor", "pointer"),
-                                            void bt(c.userState.uid)
+                                            void jt(c.userState.uid)
                                     } else
                                         $("#the-canvas").css("cursor", "grab")
                             } else
                                 $("#the-canvas").css("cursor", "grab")
                         }
                 }
-                if (ne + c.staticGlobals.SOCKET_UPDATE_INTERVAL < e.timeStamp && r().project.activeLayer.name) {
+                if (ce + c.staticGlobals.SOCKET_UPDATE_INTERVAL < e.timeStamp && r().project.activeLayer.name) {
                     var a = e.point.y
                       , n = e.point.x;
-                    "draw" == z || "pencil" == z ? a += c.staticGlobals.CursorOffsetY / r().project.view.getZoom() : "checkmark" == z && (n += 10 / r().project.view.getZoom(),
+                    "draw" == J || "pencil" == J ? a += c.staticGlobals.CursorOffsetY / r().project.view.getZoom() : "checkmark" == J && (n += 10 / r().project.view.getZoom(),
                     a += 10 / r().project.view.getZoom()),
-                    ne = e.timeStamp,
-                    re({
+                    ce = e.timeStamp,
+                    se({
                         x: n,
                         y: a,
                         color: c.canvasState.activeColorRgb,
@@ -2803,15 +2805,15 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
             }
         }
         ,
-        A.onKeyDown = function(e) {
-		if(window.calcToolFocus) return;
-            if (ye())
+        x.onKeyDown = function(e) {
+        	if(window.calcToolFocus) return;
+            if (je())
                 switch (e.key) {
                 case "+":
-                    $("#text-editor").is(":hidden") && Ee(null, null, "zoom-in");
+                    $("#text-editor").is(":hidden") && Ue(null, null, "zoom-in");
                     break;
                 case "-":
-                    $("#text-editor").is(":hidden") && Ee(null, null, "zoom-out");
+                    $("#text-editor").is(":hidden") && Ue(null, null, "zoom-out");
                     break;
                 case "left":
                     if ($("#text-editor").is(":hidden"))
@@ -2821,7 +2823,7 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
                                 $('#select-page option[value="' + t + '"]').prop("selected", !0).change()
                             }
                         } else
-                            Be(-100, "x");
+                            Ge(-100, "x");
                     break;
                 case "right":
                     if ($("#text-editor").is(":hidden"))
@@ -2831,15 +2833,15 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
                                 $('#select-page option[value="' + t + '"]').prop("selected", !0).change()
                             }
                         } else
-                            Be(100, "x");
+                            Ge(100, "x");
                     break;
                 case "up":
-                    $("#text-editor").is(":hidden") && Be(-150, "y");
+                    $("#text-editor").is(":hidden") && Ge(-150, "y");
                     break;
                 case "down":
-                    $("#text-editor").is(":hidden") && Be(150, "y")
+                    $("#text-editor").is(":hidden") && Ge(150, "y")
                 }
-            if ("select" == z) {
+            if ("select" == J) {
                 var o = null;
                 "up" == e.key ? o = new (r().Point)(0,-1) : "down" == e.key ? o = new (r().Point)(0,1) : "left" == e.key ? o = new (r().Point)(-1,0) : "right" == e.key && (o = new (r().Point)(1,0)),
                 o && function(e) {
@@ -2848,27 +2850,40 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
                     if (r().project.selectedItems.length < 1)
                         return;
                     for (var t = new Array, o = 0; o < r().project.selectedItems.length; o++) {
-                        var a = r().project.selectedItems[o];
-                        a.position.x += e.x,
-                        a.position.y += e.y,
-                        t.push(a._name)
+                        (n = r().project.selectedItems[o]).position.x += e.x,
+                        n.position.y += e.y,
+                        t.push(n._name)
                     }
-                    _.draw()
+                    for (t = new Array,
+                    o = 0; o < r().project.selectedItems.length; o++) {
+                        var n = r().project.selectedItems[o];
+                        t.push(n._name)
+                    }
+                    ze() && fe(e) && function(e) {
+                        var t = r().project.selectedItems.reduce((function(e, t) {
+                            var o;
+                            return (o = t)._name.includes("arrow-line") || o._name.includes("arrow-head") || e.push(t._name),
+                            e
+                        }
+                        ), []);
+                        ze() && i.globalSocketObj.emit("item:move:progress", Ye(), t, fe(e) ? e : new a.Point(0,0))
+                    }(e)
                 }(o),
-                r().project.selectedItems && o && (ie ? ie += o : ie = o),
-                !ce && o && (se = setInterval((function() {
-                    if (ie) {
+                ze() && o && (le ? fe(le) && fe(o) && (le.x += o.x,
+                le.y += o.y) : le = o),
+                !ue && o && (de = setInterval((function() {
+                    if (le) {
                         for (var e = new Array, t = 0; t < r().project.selectedItems.length; t++) {
                             var o = r().project.selectedItems[t];
                             e.push(o._name)
                         }
-                        i.globalSocketObj.emit("item:move:progress", Ve(), e, ie),
-                        ie = null
+                        i.globalSocketObj.emit("item:move:progress", Ye(), e, le),
+                        le = null
                     }
                 }
                 ), c.staticGlobals.SOCKET_UPDATE_INTERVAL)),
-                ce = !0
-            }
+                ue = !0
+                        }
             if($("#text-editor").is(":hidden")&&window.modKeys&&!window.calcToolFocus)
     {
         switch(e.key)
@@ -2962,11 +2977,13 @@ setStrokeWidth("giant");
 break;
 }
 }
+
         }
         ,
-        A.onKeyUp = function(e) {
-            if ("control" == e.key)
-                switch (z) {
+        x.onKeyUp = function(e) {
+            if ((0,
+            C.isControlKey)(e.code))
+                switch (J) {
                 case "cursor":
                     $("#the-canvas").css("cursor", "grab");
                     break;
@@ -2997,44 +3014,35 @@ break;
                         cursor: "crosshair"
                     })
                 }
-            if (46 == e.event.keyCode) {
+            if (e.event.code == C.default.DELETE) {
                 var t = r().project.selectedItems;
                 if (t)
                     for (var o = 0; o < t.length; o++) {
-                        var n = t[o];
-                        i.globalSocketObj.emit("item:remove", Ve(), n.name),
-                        n.remove(),
-                        _.draw()
+                        var a = t[o];
+                        i.globalSocketObj.emit("item:remove", Ye(), a.name),
+                        a.remove(),
+                        N.draw()
                     }
-                i.globalSocketObj.emit("item:remove:end", Ve(), c.staticGlobals.room)
+                i.globalSocketObj.emit("item:remove:end", Ye(), c.staticGlobals.room)
             }
             if (e.event.target && e.event.target.nodeName && "body" != e.event.target.nodeName.toLowerCase())
                 return;
-            if ("select" == z) {
-                if (clearInterval(se),
-                ie) {
-                    var s = new Array;
-                    for (o = 0; o < r().project.selectedItems.length; o++) {
-                        n = r().project.selectedItems[o];
-                        s.push(n._name)
-                    }
-                    i.globalSocketObj.emit("item:move:end", Ve(), s, ie)
-                } else
-                    i.globalSocketObj.emit("item:move:end", Ve(), s, new a.Point(0,0));
-                return ie = null,
-                ce = !1,
+            if ("select" == J)
+                return clearInterval(de),
+                me(le),
+                le = null,
+                ue = !1,
                 e.preventDefault(),
                 !1
-            }
         }
         );
-        var L, x, T, I, _ = r().view, E = 2, R = 4, N = 5, U = [];
+        var I, _, E, R, N = r().view, U = 2, D = 4, M = 5, B = [];
         $((function() {
             $("#readjust-raster").click((function() {
                 for (var e = "page-" + $("#select-page").val(), t = 0; t < r().project.layers[e].children.length; t++)
                     r().project.layers[e].children[t].name.indexOf("pdf-page") > -1 && "raster" == r().project.layers[e].children[t].className.toLowerCase() && (c.canvasState.setAspectRatio(r().project.layers[e].data.aspectRatio),
                     console.log("view: %dx%d, raster: %dx%d, aspect ratio: %f", r().project.view.bounds.width, r().project.view.bounds.height, r().project.layers[e].children[t].bounds.width, r().project.layers[e].children[t].bounds.height, c.canvasState.aspectRatio),
-                    ve(!1, !1),
+                    ye(!1, !1),
                     r().project.layers[e].children[t].position = r().project.view.center,
                     r().project.layers[e].children[t].fitBounds(r().project.view.bounds))
             }
@@ -3054,7 +3062,7 @@ break;
                     r().project.activeLayer.selected = !1;
                     for (var t = 0; t < r().project.layers.length; t++)
                         r().project.layers[t].selected = !1;
-                    _.draw()
+                    N.draw()
                 }
             }
             )),
@@ -3081,8 +3089,8 @@ break;
                         r().project.selectedItems[o].strokeColor = c.canvasState.activeColorRgb) : r().project.selectedItems[o].name.indexOf("signature:") > -1 ? (r().project.selectedItems[o].name.indexOf("signature-box:signature:") > -1 && (r().project.selectedItems[o].fillColor = c.canvasState.activeColorRgb,
                         r().project.selectedItems[o].opacity = .2),
                         r().project.selectedItems[o].name.indexOf("signature-border:signature:") > -1 && (r().project.selectedItems[o].strokeColor = c.canvasState.activeColorRgb)) : r().project.selectedItems[o].strokeColor = c.canvasState.activeColorRgb);
-                    _.draw(),
-                    i.globalSocketObj.emit("item:color:set", Ve(), JSON.stringify(t)),
+                    N.draw(),
+                    i.globalSocketObj.emit("item:color:set", Ye(), JSON.stringify(t)),
                     localStorage.setItem("spectrum.defaultColor", JSON.stringify(e.toHexString()));
                     var a = e.toRgb();
                     c.canvasState.setActiveColorJson({
@@ -3098,6 +3106,7 @@ break;
             r().tool.maxDistance = 45,
             $("#the-canvas").css("cursor", "pointer"),
             $(".close-whiteboard").click((function() {
+            	if(window.confirm("Are you sure you want to close the whiteboard?"))
                 window.parent && window.parent.postMessage({
                     action: "close-whiteboard",
                     room: c.staticGlobals.room || ""
@@ -3107,7 +3116,7 @@ break;
             $("#delete-signature-field").click((function() {
                 var e = $("#assign-signature-user-dialog").data("target-object");
                 r().project.activeLayer.children[e] && (r().project.activeLayer.children[e].remove(),
-                i.globalSocketObj.emit("item:remove", Ve(), e)),
+                i.globalSocketObj.emit("item:remove", Ye(), e)),
                 $("#assign-signature-user-dialog").modal("hide")
             }
             )),
@@ -3118,8 +3127,8 @@ break;
                   , n = null
                   , s = $("#selected-whiteboard-user option:selected").val()
                   , l = $("#selected-whiteboard-user option:selected").text();
-                if (M.forUserId = s,
-                M.forUserFullname = l,
+                if (F.forUserId = s,
+                F.forUserFullname = l,
                 r().project.activeLayer.children[t]) {
                     if (!e && r().project.activeLayer.children[t].data && r().project.activeLayer.children[t].data.forUserId && (n = r().project.activeLayer.children[t].data.forUserId,
                     r().project.activeLayer.children[t].data.forUserId == s))
@@ -3129,7 +3138,7 @@ break;
                     s != c.userState.uid && r().project.activeLayer.children[t].children["signature-label:" + o] && (r().project.activeLayer.children[t].children["signature-label:" + o].content = l + "'s Signature")
                 }
                 if (e)
-                    i.globalSocketObj.emit("signature:end", Ve(), JSON.stringify(M));
+                    i.globalSocketObj.emit("signature:end", Ye(), JSON.stringify(F));
                 else {
                     var d = r().project.activeLayer.children[t].strokeBounds
                       , u = r().project.activeLayer.children[t].children["signature-box:" + o].fillColor.toCSS(!0)
@@ -3142,11 +3151,12 @@ break;
                         bottomRight: new a.Point(d.point.x + d.width,d.point.y + d.height),
                         strokeColor: u
                     };
-                    i.globalSocketObj.emit("signature:update", Ve(), JSON.stringify(p))
+                    i.globalSocketObj.emit("signature:update", Ye(), JSON.stringify(p))
                 }
-                M.path = new Array,
+                F.path = new Array,
                 $("#assign-signature-user-dialog").modal("hide"),
-                s == c.userState.uid && alert("You have created a signature field for yourself!\n\nTo sign this field, switch to the pointer tool and click on 'Please Sign Here'.")
+                s == c.userState.uid && (0,
+                P.Z)("You have created a signature field for yourself!\n\nTo sign this field, switch to the pointer tool and click on 'Please Sign Here'.")
             }
             )),
             $("#cancel-signature-dialog").click((function() {
@@ -3162,18 +3172,20 @@ break;
                   , o = $("#user-signature-dialog").data("signatureTarget");
                 if ("ALL" === $("#user-signature-dialog").data("signatureTarget"))
                     try {
-                        ct.forEach((function(e, t) {
+                        pt.forEach((function(e, t) {
                             a(o = e.itemName, t)
                         }
                         ))
                     } catch (e) {
-                        alert(e)
+                        (0,
+                        P.Z)(e.message)
                     }
                 else
                     try {
                         a(o, null)
                     } catch (e) {
-                        alert(e)
+                        (0,
+                        P.Z)(e.message)
                     }
                 function a(o, a) {
                     e.project.activeLayer.children[t].fitBounds(r().project.activeLayer.children[o].bounds);
@@ -3200,27 +3212,28 @@ break;
                         r().project.activeLayer.children[o].children[d].bringToFront(),
                         r().project.activeLayer.children[o].data.hasBeenSigned = !0)
                     }
-                    i.globalSocketObj.emit("signature:signed", Ve(), o, JSON.stringify(l)),
+                    i.globalSocketObj.emit("signature:signed", Ye(), o, JSON.stringify(l)),
                     c.canvasState.setActiveSigning(!1),
-                    null !== a ? a === ct.length - 1 && ($("#user-signature-dialog").modal("hide"),
+                    null !== a ? a === pt.length - 1 && ($("#user-signature-dialog").modal("hide"),
                     e.clear(),
                     c.canvasState.setSignatureFieldCount(0),
-                    lt(r().project.activeLayer.name.split("-")[1], c.userState.uid),
+                    gt(r().project.activeLayer.name.split("-")[1], c.userState.uid),
                     $("#finished-signing-dialog").modal("show"),
                     $("#switch-signature-type").click()) : ($("#user-signature-dialog").modal("hide"),
                     e.clear(),
                     c.canvasState.setSignatureFieldCount(c.canvasState.mySignatureFieldCount - 1),
-                    c.canvasState.mySignatureFieldCount <= 0 && (lt(r().project.activeLayer.name.split("-")[1], c.userState.uid),
+                    c.canvasState.mySignatureFieldCount <= 0 && (gt(r().project.activeLayer.name.split("-")[1], c.userState.uid),
                     $("#finished-signing-dialog").modal("show"),
                     $("#switch-signature-type").click()))
                 }
             }
             )),
             $("#finished-signing").click((function() {
-                alert("Thank you for signing!  An email has been sent to the owner of this whiteboard confirming your signature."),
+                (0,
+                P.Z)("Thank you for signing!  An email has been sent to the owner of this whiteboard confirming your signature."),
                 $("#finished-signing-dialog").modal("hide");
                 $("#user-signature-dialog").data("signatureTarget");
-                i.globalSocketObj.emit("signature:signing-done", Ve())
+                i.globalSocketObj.emit("signature:signing-done", Ye())
             }
             )),
             $("#cancel-user-signature").click((function() {
@@ -3273,8 +3286,8 @@ break;
                         l.push(s.maxDistance)
                 };
                 s.onMouseDown = function(t) {
-                    (Z = new e.Path).fillColor = "#000",
-                    Z.add(t.point),
+                    (X = new e.Path).fillColor = "#000",
+                    X.add(t.point),
                     d()
                 }
                 ,
@@ -3292,17 +3305,17 @@ break;
                     a.angle += 90;
                     var r = e.middlePoint.add(a)
                       , n = e.middlePoint.subtract(a);
-                    Z.add(r),
-                    Z.insert(0, n),
-                    Z.smooth()
+                    X.add(r),
+                    X.insert(0, n),
+                    X.smooth()
                 }
                 ,
                 s.onMouseUp = function(e) {
-                    Z.add(e.point),
-                    Z.closed = !1,
-                    Z.smooth(),
-                    Z.reduce(),
-                    Z.addTo(t),
+                    X.add(e.point),
+                    X.closed = !1,
+                    X.smooth(),
+                    X.reduce(),
+                    X.addTo(t),
                     d()
                 }
                 ,
@@ -3326,7 +3339,7 @@ break;
                         fontSize: 50
                     })
                 }
-                "ALL" === $("#user-signature-dialog").data("signatureTarget") ? (ct.length > 1 ? $("#add-user-signature").text("Sign ALL and Complete") : $("#add-user-signature").text("Sign and Complete"),
+                "ALL" === $("#user-signature-dialog").data("signatureTarget") ? (pt.length > 1 ? $("#add-user-signature").text("Sign ALL and Complete") : $("#add-user-signature").text("Sign and Complete"),
                 $(".signature-form-title").text("Signing ALL assigned Fields"),
                 $(".signature-form-subtitle").show(),
                 $("#switch-signature-type").show()) : ($(".signature-form-title").text("Signature Form"),
@@ -3396,11 +3409,11 @@ break;
                     color: c.canvasState.activeColorRgb,
                     userFullname: c.userState.myFullName
                 };
-                c.userState.showWhiteboardControls && re(t),
-                bt(c.userState.uid),
+                c.userState.showWhiteboardControls && se(t),
+                jt(c.userState.uid),
                 setTimeout((function() {
-                    c.userState.showWhiteboardControls && re(t),
-                    bt(c.userState.uid)
+                    c.userState.showWhiteboardControls && se(t),
+                    jt(c.userState.uid)
                 }
                 ), 100)
             }
@@ -3416,7 +3429,7 @@ break;
             )),
             r().project.view.setCenter(0, 0),
             $(window).resize((function(e) {
-                me(!1, !1, !0)
+                we(!1, !1, !0)
             }
             ))
         }
@@ -3438,25 +3451,25 @@ break;
             if (c.userState.userIsPresenter) {
                 var e = r().project.view
                   , t = $("#canvas-container").innerWidth() / $("#canvas-container").innerHeight();
-                i.globalSocketObj.emit("canvas:send:view-sizing", !0, t, T, e.center, e.zoom / N)
+                i.globalSocketObj.emit("canvas:send:view-sizing", !0, t, E, e.center, e.zoom / M)
             }
         }
         )),
         i.globalSocketObj.on("canvas:send:view-sizing", (function(e, t, o, a, r) {
-            ye() || (ve(!1, !1),
-            ve(!1, !1),
-            t && o && Re(t, o),
-            e && (ye() || h.handlePresenterGesture(a, r, N)))
+            je() || (ye(!1, !1),
+            ye(!1, !1),
+            t && o && De(t, o),
+            e && (je() || h.handlePresenterGesture(a, r, M)))
         }
         ));
-        var D, M = {};
+        var W, F = {};
         $(".clear-canvas").click((function() {
             g.populateClearCanvasConfirmationText(),
             g.showConfirmationPopup()
         }
         )),
         $("#undo").click((function() {
-            i.globalSocketObj.emit("canvas:undo", Ve(), c.staticGlobals.room, r().project.activeLayer.getName())
+            i.globalSocketObj.emit("canvas:undo", Ye(), c.staticGlobals.room, r().project.activeLayer.getName())
         }
         )),
         localStorage.setItem("strokeWidth", "medium"),
@@ -3477,8 +3490,8 @@ break;
                 for (var a = 0; a < o.length; a++) {
                     var n = o[a];
                     n.fontSize = t,
-                    i.globalSocketObj.emit("item:font:change", Ve(), n.name, t),
-                    _.draw()
+                    i.globalSocketObj.emit("item:font:change", Ye(), n.name, t),
+                    N.draw()
                 }
             $(".font-size").each((function() {
                 $(".font-size option[value=" + t + "]").attr("selected", "selected")
@@ -3486,8 +3499,8 @@ break;
             ))
         }
         ));
-        var B, W, F = !1, z = "cursor", G = !1, V = !1, J = !1, H = !1, Z = null, Y = null, K = null, X = null, q = null, Q = null, ee = null, te = [];
-        var oe = !1;
+        var z, G, V = !1, J = "cursor", H = !1, Z = !1, Y = !1, K = !1, X = null, q = null, Q = null, ee = null, te = null, oe = null, ae = null, re = [];
+        var ne = !1;
         $("#the-canvas").bind("contextmenu", (function(e) {
             e.preventDefault()
         }
@@ -3496,12 +3509,12 @@ break;
             if (!0 !== c.canvasState.readonlyView) {
                 e.preventDefault(),
                 he(),
-                Pe && clearTimeout(Pe),
-                !xe && showGridLines && (Te(40, 25, Le),
-                xe = !0),
-                Pe = setTimeout((function() {
+                Te && clearTimeout(Te),
+                !_e && showGridLines && (Ee(40, 25, Ie),
+                _e = !0),
+                Te = setTimeout((function() {
                     $("#zoom-percentage-holder").fadeOut(),
-                    Ie()
+                    Re()
                 }
                 ), 500);
                 var t, o = e.originalEvent.deltaY;
@@ -3510,62 +3523,36 @@ break;
                 Math.abs(o) >= 40 && (t = .05));
                 var a = r().project.view
                   , n = a.zoom - o * t;
-                if (n = Ue(n)) {
+                if (n = Be(n)) {
                     if ("maxed" == n)
-                        return ze(),
-                        void _e(!0);
+                        return He(),
+                        void Ne(!0);
                     a.center = undefined,
-                    _e(!0),
-                    c.userState.userIsPresenter && i.globalSocketObj.emit("canvas:gesture", a.center, a.zoom / N)
+                    Ne(!0),
+                    c.userState.userIsPresenter && i.globalSocketObj.emit("canvas:gesture", a.center, a.zoom / M)
                 } else
-                    _e(!0)
+                    Ne(!0)
             }
         }
         ));
-        var ae = function() {
+        var ie = function() {
             return Boolean(r().project.activeLayer.name)
         };
-        function re(e) {
-            ae() && i.globalSocketObj.emit("cursor:move", Ve(), e)
+        function se(e) {
+            ie() && i.globalSocketObj.emit("cursor:move", Ye(), e)
         }
-        var ne = 0;
-        var ie = null
-          , se = null
-          , ce = !1;
+        var ce = 0;
+        var le = null
+          , de = null
+          , ue = !1;
         document.addEventListener("keydown", (function(e) {
             //! If Ctrl Z is pressed
-            (e.ctrlKey && "z" === e.key || e.cmd && "z" === e.key) && i.globalSocketObj.emit("canvas:undo", Ve(), c.staticGlobals.room, r().project.activeLayer.getName())
+            (e.ctrlKey && "z" === e.key || e.cmd && "z" === e.key) && i.globalSocketObj.emit("canvas:undo", Ye(), c.staticGlobals.room, r().project.activeLayer.getName())
         }
         ));
         Math.random().toString(36).substr(2, 10);
-        function le(e) {
-            e.preventDefault();
-            var t = (e.originalEvent || e).clipboardData.getData("text/plain");
-            window.document.execCommand("insertText", !1, t)
-        }
-        function de(e) {
-            (!e.shiftKey && 13 == e.keyCode || 27 == e.keyCode || 46 == e.keyCode) && (e.preventDefault(),
-            e.stopPropagation())
-        }
-        function ue(e) {
-            if (!e.shiftKey && 13 == e.keyCode || 27 == e.keyCode || 46 == e.keyCode)
-                return e.preventDefault(),
-                e.stopPropagation(),
-                he(),
-                !1;
-            var t = $("#text-editor")
-              , o = t.data("current-point-text-name");
-            if (o) {
-                var a = "";
-                tmpDiv.innerHTML = t[0].innerHTML.replace(/<div>/gi, "<div>\n"), a = replaceMathML(tmpDiv.innerText);
-                r().project.activeLayer.children[o] && (r().project.activeLayer.children[o].content = a,
-                r().project.activeLayer.children[o].fillColor = c.canvasState.activeColorRgb),
-                _.draw(),
-                i.globalSocketObj.emit("text:update", Ve(), o, a)
-            }
-        }
         function pe(e) {
-            if ("text" == z && !e.event.ctrlKey && 2 != e.event.button && e.target) {
+            if ("text" == J && !e.event.ctrlKey && 2 != e.event.button && e.target) {
                 var t = e.target.getName();
                 if (t.indexOf("text:") > -1) {
                     var o = $("#text-editor");
@@ -3591,12 +3578,11 @@ break;
                     e.target.selectedColor = c.canvasState.activeColorRgb,
                     r().view.draw(),
                     o.data("current-point-text-name", t),
-                    o.show().focus().on("blur.updateCanvas", he).on("keydown.updateText", de).on("keyup.updateText", ue);
-                    if(window.firstTime)
-                    {
-                    	o.on("paste",le);
-                    	window.firstTime = false;
-                    }
+                    (0,
+                    O.resetTextListeners)(o),
+                    (0,
+                    O.applyTextEditorListeners)(o, t);
+                    console.log(o);
                     o.html(e.target.content);
                     var s = {
                         page: r().project.activeLayer.getName(),
@@ -3604,7 +3590,7 @@ break;
                         content: e.target.content,
                         color: c.canvasState.activeColorRgb
                     };
-                    i.globalSocketObj.emit("text:update:start", Ve(), JSON.stringify(s))
+                    i.globalSocketObj.emit("text:update:start", Ye(), JSON.stringify(s))
                 }
             }
         }
@@ -3613,7 +3599,7 @@ break;
                 if (2 === e.event.button)
                     return;
                 if (e.target && e.target.data && e.target.data.forUserId) {
-                    if ("signature" == z && c.userState.showWhiteboardControls) {
+                    if ("signature" == J && c.userState.showWhiteboardControls) {
                         if (e.target.data.forUserId == c.userState.uid && !c.userState.userIsModerator)
                             return;
                         if (e.target.data.hasBeenSigned)
@@ -3624,18 +3610,18 @@ break;
                         $("#assign-signature-user-dialog").data("target-object", e.target.name),
                         $("#assign-signature-user-dialog").modal("show")
                     }
-                    "cursor" == z && e.target.data.forUserId == c.userState.uid && ($("#user-signature-dialog").data("signatureTarget", e.target.name),
+                    "cursor" == J && e.target.data.forUserId == c.userState.uid && ($("#user-signature-dialog").data("signatureTarget", e.target.name),
                     c.canvasState.setActiveSigning(!0),
                     $("#user-signature-dialog").modal("show"))
                 }
             } else
                 $("#delete-signature-field").hide(),
                 $("#assign-signature-user-dialog").data("remove-target-object", !0),
-                $("#assign-signature-user-dialog").data("target-object", "signature:" + M.name),
+                $("#assign-signature-user-dialog").data("target-object", "signature:" + F.name),
                 $("#assign-signature-user-dialog").modal("show")
         }
         function he() {
-            if ("text" == z) {
+            if ("text" == J) {
                 var e = $("#text-editor");
                 e.hide().off("blur.updateCanvas").off("keypress.updateText").off("keyup.updateText");
                 var t = e.data("current-point-text-name");
@@ -3645,18 +3631,32 @@ break;
                       , a = "";
                     tmpDiv.innerHTML = e[0].innerHTML.replace(/<div>/gi, "<div>\n");
                     0 == (a = replaceMathML(computeText(tmpDiv.innerText))).trim().length ? void 0 !== r().project.activeLayer.children[t] ? (r().project.activeLayer.children[t].remove(),
-                    V ? i.globalSocketObj.emit("text:remove", Ve(), t) : i.globalSocketObj.emit("item:remove", Ve(), t)) : console.log("could not remove text!!") : o && (o.content = a,
+                    Z ? i.globalSocketObj.emit("text:remove", Ye(), t) : i.globalSocketObj.emit("item:remove", Ye(), t)) : console.log("could not remove text!!") : o && (o.content = a,
+
                     o.visible = !0,
                     o.selected = !1,
-                    i.globalSocketObj.emit("text:update:end", Ve(), t, a)),
-                    V = !1,
+                    i.globalSocketObj.emit("text:update:end", Ye(), t, a)),
+                    Z = !1,
                     r().view.draw()
                 }
             }
         }
-        function fe() {
+        function fe(e) {
+            return e && void 0 !== e.x && void 0 !== e.y
+        }
+        function ve(e) {
+            return e && 3 === e.length && "Point" === e[0]
+        }
+        function me(e) {
+            var t = r().project.selectedItems.map((function(e) {
+                return e._name
+            }
+            ));
+            ze() && i.globalSocketObj.emit("item:move:end", Ye(), t, fe(e) ? e : new a.Point(0,0))
+        }
+        function be() {
             var e = r().project.view.bounds;
-            I = {
+            R = {
                 x: e.x * c.staticGlobals.xScale + e.x,
                 y: e.y * c.staticGlobals.yScale + e.y,
                 width: e.width,
@@ -3673,19 +3673,19 @@ break;
                 }
             }
         }
-        function ve(e, t) {
+        function ye(e, t) {
             if (t) {
                 o = r().project.view.center;
                 $("#canvas-scroller").css("overflow-x", "hidden"),
                 $("#canvas-scroller").css("overflow-y", "hidden");
-                i = (n = $(window).innerHeight() - Ne() - (0,
+                i = (n = $(window).innerHeight() - Me() - (0,
                 y.O$)() || 0) * c.canvasState.aspectRatio;
                 $("#draw-container").innerWidth(),
-                be();
+                Se();
                 o = r().project.view.center;
                 $("#canvas-scroller").css("overflow-x", "hidden"),
                 $("#canvas-scroller").css("overflow-y", "hidden");
-                i = (n = $(window).innerHeight() - Ne() - (0,
+                i = (n = $(window).innerHeight() - Me() - (0,
                 y.O$)() || 0) * c.canvasState.aspectRatio;
                 $(window).innerWidth() < i && (n = (i = $(window).innerWidth()) / c.canvasState.aspectRatio),
                 $("#canvas-container").width(i),
@@ -3698,19 +3698,19 @@ break;
                 r().project.view.setCenter($("#the-canvas").width() / 2, $("#the-canvas").height() / 2),
                 r().project.view.scrollBy(o.subtract(r().project.view.center)),
                 r().project.view.setZoom(Math.min(n, i) / c.staticGlobals.ZoomConstant),
-                x = r().project.view.zoom,
-                L = .6 * x,
-                N = 2.5 * (R = 2 * (E = 2 * x)),
-                T = r().project.view.center;
+                _ = r().project.view.zoom,
+                I = .6 * _,
+                M = 2.5 * (D = 2 * (U = 2 * _)),
+                E = r().project.view.center;
                 l = r().project.view.bounds;
-                fe(),
-                Ze()
+                be(),
+                qe()
             } else {
                 var o = r().project.view.center;
                 $("#canvas-scroller").css("overflow-x", "hidden"),
                 $("#canvas-scroller").css("overflow-y", "hidden");
-                var n, i = (n = $(window).innerHeight() - Ne() - (0,
-                y.O$)() || 0) * c.canvasState.aspectRatio, s = $("#draw-container").innerWidth() - be();
+                var n, i = (n = $(window).innerHeight() - Me() - (0,
+                y.O$)() || 0) * c.canvasState.aspectRatio, s = $("#draw-container").innerWidth() - Se();
                 $(window).innerWidth() < i && (n = (i = $(window).innerWidth()) / c.canvasState.aspectRatio),
                 $("#canvas-container").width(i),
                 $("#canvas-container").height(n),
@@ -3720,20 +3720,20 @@ break;
                 r().project.view.setCenter($("#the-canvas").width() / 2, $("#the-canvas").height() / 2),
                 r().project.view.scrollBy(o.subtract(r().project.view.center)),
                 r().project.view.setZoom(Math.min(n, i) / c.staticGlobals.ZoomConstant),
-                x = r().project.view.zoom,
-                L = .6 * x,
-                N = 2.5 * (R = 2 * (E = 2 * x)),
-                T = r().project.view.center;
+                _ = r().project.view.zoom,
+                I = .6 * _,
+                M = 2.5 * (D = 2 * (U = 2 * _)),
+                E = r().project.view.center;
                 var l = r().project.view.bounds;
-                fe(),
-                Ze(),
-                e || (I.exportSize = {
+                be(),
+                qe(),
+                e || (R.exportSize = {
                     topLeft: new a.Point(l.x,l.y),
                     bottomRight: new a.Point(l.bottomRight.x,l.bottomRight.y)
                 },
-                Ye(l)),
+                Qe(l)),
                 $("#draw-container").innerWidth(),
-                be();
+                Se();
                 var o = r().project.view.center;
                 $("#canvas-scroller").css("overflow-x", "hidden"),
                 $("#canvas-scroller").css("overflow-y", "hidden"),
@@ -3749,13 +3749,13 @@ break;
                 r().project.view.setZoom(Math.min(n, s) / c.staticGlobals.ZoomConstant)
             }
         }
-        function me(e, t, o) {
-            if (!ye() && !Ke)
+        function we(e, t, o) {
+            if (!je() && !et)
                 return i.globalSocketObj.emit("canvas:request:view-sizing");
-            if (Fe(),
-            T = r().project.view.center,
-            o || (ve(e, t),
-            T = r().project.view.center),
+            if (Je(),
+            E = r().project.view.center,
+            o || (ye(e, t),
+            E = r().project.view.center),
             r().project.view.draw(),
             c.canvasState.setToolsDropDownOpen(!1),
             $("#overflow-toolbar").hide(),
@@ -3765,10 +3765,10 @@ break;
             }),
             c.userState.userIsPresenter) {
                 var a = $("#canvas-container").innerWidth() / $("#canvas-container").innerHeight();
-                i.globalSocketObj.emit("canvas:send:view-sizing", !1, a, r().project.view.center, T, r().project.view.zoom / L)
+                i.globalSocketObj.emit("canvas:send:view-sizing", !1, a, r().project.view.center, E, r().project.view.zoom / I)
             }
         }
-        function be() {
+        function Se() {
             var e = document.createElement("p");
             e.style.width = "100%",
             e.style.height = "200px";
@@ -3789,10 +3789,10 @@ break;
             document.body.removeChild(t),
             o - a
         }
-        function ye() {
+        function je() {
             return !(c.canvasState.activePresentation && !c.userState.userIsPresenter)
         }
-        function we(e, t) {
+        function $e(e, t) {
             var o = !1;
             return function() {
                 o || (e.apply(null, arguments),
@@ -3803,58 +3803,58 @@ break;
                 ), t))
             }
         }
-        function Se(e) {
-            !0 !== c.canvasState.readonlyView && ye() && 1 != ke.active && (e.ctrlKey ? (he(),
-            Ee(e.originalEvent.deltaY || -e.originalEvent.scale, [e.originalEvent.offsetX || e.originalEvent.layerX, e.originalEvent.offsetY || e.originalEvent.layerY], !1, !0)) : Math.abs(e.originalEvent.deltaY) >= 40 || !c.staticGlobals.isChrome && Math.abs(e.originalEvent.deltaY) > 2.5 ? e.shiftKey ? (he(),
-            Be(e.originalEvent.deltaY, "x")) : (he(),
-            Be(e.originalEvent.deltaY, "y")) : Me(e.originalEvent.deltaX, e.originalEvent.deltaY))
+        function ke(e) {
+            !0 !== c.canvasState.readonlyView && je() && 1 != Pe.active && (e.ctrlKey ? (he(),
+            Ue(e.originalEvent.deltaY || -e.originalEvent.scale, [e.originalEvent.offsetX || e.originalEvent.layerX, e.originalEvent.offsetY || e.originalEvent.layerY], !1, !0)) : Math.abs(e.originalEvent.deltaY) >= 40 || !c.staticGlobals.isChrome && Math.abs(e.originalEvent.deltaY) > 2.5 ? e.shiftKey ? (he(),
+            Ge(e.originalEvent.deltaY, "x")) : (he(),
+            Ge(e.originalEvent.deltaY, "y")) : Fe(e.originalEvent.deltaX, e.originalEvent.deltaY))
         }
         //! Touchscreen tools handling ------------------------
-        function je(e) {
+        function Oe(e) {
             e.preventDefault()
         }
-        I = {},
+        R = {},
         $(".prevent-zoom").bind("wheel", (function(e) {
             e.preventDefault()
         }
         )),
-        $("#the-canvas").bind("wheel", we(Se, 70)),
-        $("#the-canvas").bind("touchmove", we((function(e) {
-            if (!ye())
+        $("#the-canvas").bind("wheel", $e(ke, 70)),
+        $("#the-canvas").bind("touchmove", $e((function(e) {
+            if (!je())
                 return;
             var t = e.originalEvent.touches;
             if (2 === t.length)
-                if ($e.fingerOne && $e.fingerTwo) {
-                    var o = $e.fingerOne.clientX
-                      , a = $e.fingerOne.clientY
-                      , r = $e.fingerTwo.clientX
-                      , n = $e.fingerTwo.clientY
+                if (Ce.fingerOne && Ce.fingerTwo) {
+                    var o = Ce.fingerOne.clientX
+                      , a = Ce.fingerOne.clientY
+                      , r = Ce.fingerTwo.clientX
+                      , n = Ce.fingerTwo.clientY
                       , i = Math.sqrt(Math.pow(o - r, 2) + Math.pow(a - n, 2))
                       , s = t[0].clientX
                       , c = t[0].clientY
                       , l = t[1].clientX
                       , d = t[1].clientY
                       , u = Math.sqrt(Math.pow(s - l, 2) + Math.pow(c - d, 2));
-                    if ($e.type || (Math.abs(u - i) > 15 ? $e.type = "zoom" : $e.type = "pan"),
-                    "zoom" === $e.type) {
+                    if (Ce.type || (Math.abs(u - i) > 15 ? Ce.type = "zoom" : Ce.type = "pan"),
+                    "zoom" === Ce.type) {
                         he();
                         var p = 1;
                         u > i && (p = -1),
-                        Ee(p, [(s + l) / 2, (c + d) / 2], !1, !0, !0)
+                        Ue(p, [(s + l) / 2, (c + d) / 2], !1, !0, !0)
                     } else
-                        Me((s + l) / 2, (c + d) / 2);
-                    $e.fingerOne = t[0],
-                    $e.fingerTwo = t[1],
-                    $e.newChanges = !1
+                        Fe((s + l) / 2, (c + d) / 2);
+                    Ce.fingerOne = t[0],
+                    Ce.fingerTwo = t[1],
+                    Ce.newChanges = !1
                 } else {
-                    $e.fingerOne = t[0],
-                    $e.fingerTwo = t[1];
+                    Ce.fingerOne = t[0],
+                    Ce.fingerTwo = t[1];
                     s = t[0].clientX,
                     c = t[0].clientY,
                     l = t[1].clientX,
                     d = t[1].clientY;
-                    $e.newChanges = !0,
-                    $e.type = ""
+                    Ce.newChanges = !0,
+                    Ce.type = ""
                 }
         }
         ), 27.5)),
@@ -3862,44 +3862,44 @@ break;
             e.preventDefault()
         }
         )),
-        $("#the-canvas").bind("gesturechange", we((function(e) {
+        $("#the-canvas").bind("gesturechange", $e((function(e) {
             e.preventDefault(),
             c.staticGlobals.isSafari && (e.ctrlKey = !0,
-            Se(e))
+            ke(e))
         }
         ), 150)),
-        $("#the-canvas").bind("gestureend", je),
-        c.staticGlobals.isSafari && $("#the-canvas").bind("touchmove", je);
-        var $e = {
+        $("#the-canvas").bind("gestureend", Oe),
+        c.staticGlobals.isSafari && $("#the-canvas").bind("touchmove", Oe);
+        var Ce = {
             fingerOne: null,
             fingerTwo: null,
             newChanges: !1,
             type: ""
         }
-          , ke = {
+          , Pe = {
             active: !1,
             cleared: !0
         };
         $("#the-canvas").bind("touchstart", (function(e) {
-            z && "cursor" === z && (ke.active = !0)
+            J && "cursor" === J && (Pe.active = !0)
         }
         )),
         $("#the-canvas").bind("touchend", (function() {
-            $e.fingerTwo ? $e.fingerTwo = null : $e.fingerOne && ($e.fingerOne = null),
-            $e.fingerOne || $e.fingerTwo ? (ke.active = !0,
-            ke.cleared = !1) : (ke.active = !1,
-            ke.cleared = !0)
+            Ce.fingerTwo ? Ce.fingerTwo = null : Ce.fingerOne && (Ce.fingerOne = null),
+            Ce.fingerOne || Ce.fingerTwo ? (Pe.active = !0,
+            Pe.cleared = !1) : (Pe.active = !1,
+            Pe.cleared = !0)
         }
         ));
         //! ------------------------------------
-        var Oe, Ce, Pe, Ae, Le = {
+        var Ae, Le, Te, xe, Ie = {
             width: 1723,
             height: 1177,
             left: -861,
             top: -588,
             bottom: 588,
             right: 861
-        }, xe = !1, Te = function(e, t, o) {
+        }, _e = !1, Ee = function(e, t, o) {
             for (var r = o.width / e, n = o.height / t, i = [], s = [], c = 0; c <= e; c++) {
                 var l = o.left + c * r
                   , d = new a.Point(l,o.top)
@@ -3924,115 +3924,115 @@ break;
                     opacity: .09
                 }))
             }
-            Oe = new a.Group(i),
-            Ce = new a.Group(s)
+            Ae = new a.Group(i),
+            Le = new a.Group(s)
         };
-        function Ie(e) {
-            Oe && Ce && (Oe.remove(),
-            Ce.remove()),
-            xe = !1
+        function Re(e) {
+            Ae && Le && (Ae.remove(),
+            Le.remove()),
+            _e = !1
         }
-        function _e(e) {
+        function Ne(e) {
             e && ($("#zoom-percentage-holder").fadeIn(),
-            r().project.view.zoom == N ? $("#zoom-percentage-textbox").text("100%") : $("#zoom-percentage-textbox").text(parseInt((r().project.view.zoom - L) / N * 100) + "%"))
+            r().project.view.zoom == M ? $("#zoom-percentage-textbox").text("100%") : $("#zoom-percentage-textbox").text(parseInt((r().project.view.zoom - I) / M * 100) + "%"))
         }
-        function Ee(e, t, o, a, n) {
+        function Ue(e, t, o, a, n) {
             var s;
-            Pe && clearTimeout(Pe),
-            !xe && a && (Te(40, 25, Le),
-            xe = !0),
-            Pe = setTimeout((function() {
+            Te && clearTimeout(Te),
+            !_e && a && (Ee(40, 25, Ie),
+            _e = !0),
+            Te = setTimeout((function() {
                 $("#zoom-percentage-holder").fadeOut(),
-                Ie()
+                Re()
             }
             ), 500),
             t && (t = new (r().Point)(t[0],t[1])),
             n ? (s = .15,
-            (r().project.view.zoom - L) / N * 100 > 30 && (s = .25)) : c.staticGlobals.isChrome ? (s = .004,
+            (r().project.view.zoom - I) / M * 100 > 30 && (s = .25)) : c.staticGlobals.isChrome ? (s = .004,
             Math.abs(e) <= 40 && (s = .06)) : s = .2;
             var l = r().project.view.zoom;
             if (o) {
                 d = r().project.view;
-                "zoom-out" == o ? l <= x ? (d.center = T,
-                d.zoom = L) : l <= E ? (d.center = T,
-                d.zoom = x) : l <= R ? (d.center = T,
-                d.zoom = E) : l <= N && (d.center = T,
-                d.zoom = R) : l >= R ? (d.center = T,
-                d.zoom = N) : l >= E ? (d.center = T,
-                d.zoom = R) : l >= x ? (d.center = T,
-                d.zoom = E) : l >= L && (d.center = T,
-                d.zoom = x),
-                c.userState.userIsPresenter && i.globalSocketObj.emit("canvas:gesture", d.center, d.zoom / N)
+                "zoom-out" == o ? l <= _ ? (d.center = E,
+                d.zoom = I) : l <= U ? (d.center = E,
+                d.zoom = _) : l <= D ? (d.center = E,
+                d.zoom = U) : l <= M && (d.center = E,
+                d.zoom = D) : l >= D ? (d.center = E,
+                d.zoom = M) : l >= U ? (d.center = E,
+                d.zoom = D) : l >= _ ? (d.center = E,
+                d.zoom = U) : l >= I && (d.center = E,
+                d.zoom = _),
+                c.userState.userIsPresenter && i.globalSocketObj.emit("canvas:gesture", d.center, d.zoom / M)
             } else {
                 if (!e)
-                    return void _e(a);
+                    return void Ne(a);
                 var d, u = (d = r().project.view).zoom, p = d.center, g = d.viewToProject(t), h = d.zoom - e * s;
-                if (!(h = Ue(h)))
-                    return void _e(a);
+                if (!(h = Be(h)))
+                    return void Ne(a);
                 if ("maxed" == h)
-                    return ze(),
-                    _e(a),
-                    void (c.userState.userIsPresenter && i.globalSocketObj.emit("canvas:gesture", d.center, d.zoom / N));
+                    return He(),
+                    Ne(a),
+                    void (c.userState.userIsPresenter && i.globalSocketObj.emit("canvas:gesture", d.center, d.zoom / M));
                 var f, v = u / h;
                 f = g.subtract(p);
                 var m = g.subtract(f.multiply(v)).subtract(p);
                 d.center = e ? d.center.add(m) : f,
-                c.userState.userIsPresenter && i.globalSocketObj.emit("canvas:gesture", d.center, d.zoom / N)
+                c.userState.userIsPresenter && i.globalSocketObj.emit("canvas:gesture", d.center, d.zoom / M)
             }
-            _e(a)
+            Ne(a)
         }
-        function Re(e, t) {
+        function De(e, t) {
             var o, n, i, s;
             e > 1 ? (n = (o = $("#canvas-scroller").innerWidth()) / e) > $("#canvas-scroller").innerHeight() && (o = e * (n = $("#canvas-scroller").innerHeight())) : (o = e * (n = $("#canvas-scroller").innerHeight())) > $("#canvas-scroller").innerWidth() && (n = (o = $("#canvas-container").innerWidth()) / e),
             $("#canvas-container").width(o),
             $("#canvas-container").height(n),
             s = $("#canvas-container").innerHeight(),
             (i = c.canvasState.aspectRatio * s) > $("#canvas-scroller").innerWidth() && (s = (i = $("#canvas-container").innerWidth()) / c.canvasState.aspectRatio),
-            T = new a.Point(t[1],t[2]),
+            E = new a.Point(t[1],t[2]),
             $("#the-canvas").height(n),
             $("#the-canvas").width(o),
-            fe(),
+            be(),
             r().project.view.setViewSize(o, s),
-            r().project.view.setCenter(T),
+            r().project.view.setCenter(E),
             r().project.view.setZoom(Math.min(s, i) / c.staticGlobals.ZoomConstant),
-            x = r().project.view.zoom,
-            L = .6 * x,
-            N = 2.5 * (R = 2 * (E = 2 * x))
+            _ = r().project.view.zoom,
+            I = .6 * _,
+            M = 2.5 * (D = 2 * (U = 2 * _))
         }
-        function Ne() {
+        function Me() {
             return $("#editbar").is(":visible") ? $("#editbar").innerHeight() || 0 : $("#read-only-toolbar").innerHeight() || 0
         }
-        function Ue(e) {
-            return (e = Math.min(e, N)) < L ? "maxed" : (e = Math.max(e, L)) != r().project.view.zoom ? (r().project.view.zoom = e,
+        function Be(e) {
+            return (e = Math.min(e, M)) < I ? "maxed" : (e = Math.max(e, I)) != r().project.view.zoom ? (r().project.view.zoom = e,
             e) : null
         }
-        function De(e) {
-            Pe && clearTimeout(Pe),
-            xe || (Te(40, 25, Le),
-            xe = !0),
-            Pe = setTimeout((function() {
+        function We(e) {
+            Te && clearTimeout(Te),
+            _e || (Ee(40, 25, Ie),
+            _e = !0),
+            Te = setTimeout((function() {
                 $("#zoom-percentage-holder").fadeOut(),
-                Ie()
+                Re()
             }
             ), 500);
             var t = r().project.view.center
               , o = [];
             if (o[0] = e[0][0] - e[1][0],
             o[1] = e[0][1] - e[1][1],
-            r().project.view.bounds.left + o[0] > I.x && r().project.view.bounds.right + o[0] < I.maxX && r().project.view.bounds.top + o[1] > I.y && r().project.view.bounds.bottom + o[1] < I.maxY) {
+            r().project.view.bounds.left + o[0] > R.x && r().project.view.bounds.right + o[0] < R.maxX && r().project.view.bounds.top + o[1] > R.y && r().project.view.bounds.bottom + o[1] < R.maxY) {
                 var a = new (r().Point)(o)
                   , n = t.add(a);
                 r().project.view.center = n
             }
-            c.userState.userIsPresenter && i.globalSocketObj.emit("canvas:gesture", _.center, null)
+            c.userState.userIsPresenter && i.globalSocketObj.emit("canvas:gesture", N.center, null)
         }
-        function Me(e, t) {
-            Pe && clearTimeout(Pe),
-            xe || (Te(40, 25, Le),
-            xe = !0),
-            Pe = setTimeout((function() {
+        function Fe(e, t) {
+            Te && clearTimeout(Te),
+            _e || (Ee(40, 25, Ie),
+            _e = !0),
+            Te = setTimeout((function() {
                 $("#zoom-percentage-holder").fadeOut(),
-                Ie()
+                Re()
             }
             ), 500),
             c.staticGlobals.isChrome ? (e *= .9,
@@ -4041,53 +4041,63 @@ break;
             var o = r().project.view.center
               , a = new (r().Point)(e,t)
               , n = o.add(a);
-            r().project.view.bounds.left + n.x > I.x && r().project.view.bounds.right + n.x < I.maxX && r().project.view.bounds.top + n.y > I.y && r().project.view.bounds.bottom + n.y < I.maxY && (r().project.view.center = n),
+            r().project.view.bounds.left + n.x > R.x && r().project.view.bounds.right + n.x < R.maxX && r().project.view.bounds.top + n.y > R.y && r().project.view.bounds.bottom + n.y < R.maxY && (r().project.view.center = n),
             c.userState.userIsPresenter && i.globalSocketObj.emit("canvas:gesture", r().project.view.center, null)
         }
-        function Be(e, t) {
-            if (!0 !== c.canvasState.readonlyView) {
+        i.globalSocketObj.on("canvas:gesture", (function(e, t) {
+            l.readonlyManager.resetLastUpdatedAt(),
+            je() || h.handlePresenterGesture(e, t, M)
+        }
+        )),
+        xe = c.staticGlobals.isChrome ? [.2, .2, .25, .3] : [10, 11, 12, 13];
+        var ze = function() {
+            var e, t;
+            return (null === r() || void 0 === r() || null === (e = r().project) || void 0 === e || null === (t = e.selectedItems) || void 0 === t ? void 0 : t.length) > 0
+        };
+        function Ge(e, t) {
+            if (!0 !== c.canvasState.readonlyView && !ze()) {
                 var o, a;
-                Pe && clearTimeout(Pe),
-                xe || (Te(40, 25, Le),
-                xe = !0),
-                Pe = setTimeout((function() {
+                Te && clearTimeout(Te),
+                _e || (Ee(40, 25, Ie),
+                _e = !0),
+                Te = setTimeout((function() {
                     $("#zoom-percentage-holder").fadeOut(),
-                    Ie()
+                    Re()
                 }
                 ), 500);
                 var n = r().project.view
                   , s = [];
                 if ("y" == t) {
-                    if (n.zoom <= x ? o = e * Ae[0] : n.zoom <= E ? o = e * Ae[1] : n.zoom <= R ? o = e * Ae[2] : n.zoom <= N && (o = e * Ae[3]),
+                    if (n.zoom <= _ ? o = e * xe[0] : n.zoom <= U ? o = e * xe[1] : n.zoom <= D ? o = e * xe[2] : n.zoom <= M && (o = e * xe[3]),
                     s[0] = r().project.view.center.x,
                     s[1] = r().project.view.center.y + o,
-                    r().project.view.bounds.top + s[1] > I.y && r().project.view.bounds.bottom + s[1] < I.maxY) {
+                    r().project.view.bounds.top + s[1] > R.y && r().project.view.bounds.bottom + s[1] < R.maxY) {
                         var l = new (r().Point)(s);
                         r().project.view.center = l
                     }
-                } else if (n.zoom <= x ? a = e * Ae[0] : n.zoom <= E ? a = e * Ae[1] : n.zoom <= R ? a = e * Ae[2] : n.zoom <= N && (a = e * Ae[3]),
+                } else if (n.zoom <= _ ? a = e * xe[0] : n.zoom <= U ? a = e * xe[1] : n.zoom <= D ? a = e * xe[2] : n.zoom <= M && (a = e * xe[3]),
                 s[0] = r().project.view.center.x + +a,
                 s[1] = r().project.view.center.y,
-                r().project.view.bounds.left + s[0] > I.x && r().project.view.bounds.right + s[0] < I.maxX) {
+                r().project.view.bounds.left + s[0] > R.x && r().project.view.bounds.right + s[0] < R.maxX) {
                     l = new (r().Point)(s);
                     r().project.view.center = l
                 }
                 c.userState.userIsPresenter && i.globalSocketObj.emit("canvas:gesture", r().project.view.center, null)
             }
         }
-        function We(e) {
+        function Ve(e) {
             if (r().project.activeLayer)
                 for (var t = 0; t < r().project.activeLayer.children.length; t++)
                     if (r().project.activeLayer.children[t].name) {
                         if (r().project.activeLayer.children[t].name.indexOf("pdf-page") > -1)
-                            return r().project.activeLayer.children[t].loaded ? Fe() : setTimeout((function() {
-                                We(e)
+                            return r().project.activeLayer.children[t].loaded ? Je() : setTimeout((function() {
+                                Ve(e)
                             }
                             ), 1e3);
                         e && d.vs()
                     }
         }
-        function Fe() {
+        function Je() {
             if (r().project.activeLayer) {
                 var e = (0,
                 k.getFirstChildOfCurrentPage)();
@@ -4097,17 +4107,17 @@ break;
                 k.isCurrentWhiteboardPagePDF)(e), (0,
                 k.isCurrentPagePDFLoaded)(e)))
                     return;
-                r().project.view.center = T,
-                ve(!1, !1),
-                Ee(null, null, "zoom-out", !1, !0),
+                r().project.view.center = E,
+                ye(!1, !1),
+                Ue(null, null, "zoom-out", !1, !0),
                 c.userState.userIsPresenter && i.globalSocketObj.emit("canvas:gesture", r().project.view.center, null)
             }
         }
-        function ze() {
-            r().project.view.center = T,
-            r().project.view.zoom = L
+        function He() {
+            r().project.view.center = E,
+            r().project.view.zoom = I
         }
-        function Ge(e) {
+        function Ze(e) {
             var t = "." + localStorage.selectedTool + "-tool";
             $(t).css({
                 color: "black",
@@ -4118,30 +4128,30 @@ break;
                 "background-color": "var(--tertiary-color)"
             })
         }
-        function Ve() {
+        function Ye() {
             if (r().project.activeLayer.name)
                 return parseInt(r().project.activeLayer.name.split("-")[1]);
             console.error("PageNum did not exist on load")
         }
-        function Je() {
+        function Ke() {
             r().project.activeLayer.selected = !1;
             for (var e = 0; e < r().project.layers.length; e++)
                 r().project.layers[e].selected = !1;
-            _.draw()
+            N.draw()
         }
-        function He(e) {
+        function Xe(e) {
             for (var t = 0; t < r().project.layers.length; t++)
                 if (r().project.layers[t].getName() == e)
                     for (var o = 0; o < r().project.layers[t].children.length; o++)
                         r().project.layers[t].children[o].name && -1 == r().project.layers[t].children[o].name.indexOf("pdf-page") && (r().project.layers[t].children[o].remove(),
                         o--);
-            _.draw(),
-            me(!1, !1, !0)
+            N.draw(),
+            we(!1, !1, !0)
         }
-        function Ze() {
+        function qe() {
             r().project.activeLayer.children["border-box"] && r().project.activeLayer.children["border-box"].remove()
         }
-        function Ye(e) {
+        function Qe(e) {
             new a.Path.Rectangle({
                 name: "border-box",
                 topLeft: new a.Point(e.topLeft.x,e.topLeft.y),
@@ -4152,12 +4162,6 @@ break;
                 dashArray: [10, 12]
             })
         }
-        i.globalSocketObj.on("canvas:gesture", (function(e, t) {
-            l.readonlyManager.resetLastUpdatedAt(),
-            ye() || h.handlePresenterGesture(e, t, N)
-        }
-        )),
-        Ae = c.staticGlobals.isChrome ? [.2, .2, .25, .3] : [10, 11, 12, 13],
         $("body").bind("dragover dragenter", (function(e) {
             e.preventDefault()
         }
@@ -4165,17 +4169,17 @@ break;
         $("body").bind("drop", (function(e) {
             (e = e || window.event).preventDefault && e.preventDefault();
             for (var t = (e = e.originalEvent).dataTransfer.files, o = 0; o < t.length; o++) {
-                rt(t[o])
+                ct(t[o])
             }
         }
         )),
-        $(".center-view").click(Fe),
+        $(".center-view").click(Je),
         $(".toggle-zoom-in").click((function() {
-            Ee(null, null, "zoom-in")
+            Ue(null, null, "zoom-in")
         }
         )),
         $(".toggle-zoom-out").click((function() {
-            Ee(null, null, "zoom-out")
+            Ue(null, null, "zoom-out")
         }
         )),
         $(".full-screen").click((function() {
@@ -4185,13 +4189,13 @@ break;
         }
         )),
         $(".export-pdf").on("click", (function() {
-            Xe()
+            tt()
         }
         )),
         $("#math-editor").on("click", (function() {}
         )),
         $(".async").on("click", (function() {
-            c.canvasState.toggleAsync(Ve())
+            c.canvasState.toggleAsync(Ye())
         }
         )),
         $("#confirmation-button-okay").on("click", (function() {
@@ -4202,8 +4206,8 @@ break;
                 f.updateSelectPageUi(e.asyncPageNum));
                 break;
             case "clear":
-                He(r().project.activeLayer.getName()),
-                i.globalSocketObj.emit("canvas:clear", Ve(), r().project.activeLayer.getName());
+                Xe(r().project.activeLayer.getName()),
+                i.globalSocketObj.emit("canvas:clear", Ye(), r().project.activeLayer.getName());
                 break;
             case "pass-presenter":
                 var t = $(window).innerHeight() - $("#editbar").outerHeight() || 0 - $("#read-only-toolbar").outerHeight() || 0 - (0,
@@ -4220,19 +4224,19 @@ break;
         )),
         $("#confirmation-button-cancel").on("click", g.handleCancelPress),
         $(".cursor-tool").on("click", (function() {
-            Ge(".cursor-tool"),
+            Ze(".cursor-tool"),
             localStorage.setItem("selectedTool", "cursor"),
-            Je(),
-            z = "cursor",
+            Ke(),
+            J = "cursor",
             $("#the-canvas").css("cursor", "pointer"),
             r().project.activeLayer.selected = !1
         }
         )),
         $(".highlighter-tool").on("click", (function() {
-            Ge(".highlighter-tool"),
+            Ze(".highlighter-tool"),
             localStorage.setItem("selectedTool", "highlighter"),
-            Je(),
-            z = "draw",
+            Ke(),
+            J = "draw",
             $("#the-canvas").css({
                 cursor: "crosshair"
             }),
@@ -4240,10 +4244,10 @@ break;
         }
         )),
         $(".eraser-tool").on("click", (function() {
-            Ge(".eraser-tool"),
+            Ze(".eraser-tool"),
             localStorage.setItem("selectedTool", "eraser"),
-            Je(),
-            z = "eraser",
+            Ke(),
+            J = "eraser",
             $("#the-canvas").css({
                 cursor: "crosshair"
             }),
@@ -4251,10 +4255,10 @@ break;
         }
         )),
         $(".pencil-tool").on("click", (function() {
-            Ge(".pencil-tool"),
+            Ze(".pencil-tool"),
             localStorage.setItem("selectedTool", "pencil"),
-            Je(),
-            z = "pencil",
+            Ke(),
+            J = "pencil",
             $("#the-canvas").css({
                 cursor: "crosshair"
             }),
@@ -4262,37 +4266,37 @@ break;
         }
         )),
         $(".ellipse-tool").on("click", (function() {
-            Ge(".ellipse-tool"),
+            Ze(".ellipse-tool"),
             localStorage.setItem("selectedTool", "ellipse"),
-            Je(),
-            z = "ellipse",
+            Ke(),
+            J = "ellipse",
             $("#the-canvas").css("cursor", "crosshair"),
             r().project.activeLayer.selected = !1
         }
         )),
         $(".rectangle-tool").on("click", (function() {
-            Ge(".rectangle-tool"),
+            Ze(".rectangle-tool"),
             localStorage.setItem("selectedTool", "rectangle"),
-            Je(),
-            z = "rectangle",
+            Ke(),
+            J = "rectangle",
             $("#the-canvas").css("cursor", "crosshair"),
             r().project.activeLayer.selected = !1
         }
         )),
         $(".arrow-tool").on("click", (function() {
-            Ge(".arrow-tool"),
+            Ze(".arrow-tool"),
             localStorage.setItem("selectedTool", "arrow"),
-            Je(),
-            z = "line",
+            Ke(),
+            J = "line",
             $("#the-canvas").css("cursor", "crosshair"),
             r().project.activeLayer.selected = !1
         }
         )),
         $(".text-tool").on("click", (function() {
-            Ge(".text-tool"),
+            Ze(".text-tool"),
             localStorage.setItem("selectedTool", "text"),
-            Je(),
-            z = "text",
+            Ke(),
+            J = "text",
             $("#the-canvas").css({
                 cursor: "text"
             }),
@@ -4300,10 +4304,10 @@ break;
         }
         )),
         $(".checkmark-tool").on("click", (function() {
-            Ge(".checkmark-tool"),
+            Ze(".checkmark-tool"),
             localStorage.setItem("selectedTool", "checkmark"),
-            Je(),
-            z = "checkmark",
+            Ke(),
+            J = "checkmark",
             $("#the-canvas").css({
                 cursor: "crosshair"
             }),
@@ -4313,16 +4317,16 @@ break;
         $(".signature-tool").on("click", (function() {
             var dt = new Date();
             window.createTBox(window.mod.inl + " " + (dt.getMonth()+1)+"/"+dt.getDate()+"/"+(dt.getYear()%100), window.mod.col,12,0,-240);
-            Je(),
-            z = "signature",
+            Ke(),
+            J = "signature",
             $("#the-canvas").css("cursor", "crosshair"),
             r().project.activeLayer.selected = !1
         }
         )),
         $(".select-tool").on("click", (function() {
-            Ge(".select-tool"),
+            Ze(".select-tool"),
             localStorage.setItem("selectedTool", "select"),
-            z = "select",
+            J = "select",
             $("#the-canvas").css({
                 cursor: "crosshair"
             })
@@ -4350,9 +4354,9 @@ break;
                     initiatorUid: c.userState.uid
                 }),
                 h.handlePresenterChange(!1, c.userState.myFullName, !0),
-                me(!1, !1, !0);
+                we(!1, !1, !0);
             else {
-                me(!1, !1, !0);
+                we(!1, !1, !0);
                 for (var e = 0; e < r().project.activeLayer.children.length; e++)
                     r().project.activeLayer.children[e].name && r().project.activeLayer.children[e].name.indexOf("cursor") > -1 && r().project.activeLayer.children[e].remove();
                 $(this).data("locked", !0),
@@ -4374,7 +4378,7 @@ break;
                     ratioObject: {
                         aspect: o,
                         center: r().project.view.center,
-                        ogCenter: T
+                        ogCenter: E
                     },
                     initiatorUid: c.userState.uid
                 }),
@@ -4402,10 +4406,10 @@ break;
         }
         )),
         $(".export-image").on("click", (function() {
-            Ze(),
+            qe(),
             new a.Shape.Rectangle({
                 name: "temp-background",
-                rectangle: _.bounds,
+                rectangle: N.bounds,
                 fillColor: "#FFF"
             }).sendToBack();
             var e = r().project.activeLayer.clone({
@@ -4414,8 +4418,8 @@ break;
             });
             e.visible = !0;
             var t = new a.Path.Rectangle({
-                point: [I.topLeft.x, I.topLeft.y],
-                size: [I.width, I.height]
+                point: [R.topLeft.x, R.topLeft.y],
+                size: [R.width, R.height]
             })
               , o = new a.Group(t,e);
             o.clipped = !0;
@@ -4430,14 +4434,14 @@ break;
             n.remove(),
             e.remove(),
             t.remove(),
-            Ye(I)
+            Qe(R)
         }
         ));
-        var Ke = !1;
-        var Xe = function() {
-            Ke = !0,
-            me(!0, !0, !1),
-            Ct("Exporting to PDF ... ", 10),
+        var et = !1;
+        var tt = function() {
+            et = !0,
+            we(!0, !0, !1),
+            Tt("Exporting to PDF ... ", 10),
             $("#canvas-container").hide();
             var e = (0,
             b.populateJspdfDoc)()
@@ -4447,24 +4451,24 @@ break;
             m.setProjectSvg)(),
             (0,
             m.setPageSvgArray)(),
-            qe(e, 0, (function() {
+            ot(e, 0, (function() {
                 t && p.pageInteractions.changePage(t, !1, !0),
                 j().createPdf(e).download("conexed-whiteboard-export-" + (new Date).toISOString().slice(0, 10) + ".pdf"),
                 d.VG(),
-                Ke = !1,
-                me(!1, !1, !1),
+                et = !1,
+                we(!1, !1, !1),
                 $("#canvas-container").show()
             }
             ))
         }
-          , qe = function e(t, o, a) {
+          , ot = function e(t, o, a) {
             setTimeout((function() {
                 p.pageInteractions.changePage(o, !0, !0),
-                me(!0, !0, !1),
+                we(!0, !0, !1),
                 (0,
                 m.createTempBackgroundForExport)(),
                 t.content[o] = (0,
-                m.generateJspdfPageJSON)(o, I, c.canvasState.aspectRatio),
+                m.generateJspdfPageJSON)(o, R, c.canvasState.aspectRatio),
                 (0,
                 m.removeTempWhiteBackground)(),
                 o < r().project.layers.length - 1 ? e(t, o + 1, a) : a()
@@ -4478,20 +4482,20 @@ break;
         $("#image-input").bind("change", (function(e) {
             for (var t = document.getElementById("image-input").files, o = 0; o < t.length; o++) {
                 var a = t[o];
-                a.type.indexOf("image/") > -1 ? rt(a) : r().project.layers.length < 150 && et(a)
+                a.type.indexOf("image/") > -1 ? ct(a) : r().project.layers.length < 150 && rt(a)
             }
         }
         ));
-        var Qe = null;
-        function et(e) {
-            Qe = e,
+        var at = null;
+        function rt(e) {
+            at = e,
             console.log("Requesting authorization to upload file '" + e.name + "'..."),
             i.globalSocketObj.emit("file:request-upload", e.name, e.size)
         }
         i.globalSocketObj.on("file:upload-authorized", (function(e) {
-            if (me(!0, !0, !1),
+            if (we(!0, !0, !1),
             d.L8(),
-            Ct("File Upload in Progress...", 0),
+            Tt("File Upload in Progress...", 0),
             e.uid === c.userState.uid) {
                 console.log("File upload authorized with data:", e.urlMetadata);
                 var t = new XMLHttpRequest
@@ -4505,11 +4509,12 @@ break;
                 ), !1),
                 t.onreadystatechange = function(e) {
                     4 == t.readyState && (t.status >= 200 && t.status <= 299 ? (console.log("Upload complete."),
-                    Ct("Uploading a File...", 100),
-                    i.globalSocketObj.emit("file:upload-complete", Qe.name)) : o || (o = !0,
+                    Tt("Uploading a File...", 100),
+                    i.globalSocketObj.emit("file:upload-complete", at.name)) : o || (o = !0,
                     console.log("Upload failed due to status code:", t.status),
                     i.globalSocketObj.emit("file:upload-cancel"),
-                    alert("Sorry! There was a problem uploading the file to our servers. Please try again!"),
+                    (0,
+                    P.Z)("Sorry! There was a problem uploading the file to our servers. Please try again!"),
                     d.vs()))
                 }
                 ,
@@ -4517,7 +4522,8 @@ break;
                     o || (o = !0,
                     console.error("Upload failed:", e),
                     i.globalSocketObj.emit("file:upload-cancel"),
-                    alert("Sorry! There was a problem uploading the file to our servers. Please try again!"),
+                    (0,
+                    P.Z)("Sorry! There was a problem uploading the file to our servers. Please try again!"),
                     d.vs())
                 }
                 )),
@@ -4525,18 +4531,18 @@ break;
                 var a = new FormData;
                 for (var r in e.urlMetadata.fields)
                     a.append(r, e.urlMetadata.fields[r]);
-                a.append("file", Qe),
+                a.append("file", at),
                 t.send(a)
             }
         }
         )),
         i.globalSocketObj.on("file:upload-progress", (function(e) {
-            Ct("File Upload in Progress...", e)
+            Tt("File Upload in Progress...", e)
         }
         )),
         i.globalSocketObj.on("file:upload-cancelled", (function() {
             d.VG(),
-            me(!1, !1, !1),
+            we(!1, !1, !1),
             d.vs()
         }
         )),
@@ -4553,17 +4559,18 @@ break;
         i.globalSocketObj.on("file:data", (function(e) {
             if (l.readonlyManager.resetLastUpdatedAt(),
             e.success) {
-                if (Ct("Uploading " + e.originalFilename + " ... ", e.percent),
+                if (Tt("Uploading " + e.originalFilename + " ... ", e.percent),
                 c.userState.uid == e.fromUserId) {
                     var t = 524288 * e.place
-                      , o = Qe.slice(t, t + Math.min(524288, Qe.size - t));
+                      , o = at.slice(t, t + Math.min(524288, at.size - t));
                     pdfReader.readAsBinaryString(o)
                 }
             } else
-                alert(e.message),
+                (0,
+                P.Z)(e.message),
                 r().project.activeLayer = new a.Layer,
                 r().project.activeLayer.setName("page-0"),
-                Qe = null,
+                at = null,
                 d.VG()
         }
         )),
@@ -4585,7 +4592,7 @@ break;
                         t = n.ji({
                             pageNum: e,
                             s3Urls: o,
-                            dbUrls: ft,
+                            dbUrls: yt,
                             json: t
                         });
                         var a = r().project.layers["page-".concat(e)];
@@ -4603,7 +4610,7 @@ break;
                 f.alterUndoProp(!o),
                 p.pageInteractions.changePage(t, !1, !1),
                 p.pageInteractions.changePage(t, !1, !1),
-                ye() || (i.globalSocketObj.emit("canvas:request:view-sizing"),
+                je() || (i.globalSocketObj.emit("canvas:request:view-sizing"),
                 f.closeToolbarDropdown())
             } else
                 c.canvasState.setAsyncPageNum(t)
@@ -4685,36 +4692,36 @@ break;
         )),
         i.globalSocketObj.on("file:import-start", (function() {
             l.readonlyManager.resetLastUpdatedAt(),
-            me(!0, !1, !1),
+            we(!0, !1, !1),
             d.L8(),
-            Ct("Importing File... ", 0),
+            Tt("Importing File... ", 0),
             console.log("Importing File...")
         }
         )),
         i.globalSocketObj.on("file:conversion-progress", (function(e) {
-            me(!0, !0, !1),
+            we(!0, !0, !1),
             console.log("Conversion Progress: " + e.percentComplete + "%"),
-            Ct("Converting File to PDF...", e.percentComplete)
+            Tt("Converting File to PDF...", e.percentComplete)
         }
         )),
         i.globalSocketObj.on("show:load", (function() {
             d.L8()
         }
         ));
-        var tt = []
-          , ot = !1;
-        function at() {
+        var nt = []
+          , it = !1;
+        function st() {
             i.globalSocketObj.emit("clear:cursors:room"),
-            tt.push({
+            nt.push({
                 pageIndex: this.pageIndex,
                 numPages: this.numPages,
                 task: function() {
                     c.canvasState.setAspectRatio(this.aspectRatio),
-                    ve(!1, !0);
+                    ye(!1, !0);
                     var e, t, o, n, s, l, d, u, g, h, f, v, m = this._image;
                     if (this.position = this.getProject().view.center,
                     this.fitBounds(this.getProject().view.bounds),
-                    this.fromUserId == c.userState.uid && i.globalSocketObj.emit("file:update-position", Ve(), this.getLayer().getName(), this.matrix, this.name),
+                    this.fromUserId == c.userState.uid && i.globalSocketObj.emit("file:update-position", Ye(), this.getLayer().getName(), this.matrix, this.name),
                     r().project.layers[this.layerIndex]) {
                         var b = r().project.layers[this.layerIndex].clone({
                             insert: !1,
@@ -4732,7 +4739,7 @@ break;
                     }
                     1 == this.pageIndex && (h = JSON.parse(r().project.activeLayer.exportJSON()),
                     r().project.activeLayer.children.length <= 2 && null != h && null !== (e = h[1]) && void 0 !== e && null !== (t = e.children) && void 0 !== t && null !== (o = t[0]) && void 0 !== o && null !== (n = o[1]) && void 0 !== n && n.source && null != h && null !== (s = h[1]) && void 0 !== s && null !== (l = s.children) && void 0 !== l && null !== (d = l[0]) && void 0 !== d && null !== (u = d[1]) && void 0 !== u && null !== (g = u.name) && void 0 !== g && g.includes("pdf") && 1 == (0,
-                    y.Dm)() && !ot && (ot = !0,
+                    y.Dm)() && !it && (it = !0,
                     $("#img-page-0").last().remove()));
                     var S = (f = b ? b.name : "refreshed").replace("page-", "");
                     if ((v = $("<canvas class='whiteboard-thumbnail' title='Page " + (+S + 1) + "' data-page-name='" + f + "' id='img-" + f + "' />").tooltipster()).click((function() {
@@ -4763,32 +4770,43 @@ break;
                 .bind(this)
             })
         }
-        function rt(e) {
-            me(!0, !0, !1);
+        function ct(e) {
+            we(!0, !0, !1);
             var t = new FileReader;
             t.readAsDataURL(e),
             $(t).bind("loadend", (function(e) {
                 var t = this.result;
                 c.canvasState.incrementProjectObjectCount();
                 var o = new a.Raster(t);
-                o.position = _.center,
+                o.position = N.center,
                 o.name = "image:" + c.userState.uid + ":" + c.canvasState.projectObjectCount,
                 o.type = "upload",
-                o.onLoad = nt
+                o.onLoad = lt
             }
             ))
         }
-        function nt() {
+        function lt() {
             var e = this.getBounds().getWidth()
               , t = this.getBounds().getHeight()
               , o = $("#the-canvas").width()
               , n = $("#the-canvas").height()
               , s = "upload" == this.type ? "image-upload-" + c.userState.uid + "-" + c.canvasState.projectObjectCount : JSON.stringify(this.getImage().src);
-            e > o || t > n ? (I.exportSize ? this.fitBounds(new a.Rectangle({
-                topLeft: I.exportSize.topLeft,
-                bottomRight: I.exportSize.bottomRight
-            })) : this.fitBounds(r().project.view.bounds),
-            i.globalSocketObj.emit("image:add", Ve(), s, this.toDataURL("image/png"), this.matrix, this.name, !0, r().project.activeLayer.index)) : i.globalSocketObj.emit("image:add", Ve(), s, this.toDataURL("image/png"), this.matrix, this.name, !1, r().project.activeLayer.index)
+            if (e > o || t > n) {
+                R.exportSize ? this.fitBounds(new a.Rectangle({
+                    topLeft: R.exportSize.topLeft,
+                    bottomRight: R.exportSize.bottomRight
+                })) : this.fitBounds(r().project.view.bounds);
+                var l = this.toDataURL("image/png")
+                  , d = (new TextEncoder).encode(l).length;
+                if (d > 1e8)
+                    return this.remove(),
+                    ye(!1, !1),
+                    Je(),
+                    (0,
+                    P.Z)("The Image is too large.\n(about ".concat((1e-6 * d).toFixed(2), " Megabytes)\n It must be less than 100 Megabytes"));
+                i.globalSocketObj.emit("image:add", Ye(), s, l, this.matrix, this.name, !0, r().project.activeLayer.index)
+            } else
+                i.globalSocketObj.emit("image:add", Ye(), s, this.toDataURL("image/png"), this.matrix, this.name, !1, r().project.activeLayer.index)
         }
         i.globalSocketObj.on("file:done", (function(e) {
             d.L8(),
@@ -4800,14 +4818,14 @@ break;
                 }()
             }
             )).then((function() {
-                me(!0, !0, !1);
+                we(!0, !0, !1);
                 var t = e.firstPage || 0;
                 //!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                 e.Images.map((function(e) {
                     var t;
                     if (null == e || null === (t = e.layers) || void 0 === t || !t.s3Key)
                         return console.error("Corrupted IMAGES during conversion: ", e);
-                    ft[e.layerIndex] = [e.layers.s3Key],
+                    yt[e.layerIndex] = [e.layers.s3Key],
                     0 != e.layerIndex && $("#select-page").append($("<option>", {
                         value: e.layerIndex,
                         text: "Page " + (e.layerIndex + 1)
@@ -4825,7 +4843,7 @@ break;
                     o.layerIndex = e.layerIndex,
                     o.pageIndex = e.pageIndex,
                     o.numPages = e.numPages,
-                    o.onLoad = at,
+                    o.onLoad = st,
                     void 0 !== r().project.layers["page-" + e.layerIndex])
                         r().project.layers["page-" + e.layerIndex].data.aspectRatio = e.aspectRatio,
                         r().project.layers["page-" + e.layerIndex].addChild(o),
@@ -4843,12 +4861,12 @@ break;
                         r().project.addLayer(a)
                     }
                     e.success && (console.log("Rasterizing Page " + e.pageIndex + " of " + e.numPages + "... (" + e.percent + ")"),
-                    Ct("Rasterizing Page " + e.pageIndex + " of " + e.numPages + "...", e.percent))
+                    Tt("Rasterizing Page " + e.pageIndex + " of " + e.numPages + "...", e.percent))
                 }
                 ));
                 //!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                 var o = setInterval((function() {
-                    if (tt.filter((function(e) {
+                    if (nt.filter((function(e) {
                         return e.pageIndex == e.numPages
                     }
                     )).length > 0) {
@@ -4856,12 +4874,12 @@ break;
                         c.canvasState.setCurrentPdfUpload(!1),
                         $("#add-page-thumbnail").remove(),
                         clearInterval(o),
-                        tt = tt.sort((function(e, t) {
+                        nt = nt.sort((function(e, t) {
                             return e.pageIndex - t.pageIndex
                         }
                         ));
-                        for (var e = 0; e < tt.length; e++)
-                            tt[e].task();
+                        for (var e = 0; e < nt.length; e++)
+                            nt[e].task();
                         if (c.userState.showWhiteboardControls || c.userState.userIsModerator) {
                             var a = $("<button id='add-page-thumbnail' title='Add Page'><i class='fa fa-plus fa-2x'></i></button>").tooltipster();
                             a.click((function() {
@@ -4873,13 +4891,13 @@ break;
                         }
                         (c.userState.showWhiteboardControls || c.userState.userIsModerator) && $("#tool-select-page").show(),
                         !1 === c.canvasState.isAsync && i.globalSocketObj.emit("file:page-change", +t, !0),
-                        Qe = null,
+                        at = null,
                         d.VG(),
                         $('#select-page option[value="' + t + '"]').prop("selected", !0),
                         d.vs(),
                         !1 === c.canvasState.readonlyView && (0,
                         y.NM)(),
-                        tt = [],
+                        nt = [],
                         p.pageInteractions.changePage(t, !0, !0)
                     }
                 }
@@ -4889,7 +4907,8 @@ break;
         }
         )),
         i.globalSocketObj.on("file:error", (function(e) {
-            e.fromUserId == c.userState.uid && alert(e.message),
+            e.fromUserId == c.userState.uid && (0,
+            P.Z)(e.message),
             d.VG(),
             $("#canvas-container").show(),
             d.vs(),
@@ -4903,18 +4922,18 @@ break;
             u.unpopulateAlertBar();
             for (var t = 0; t < r().project.activeLayer.children.length; t++)
                 r().project.activeLayer.children[t].name && r().project.activeLayer.children[t].name.indexOf("cursor") > -1 && r().project.activeLayer.children[t].remove();
-            null != e && (U = e),
-            it()
+            null != e && (B = e),
+            dt()
         }
         ));
-        var it = function() {
+        var dt = function() {
             $("#selected-whiteboard-user option").remove(),
-            U && U.forEach((function(e) {
+            B && B.forEach((function(e) {
                 $("#selected-whiteboard-user").append("<option value='" + e.userId + "'>" + e.userFullname + "</option>")
             }
             ))
         }
-          , st = function(e) {
+          , ut = function(e) {
             for (var t = 0; t < r().project.activeLayer.children.length; t++)
                 r().project.activeLayer.children[t].name && r().project.activeLayer.children[t].name.indexOf("cursor") > -1 && r().project.activeLayer.children[t].remove();
             !1 === c.canvasState.readonlyView && (e ? ($("#editbar").each((function() {
@@ -4987,7 +5006,7 @@ break;
                             $("#tooltip-lock-button-body").text("Lock this whiteboard so others can not edit");
                     else {
                         if (c.userState.setShowWhiteboardControls(!t),
-                        st(c.userState.showWhiteboardControls),
+                        ut(c.userState.showWhiteboardControls),
                         t) {
                             $("#the-canvas").css({
                                 cursor: "crosshair"
@@ -4996,7 +5015,7 @@ break;
                             for (var s = 0; s < r().project.layers.length; s++)
                                 r().project.layers[s].selected = !1
                         } else {
-                            switch (z) {
+                            switch (J) {
                             case "draw":
                             case "pencil":
                             case "eraser":
@@ -5044,9 +5063,9 @@ break;
                             $("#tool-select-page").hide(),
                             $(".whiteboard-thumbnail").attr("disabled", "disabled"),
                             //! Make canvas conform to the aspect ratio of presenter
-                            Re(a.aspect, a.ogCenter)
+                            De(a.aspect, a.ogCenter)
                     }
-                    (c.userState.userIsModerator || c.userState.showWhiteboardControls) && me(!1, !1, !0)
+                    (c.userState.userIsModerator || c.userState.showWhiteboardControls) && we(!1, !1, !0)
                 } else
                     c.userState.setUserIsModerator(t),
                     t ? (n && h.updatePList(n),
@@ -5069,7 +5088,7 @@ break;
                 $(".toggle-whiteboard-lock i").removeClass("fas fa-unlock"),
                 $(".toggle-whiteboard-lock i").addClass("fa-lock"),
                 $("#tooltip-lock-button-body").text("Unlock this whiteboard so others can edit"),
-                me(!1, !1, !0);
+                we(!1, !1, !0);
                 var a = $(window).innerHeight() - $("#editbar").outerHeight() || 0 - $("#read-only-toolbar").outerHeight() || 0 - (0,
                 y.O$)() || -2
                   , n = $("#canvas-container").innerWidth() / a;
@@ -5084,7 +5103,7 @@ break;
                     ratioObject: {
                         aspect: n,
                         center: r().project.view.center,
-                        ogCenter: T
+                        ogCenter: E
                     },
                     initiatorUid: c.userState.uid
                 })
@@ -5127,15 +5146,15 @@ break;
         i.globalSocketObj.on("disconnect", (function() {
             u.populateAlertBarLostConnection(),
             u.showAlertBar(!0),
-            z = "null",
-            st(!1)
+            J = "null",
+            ut(!1)
         }
         )),
         i.globalSocketObj.on("terminated", (function() {
             u.populateAlertBarAdminClose(),
             u.showAlertBar(!0),
-            z = "null",
-            st(!1),
+            J = "null",
+            ut(!1),
             i.globalSocketObj.emit("terminated")
         }
         )),
@@ -5146,33 +5165,33 @@ break;
         )),
         i.globalSocketObj.on("server-routing-error", (function() {
             $("#server-routing-error").show(),
-            z = "null",
-            st(!1)
+            J = "null",
+            ut(!1)
         }
         )),
         i.globalSocketObj.on("reconnect", (function(e) {
             window.location.reload(!1)
         }
         ));
-        var ct = [];
-        function lt(e, t) {
-            ct.splice(0, ct.length),
+        var pt = [];
+        function gt(e, t) {
+            pt.splice(0, pt.length),
             r().project.layers["page-" + e].children.forEach((function(e) {
-                e.name && e.name.includes("signature") && (+e.data.forUserId != +t || e.data.hasBeenSigned || ct.push({
+                e.name && e.name.includes("signature") && (+e.data.forUserId != +t || e.data.hasBeenSigned || pt.push({
                     itemName: e.name,
                     forUserFullname: e.data.forUserFullname,
                     forUserId: e.data.forUserId
                 }))
             }
             )),
-            ct.length > 0 ? $(".sign-tool-li").each((function() {
+            pt.length > 0 ? $(".sign-tool-li").each((function() {
                 this.style.setProperty("display", "block")
             }
             )) : $(".sign-tool-li").each((function() {
                 this.style.setProperty("display", "none")
             }
             )),
-            c.canvasState.setSignatureFieldCount(ct.length)
+            c.canvasState.setSignatureFieldCount(pt.length)
         }
         $(".sign-tool").click((function() {
             $("#user-signature-dialog").data("signatureTarget", "ALL"),
@@ -5180,7 +5199,7 @@ break;
             $("#user-signature-dialog").modal("show")
         }
         ));
-        var dt = function e(t, o, a, r) {
+        var ht = function e(t, o, a, r) {
             if (t > 3e3)
                 return r("Image failed to load");
             setTimeout((function() {
@@ -5188,40 +5207,40 @@ break;
             }
             ), t)
         }
-          , ut = function(e) {
+          , ft = function(e) {
             return e.fitBounds(new a.Rectangle({
-                topLeft: I.exportSize.topLeft,
-                bottomRight: I.exportSize.bottomRight
+                topLeft: R.exportSize.topLeft,
+                bottomRight: R.exportSize.bottomRight
             }))
         }
-          , pt = function() {
+          , vt = function() {
             if (r().project.activeLayer) {
                 var e = r().project.activeLayer.children[0];
-                e && e.name.toLowerCase().includes("pdf") && I.exportSize && (!1 === e.loaded ? new Promise((function(t, o) {
-                    dt(5, e, t, o)
+                e && e.name.toLowerCase().includes("pdf") && R.exportSize && (!1 === e.loaded ? new Promise((function(t, o) {
+                    ht(5, e, t, o)
                 }
                 )).then((function() {
-                    ut(e)
+                    ft(e)
                 }
                 )).catch((function(e) {
                     console.log("Repair failure", e)
                 }
-                )) : ut(e))
+                )) : ft(e))
             }
         }
-          , gt = []
-          , ht = 0
-          , ft = [];
-        function vt(e) {
+          , mt = []
+          , bt = 0
+          , yt = [];
+        function wt(e) {
             function t() {
-                if (gt.length > 0)
+                if (mt.length > 0)
                     setTimeout((function() {
-                        vt(gt[0])
+                        wt(mt[0])
                     }
                     ), 1);
                 else {
                     c.canvasState.setIsLoadingThumbnails(!1),
-                    $('#select-page option[value="' + ht + '"]').last().remove();
+                    $('#select-page option[value="' + bt + '"]').last().remove();
                     for (var e = 0; e < r().project.layers.length; e++)
                         $("#select-page").children()[e] || $("#select-page").append($("<option>", {
                             value: e,
@@ -5236,22 +5255,22 @@ break;
                             text: "Today: " + (p)
                         }));
                     });
-                    if($('#select-page option[value="' + ht + '"]:contains("Today")').length)
-                        $('#select-page option[value="' + ht + '"]:contains("Today")').prop("selected", !0);
+                    if($('#select-page option[value="' + bt + '"]:contains("Today")').length)
+                        $('#select-page option[value="' + bt + '"]:contains("Today")').prop("selected", !0);
                     else
-                        $('#select-page option[value="' + ht + '"]').prop("selected", !0);
+                        $('#select-page option[value="' + bt + '"]').prop("selected", !0);
                     p.pageInteractions.changePage($("#select-page").val(), !0, !0);
                 }
             }
             c.canvasState.setIsLoadingThumbnails(!0),
-            gt.splice(0, 1),
-            mt("page-" + e).then(t()).catch((function(e) {
+            mt.splice(0, 1),
+            St("page-" + e).then(t()).catch((function(e) {
                 console.error(e),
                 t()
             }
             ))
         }
-        function mt(e) {
+        function St(e) {
             return new Promise((function(t, o) {
                 try {
                     if (!c.canvasState.currentPdfUpload) {
@@ -5261,10 +5280,10 @@ break;
                         });
                         //! Layer bounds is no longer reliable for INITIAL thumbnail update
                         if (n.visible = !0,
-                        I.topLeft)
+                        R.topLeft)
                             var i = new a.Path.Rectangle({
-                                point: [I.topLeft.x, I.topLeft.y],
-                                size: [I.width, I.height]
+                                point: [R.topLeft.x, R.topLeft.y],
+                                size: [R.width, R.height]
                             });
                         var s = new a.Group(i,n);
                         s.clipped = !0;
@@ -5297,18 +5316,18 @@ break;
             }
             ))
         }
-        function bt(e) {
+        function jt(e) {
             r().project.activeLayer.children["cursor:" + e] && r().project.activeLayer.children["cursor:" + e].remove(),
             r().project.activeLayer.children["cursor-text:" + e] && r().project.activeLayer.children["cursor-text:" + e].remove(),
             r().project.activeLayer.children["cursor-text-background:" + e] && r().project.activeLayer.children["cursor-text-background:" + e].remove()
         }
         i.globalSocketObj.on("project:load:init", (function(e) {
-            var t, o = e.projectJson, a = e.pageNum, s = e.locked, u = e.objectCount, g = e.userData, m = e.s3ImageNoAuth, b = e.s3AuthedImage, S = e.pageCount, j = e.isPresenter, k = e.presenteeList, P = e.pageLoadOrder, A = e.lastUpdateTimestamp;
-            if (P = (0,
-            w.v)(P),
-            ft = m,
+            var t, o = e.projectJson, a = e.pageNum, s = e.locked, u = e.objectCount, g = e.userData, m = e.s3ImageNoAuth, b = e.s3AuthedImage, S = e.pageCount, j = e.isPresenter, k = e.presenteeList, O = e.pageLoadOrder, C = e.lastUpdateTimestamp;
+            if (O = (0,
+            w.v)(O),
+            yt = m,
             d.L8(),
-            ve(!1, !1),
+            ye(!1, !1),
             c.userState.setUserIsModerator(v.l.convertUrlPropToBool(g.userIsModerator)),
             d.uq(v.l.convertUrlPropToBool(g.allowClose)),
             c.canvasState.setProjectObjectCount(u),
@@ -5319,19 +5338,19 @@ break;
             c.userState.userIsModerator || c.userState.showWhiteboardControls || $(".cursor-tool").click(),
             c.userState.userIsModerator ? (c.userState.setShowWhiteboardControls(!0),
             f.handleLockTooltipPopupOnInit(),
-            st(!0),
+            ut(!0),
             f.handleDisplayCloseWBButton(c.canvasState.noWrapperView),
-            f.handleWhiteboardLockProperties(v.l.convertUrlPropToBool(g.allowLock), s)) : st(!s),
+            f.handleWhiteboardLockProperties(v.l.convertUrlPropToBool(g.allowLock), s)) : ut(!s),
             d.yX(localStorage.getItem("tool-hint-shown")),
             o) {
-                ht = a,
-                gt = C(P),
+                bt = a,
+                mt = L(O),
                 c.canvasState.setIsLoadingThumbnails(!0);
-                var L = o.project;
-                "object" === O(L) && (L = JSON.stringify(L)),
-                L = n.an(L),
+                var P = o.project;
+                "object" === A(P) && (P = JSON.stringify(P)),
+                P = n.an(P),
                 !1 === c.canvasState.readonlyView ? (d.Rk(),
-                d.iH()) : l.readonlyManager.setLastUpdatedAt(+A),
+                d.iH()) : l.readonlyManager.setLastUpdatedAt(+C),
                 (t = c.canvasState.readonlyView ? null : b,
                 new Promise((function(e) {
                     if (null === t)
@@ -5371,14 +5390,14 @@ break;
                     ))
                 }
                 ))).finally((function() {
-                    L = n.XM({
+                    P = n.XM({
                         s3Urls: b,
                         dbUrls: m,
-                        json: L
+                        json: P
                     }),
                     r().project.activeLayer.remove(),
                     r().project.clear(),
-                    r().project.importJSON(L),
+                    r().project.importJSON(P),
                     void 0 === r().project.activeLayer.data.aspectRatio ? c.canvasState.setAspectRatio(c.staticGlobals.DefaultAspectRatio) : c.canvasState.setAspectRatio(parseFloat(r().project.activeLayer.data.aspectRatio)),
                     f.handleSelectPageInit(a, s, c.userState.userIsModerator),
                     p.pageInteractions.changePage(a, !1, !1, !0),
@@ -5409,8 +5428,8 @@ break;
                             h.handlePresenterChange(o, c.userState.myFullName, !0);
                             var n = r().project.view
                               , s = $("#canvas-container").innerWidth() / $("#canvas-container").innerHeight();
-                            Fe(),
-                            i.globalSocketObj.emit("canvas:send:view-sizing", !1, s, T, n.center, n.zoom / N)
+                            Je(),
+                            i.globalSocketObj.emit("canvas:send:view-sizing", !1, s, E, n.center, n.zoom / M)
                         } else
                             i.globalSocketObj.emit("canvas:request:view-sizing"),
                             f.closeToolbarDropdown(),
@@ -5448,7 +5467,7 @@ break;
                             $(".whiteboard-thumbnail").click((function() {
                                 if (!$(".whiteboard-thumbnail").attr("disabled")) {
                                     var e = $(this).data("page-name").replace("page-", "");
-                                    -1 === gt.indexOf(Number(e)) && ($(".whiteboard-thumbnail").removeClass("active"),
+                                    -1 === mt.indexOf(Number(e)) && ($(".whiteboard-thumbnail").removeClass("active"),
                                     $(this).addClass("active"),
                                     f.updateSelectPageUi(e),
                                     p.pageInteractions.changePage(e, !1, !1),
@@ -5515,12 +5534,12 @@ break;
                         p.addFocusToThumbnail)(a),
                         !1 === c.canvasState.readonlyView && d.q6(),
                         d.vs(),
-                        lt(a, g.userId),
-                        gt.length > 0 ? mt("page-" + a).then(vt(gt[0])).catch((function(e) {
+                        gt(a, g.userId),
+                        mt.length > 0 ? St("page-" + a).then(wt(mt[0])).catch((function(e) {
                             console.error(e),
-                            vt(gt[0])
+                            wt(mt[0])
                         }
-                        )) : mt("page-" + a)
+                        )) : St("page-" + a)
                     }
                     )))
                 }
@@ -5530,7 +5549,7 @@ break;
         )),
         setTimeout((function() {
             setInterval((function() {
-                mt(r().project.activeLayer.name)
+                St(r().project.activeLayer.name)
             }
             ), 1e4)
         }
@@ -5570,7 +5589,7 @@ break;
         )),
         i.globalSocketObj.on("canvas:clear", (function(e, t) {
             l.readonlyManager.resetLastUpdatedAt(),
-            He(t)
+            Xe(t)
         }
         )),
         i.globalSocketObj.on("loading:start", (function() {
@@ -5592,51 +5611,65 @@ break;
             if (l.readonlyManager.resetLastUpdatedAt(),
             e !== c.userState.uid && t) {
                 var a = JSON.parse(t);
-                bt(e),
-                wt(e, a)
+                jt(e),
+                kt(e, a)
             }
         }
         )),
         i.globalSocketObj.on("draw:progress", (function(e, t, o) {
-            e !== c.userState.uid && t && o && (bt(e),
-            St(e, o))
+            e !== c.userState.uid && t && o && (jt(e),
+            Ot(e, o))
         }
         )),
         i.globalSocketObj.on("draw:end", (function(e, t) {
             l.readonlyManager.resetLastUpdatedAt(),
-            jt(e, t)
+            Ct(e, t)
         }
         )),
         i.globalSocketObj.on("item:remove", (function(e, t, o) {
             l.readonlyManager.resetLastUpdatedAt(),
             r().project.layers["page-".concat(e)].children[o] && (r().project.layers["page-".concat(e)].children[o].remove(),
-            _.draw())
+            N.draw())
         }
         )),
         i.globalSocketObj.on("item:move:start", (function() {}
         )),
         i.globalSocketObj.on("item:move", (function(e, t, o, a) {
-            t != c.userState.uid && (bt(t),
+            if (!ve(a))
+                return console.log("Invalid delta");
+            t != c.userState.uid && (jt(t),
             r().project.deselectAll(),
             o.forEach((function(e) {
                 r().project.activeLayer.children[e] && (r().project.activeLayer.children[e].position.x += a[1],
                 r().project.activeLayer.children[e].position.y += a[2])
             }
             ))),
-            _.draw()
+            N.draw()
+        }
+        )),
+        i.globalSocketObj.on("item:move:coordinates", (function(e, t, o) {
+            for (var a in jt(t),
+            o) {
+                var n = o[a];
+                if (!ve(n))
+                    return console.log("Invalid delta");
+                r().project.activeLayer.children[a] && (r().project.activeLayer.children[a].position.x = n[1],
+                r().project.activeLayer.children[a].position.y = n[2])
+            }
+            N.draw()
         }
         )),
         i.globalSocketObj.on("item:move:undo", (function(e, t) {
             l.readonlyManager.resetLastUpdatedAt(),
             e != c.userState.uid && (t = JSON.parse(t),
-            bt(e),
+            jt(e),
             r().project.deselectAll(),
             t.forEach((function(e) {
                 r().project.activeLayer.children[e.name] && (r().project.activeLayer.children[e.name].position.x = e.originX,
                 r().project.activeLayer.children[e.name].position.y = e.originY)
             }
             )),
-            _.draw())
+            N.draw())
         }
         )),
         i.globalSocketObj.on("item:color:set", (function(e, t, o) {
@@ -5658,19 +5691,19 @@ break;
                         else
                             r().project.activeLayer.children[a.name].strokeColor = o[n].color
                 }
-                _.draw()
+                N.draw()
             }
         }
         )),
         i.globalSocketObj.on("item:add", (function(e, t) {
             if (l.readonlyManager.resetLastUpdatedAt(),
             e != c.userState.uid) {
-                bt(e),
+                jt(e),
                 r().project.deselectAll(),
                 r().project.activeLayer.importJSON(t);
                 for (var o = 0; o < r().project.activeLayer.children.length; o++)
                     "PointText" == r().project.activeLayer.children[o].className && void 0 === r().project.activeLayer.children[o].onClick && (r().project.activeLayer.children[o].onClick = pe);
-                _.draw()
+                N.draw()
             }
         }
         )),
@@ -5678,7 +5711,7 @@ break;
             l.readonlyManager.resetLastUpdatedAt();
             var s = JSON.parse(o);
             if (void 0 !== r().project.layers[s.page]) {
-                t != c.userState.uid && bt(t);
+                t != c.userState.uid && jt(t);
                 var d = {
                     point: new a.Point(s.point[0],s.point[1]),
                     content: "       ",
@@ -5693,32 +5726,32 @@ break;
                 u.selected = !0,
                 t == c.userState.uid ? u.visible = !1 : u.visible = !0,
                 r().project.layers[s.page] && r().project.layers[s.page].addChild(u),
-                _.draw()
+                N.draw()
             }
         }
         )),
         i.globalSocketObj.on("text:update:start", (function(e, t, o) {
             l.readonlyManager.resetLastUpdatedAt(),
-            t != c.userState.uid && (bt(t),
+            t != c.userState.uid && (jt(t),
             r().project.activeLayer.children[o] && (r().project.activeLayer.children[o].selected = !0,
             r().project.activeLayer.children[o].selectedColor = r().project.activeLayer.children[o].fillColor,
-            _.draw()))
+            N.draw()))
         }
         )),
         i.globalSocketObj.on("text:update", (function(e, t, o, a, n) {
             if (t != c.userState.uid) {
                 if (void 0 === r().project.layers[o])
                     return;
-                bt(t);
+                jt(t);
                 var i = r().project.layers[o].children[a];
                 i && (i.content = n,
-                _.draw())
+                N.draw())
             }
         }
         )),
         i.globalSocketObj.on("text:update:end", (function(e, t, o) {
             if (l.readonlyManager.resetLastUpdatedAt(),
-            bt(t),
+            jt(t),
             r().project.layers[o.page] && r().project.layers[o.page].children) {
                 if (r().project.layers[o.page].children[o.name])
                     r().project.layers[o.page].children[o.name].content = o.content,
@@ -5744,14 +5777,14 @@ break;
                     i.onClick = pe,
                     r().project.layers[o.page].addChild(i)
                 }
-                _.draw()
+                N.draw()
             }
         }
         )),
         i.globalSocketObj.on("item:font:change", (function(e, t, o, a) {
             l.readonlyManager.resetLastUpdatedAt(),
             t != c.userState.uid && r().project.activeLayer.children[o] && (r().project.activeLayer.children[o].fontSize = a,
-            _.draw())
+            N.draw())
         }
         )),
         i.globalSocketObj.on("ellipse:start", (function(e) {
@@ -5759,14 +5792,14 @@ break;
         }
         )),
         i.globalSocketObj.on("ellipse:progress", (function(e, t, o) {
-            t !== c.userState.uid && o && (bt(t),
-            $t(e, o))
+            t !== c.userState.uid && o && (jt(t),
+            Pt(e, o))
         }
         )),
         i.globalSocketObj.on("ellipse:end", (function(e, t, o) {
             l.readonlyManager.resetLastUpdatedAt(),
-            bt(t),
-            $t(e, o)
+            jt(t),
+            Pt(e, o)
         }
         )),
         i.globalSocketObj.on("rectangle:start", (function() {
@@ -5774,19 +5807,19 @@ break;
         }
         )),
         i.globalSocketObj.on("rectangle:progress", (function(e, t, o) {
-            t != c.userState.uid && (bt(t),
-            kt(e, o))
+            t != c.userState.uid && (jt(t),
+            At(e, o))
         }
         )),
         i.globalSocketObj.on("rectangle:end", (function(e, t, o) {
             l.readonlyManager.resetLastUpdatedAt(),
-            bt(t),
-            kt(e, o)
+            jt(t),
+            At(e, o)
         }
         )),
         i.globalSocketObj.on("signature:add", (function(e, t, o) {
             if (l.readonlyManager.resetLastUpdatedAt(),
-            bt(t),
+            jt(t),
             c.userState.showWhiteboardControls && $("#undo").prop("disabled", !1),
             (o = JSON.parse(o)).forUserId != t && c.userState.uid != t) {
                 var n;
@@ -5819,21 +5852,21 @@ break;
                 }
                   , p = new a.PointText(u);
                 p.visible = !0,
-                (q = new a.Group({
+                (te = new a.Group({
                     name: "signature:" + o.name,
                     children: [i, s, p],
                     data: {
                         forUserId: o.forUserId
                     }
                 })).onClick = ge,
-                _.draw(),
-                lt(r().project.activeLayer.name.split("-")[1], c.userState.uid)
+                N.draw(),
+                gt(r().project.activeLayer.name.split("-")[1], c.userState.uid)
             }
         }
         )),
         i.globalSocketObj.on("signature:update", (function(e, t, o) {
             l.readonlyManager.resetLastUpdatedAt(),
-            bt(t),
+            jt(t),
             o = JSON.parse(o),
             r().project.activeLayer.children["signature:" + o.targetObjectName] && r().project.activeLayer.children["signature:" + o.targetObjectName].children["signature-label:" + o.targetObjectName] && (r().project.activeLayer.children["signature:" + o.targetObjectName].data = {
                 forUserId: o.forUserId,
@@ -5867,14 +5900,14 @@ break;
             }
               , u = new a.PointText(d);
             u.visible = !0,
-            (q = new a.Group({
+            (te = new a.Group({
                 name: "signature:" + o.targetObjectName,
                 children: [n, i, u],
                 data: {
                     forUserId: o.forUserId
                 }
             })).onClick = ge,
-            _.draw()
+            N.draw()
         }
         )),
         i.globalSocketObj.on("signature:signed", (function(e, t, o, a) {
@@ -5901,14 +5934,14 @@ break;
         }
         )),
         i.globalSocketObj.on("line:progress", (function(e, t, o) {
-            t != c.userState.uid && (bt(t),
-            Ot(e, o))
+            t != c.userState.uid && (jt(t),
+            Lt(e, o))
         }
         )),
         i.globalSocketObj.on("line:end", (function(e, t, o) {
             l.readonlyManager.resetLastUpdatedAt(),
-            bt(t),
-            Ot(e, o)
+            jt(t),
+            Lt(e, o)
         }
         )),
         i.globalSocketObj.on("checkmark:add", (function(e, t, o) {
@@ -5928,9 +5961,9 @@ break;
         }
         )),
         i.globalSocketObj.on("cursor:move", (function(e, t, o) {
-            if (ae() && e == Ve() && !c.canvasState.activelySigning && (t != c.userState.uid || "cursor" == z)) {
+            if (ie() && e == Ye() && !c.canvasState.activelySigning && (t != c.userState.uid || "cursor" == J)) {
                 0,
-                bt(t);
+                jt(t);
                 new a.Path.Ellipse({
                     name: "cursor:" + t,
                     center: new a.Point(o.x,o.y),
@@ -5961,13 +5994,13 @@ break;
         i.globalSocketObj.on("clear:cursors:room:grabbed", (function(e) {
             if (e.length > 0)
                 for (var t = 0; t < e.length; t++)
-                    bt(e[t])
+                    jt(e[t])
         }
         )),
         i.globalSocketObj.on("image:add", (function(e, t, o, r, n) {
             l.readonlyManager.resetLastUpdatedAt(),
-            me(!1, !1, !1),
-            Ee(null, null, "zoom-out"),
+            we(!1, !1, !1),
+            Ue(null, null, "zoom-out"),
             t != c.userState.uid && setTimeout((function() {
                 var e = new a.Raster(o);
                 e.onError = function(e) {
@@ -5984,7 +6017,7 @@ break;
                                             e.crossOrigin = "anonymous",
                                             e.setMatrix(t),
                                             e.selected = !1,
-                                            _.draw()
+                                            N.draw()
                                         }
                                     }
                                     ), 2e3)
@@ -5996,7 +6029,7 @@ break;
                                     e.setMatrix(t),
                                     e.selected = !1,
                                     e.crossOrigin = "anonymous",
-                                    _.draw()
+                                    N.draw()
                                 }
                             }
                             ), 3e3)
@@ -6008,7 +6041,7 @@ break;
                             e.setMatrix(t),
                             e.selected = !1,
                             e.crossOrigin = "anonymous",
-                            _.draw()
+                            N.draw()
                         }
                     }
                     ), 2e3)
@@ -6020,14 +6053,14 @@ break;
                     e.setMatrix(t),
                     e.selected = !1,
                     e.crossOrigin = "anonymous",
-                    _.draw()
+                    N.draw()
                 }
             }
             ), 1e3)
         }
         ));
-        var yt = {}
-          , wt = function(e, t, o) {
+        var $t = {}
+          , kt = function(e, t, o) {
             if (void 0 !== r().project.layers[t.page]) {
                 r().activate();
                 var n = null;
@@ -6035,7 +6068,7 @@ break;
                     segments: o,
                     closed: !1
                 }) : (n = new a.Path,
-                yt[e] = n);
+                $t[e] = n);
                 var i = new a.Color(t.rgba.red,t.rgba.green,t.rgba.blue,t.rgba.opacity);
                 n.strokeColor = i,
                 n.strokeWidth = t.strokeWidth,
@@ -6044,26 +6077,26 @@ break;
                 n.name = t.name,
                 r().project.layers[t.page] && r().project.layers[t.page].addChild(n),
                 n.simplify(),
-                _.draw()
+                N.draw()
             }
         }
-          , St = function(e, t) {
+          , Ot = function(e, t) {
             r().activate();
-            var o = yt[e];
+            var o = $t[e];
             if (o) {
                 for (var n = 0; n < t.length; n++)
                     o.add(new a.Point(t[n][0],t[n][1]));
                 o.smooth(),
-                _.draw()
+                N.draw()
             }
         }
-          , jt = function(e, t) {
+          , Ct = function(e, t) {
             r().project.layers[t.page] ? r().project.layers[t.page].children[t.name] ? (r().project.layers[t.page].children[t.name].remove(),
-            _.draw()) : console.log("endExternalPath: Path Not Found!") : console.log("endExternalPath: Layer Not Found!"),
-            yt[e] = !1,
-            wt(e, t, t.path)
+            N.draw()) : console.log("endExternalPath: Path Not Found!") : console.log("endExternalPath: Layer Not Found!"),
+            $t[e] = !1,
+            kt(e, t, t.path)
         }
-          , $t = function(e, t) {
+          , Pt = function(e, t) {
             var o = "page-".concat(e);
             if (t = JSON.parse(t),
             r().project.layers[o].children[t.name] && r().project.layers[o].children[t.name].remove(),
@@ -6077,10 +6110,10 @@ break;
                     opacity: 1
                 });
                 r().project.layers[o].addChild(n),
-                _.draw()
+                N.draw()
             }
         }
-          , kt = function(e, t) {
+          , At = function(e, t) {
             var o = "page-".concat(e);
             if (t = JSON.parse(t),
             r().project.layers[o].children[t.name] && r().project.layers[o].children[t.name].remove(),
@@ -6094,10 +6127,10 @@ break;
                     opacity: 1
                 });
                 r().project.layers[o].addChild(n),
-                _.draw()
+                N.draw()
             }
         }
-          , Ot = function(e, t) {
+          , Lt = function(e, t) {
             var o = "page-".concat(e);
             if ("string" == typeof t && (t = JSON.parse(t)),
             r().project.layers[o] && r().project.layers[o].children["arrow:" + t.name] && r().project.layers[o].children["arrow:" + t.name].remove(),
@@ -6124,10 +6157,10 @@ break;
                     children: [n, d]
                 });
                 r().project.layers[o].addChild(u),
-                _.draw()
+                N.draw()
             }
         };
-        function Ct(e, t) {
+        function Tt(e, t) {
             c.canvasState.noWrapperView ? ($("#status-text").text(e),
             $("#progress-bar").css({
                 width: t + "%"
@@ -6157,6 +6190,7 @@ break;
             this.init = function() {
                 if (window.Clipboard)
                     return !0;
+                console.log("Clipboard class"),
                 (t = document.createElement("div")).setAttribute("id", "paste_ff"),
                 t.setAttribute("contenteditable", ""),
                 t.style.cssText = "opacity:0;position:fixed;top:0px;left:0px;",
@@ -6193,9 +6227,9 @@ break;
             }
             ,
             this.on_keyboard_action = function(e) {
-                var o = e.keyCode;
+                var o = e.code;
                 if ((17 == o || e.metaKey || e.ctrlKey) && 0 == n && (n = !0),
-                86 == o) {
+                o == C.default.V) {
                     if (null != document.activeElement && "text" == document.activeElement.type)
                         return !1;
                     1 != n || window.Clipboard || t.focus()
@@ -6203,7 +6237,9 @@ break;
             }
             ,
             this.on_keyboardup_action = function(e) {
-                (17 == e.keyCode || e.metaKey || e.ctrlKey || "Meta" == e.key) && (n = !1)
+                var t = e.code;
+                ((0,
+                C.isControlKey)(t) || e.metaKey || e.ctrlKey || "Meta" == e.key) && (n = !1)
             }
             ,
             this.paste_createImage = function(e) {
@@ -6211,10 +6247,10 @@ break;
                 t.src = e,
                 c.canvasState.incrementProjectObjectCount();
                 var o = new a.Raster(t);
-                o.position = _.center,
+                o.position = N.center,
                 o.name = "image:" + c.userState.uid + ":" + c.canvasState.projectObjectCount,
                 o.type = "paste",
-                o.onLoad = nt
+                o.onLoad = lt
             }
         }
         ("the-canvas");
@@ -6911,6 +6947,39 @@ break;
         ,
         t.showSelectPageTool = o
     },
+    3151: function(e, t) {
+        "use strict";
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        }),
+        t.isControlKey = void 0;
+        const o = {
+            BACKSPACE: "Backspace",
+            TAB: "Tab",
+            ENTER: "Enter",
+            SHIFT: "Shift",
+            CTRLLEFT: "ControlLeft",
+            CTRLRIGHT: "ControlRight",
+            PAUSE: "Pause",
+            CAPSLOCK: "CapsLock",
+            ESCAPE: "Escape",
+            SPACE: "Space",
+            PAGEUP: "PageUp",
+            PAGEDOWN: "PageDown",
+            END: "End",
+            HOME: "Home",
+            LEFTARROW: "ArrowLeft",
+            RIGHTARROW: "ArrowRight",
+            UPARROW: "ArrowUp",
+            DOWNARROW: "ArrowDown",
+            INSERT: "Insert",
+            DELETE: "Delete",
+            PRINTSCREEN: "PrintScreen",
+            V: "KeyV"
+        };
+        t.isControlKey = e=>e === o.CTRLLEFT || e === o.CTRLRIGHT,
+        t.default = o
+    },
     7876: function(e, t) {
         "use strict";
         Object.defineProperty(t, "__esModule", {
@@ -6937,6 +7006,15 @@ break;
         t.SET_USER_IS_MODERATOR = "SET_USER_IS_MODERATOR",
         t.SET_USER_IS_PRESENTER = "SET_USER_IS_PRESENTER",
         t.SET_USER_IS_OWNER = "SET_USER_IS_OWNER"
+    },
+    1264: function(e, t) {
+        "use strict";
+        t.Z = e=>{
+            window.parent.postMessage({
+                action: "alert",
+                message: e
+            }, "*")
+        }
     },
     3128: function(e, t, o) {
         "use strict";
@@ -7011,6 +7089,124 @@ break;
             }).sendToBack()
         }
     },
+    1008: function(e, t, o) {
+        "use strict";
+        var a = this && this.__importDefault || function(e) {
+            return e && e.__esModule ? e : {
+                default: e
+            }
+        }
+        ;
+        var tmpDiv = document.createElement("div");
+var exprpl = {"0":"\u2070","1":"\u00b9","2":"\u00b2","3":"\u00b3","4":"\u2074","5":"\u2075","6":"\u2076","7":"\u2077","8":"\u2078","9":"\u2079","+":"\u207a","-":"\u207b","=":"\u207c","(":"\u207d",")":"\u207e","a":"\u1d43","b":"\u1d47","c":"\u1d9c","d":"\u1d48","e":"\u1d49","f":"\u1da0","g":"\u1d4d","h":"\u02b0","i":"\u2071","j":"\u02b2","k":"\u1d4f","l":"\u02e1","m":"\u1d50","n":"\u207f","o":"\u1d52","p":"\u1d56","r":"\u02b3","s":"\u02e2","t":"\u1d57","u":"\u1d58","v":"\u1d5b","w":"\u02b7","x":"\u02e3","y":"\u02b8","z":"\u1dbb","A":"\u1d2c","B":"\u1d2e","D":"\u1d30","E":"\u1d31","G":"\u1d33","H":"\u1d34","I":"\u1d35","J":"\u1d36","K":"\u1d37","L":"\u1d38","M":"\u1d39","N":"\u1d3a","O":"\u1d3c","P":"\u1d3e","R":"\u1d3f","T":"\u1d40","U":"\u1d41","V":"\u2c7d","W":"\u1d42","/":"\u141f",".":"\u1427","times":"\u1541"};
+var subrpl = {"0":"\u2080","1":"\u2081","2":"\u2082","3":"\u2083","4":"\u2084","5":"\u2085","6":"\u2086","7":"\u2087","8":"\u2088","9":"\u2089","+":"\u208a","-":"\u208b","=":"\u208c","(":"\u208d",")":"\u208e","a":"\u2090","e":"\u2091","h":"\u2095","i":"\u1d62","j":"\u2c7c","k":"\u2096","l":"\u2097","m":"\u2098","n":"\u2099","o":"\u2092","p":"\u209a","r":"\u1d63","s":"\u209b","t":"\u209c","u":"\u1d64","v":"\u1d65","x":"\u2093"};
+var replGrp = function(match,p1){return Array.from(p1).map(function(t){if(exprpl[t])return exprpl[t];return t}).join("") };
+var replSubGrp = function(match,p1){return Array.from(p1).map(function(t){if(subrpl[t])return subrpl[t];return t}).join("") };
+var fracFunc = function(match,p1,p2){var fSize = Math.max(p1.length,p2.length), fMin = Math.min(p1.length,p2.length), dashArr = new Array(fSize), spaceArr = new Array((fSize-fMin)>>1); dashArr.fill("\u2014"), spaceArr.fill(" "); return (p1.length<p2.length?spaceArr.join("")+p1+"\n"+dashArr.join("")+"\n"+p2:p1+"\n"+dashArr.join("")+"\n"+spaceArr.join("")+p2)};
+        function replaceMathML(input)
+{
+if(input[0]!="!")
+return input;
+if(input.length > 1 && input[0] == "!" && input[1] == "!")return "";
+input = input.substr(1).replace(/\^\{([^}]*)\}?/g,replGrp).replace(/\^(.)/g,replGrp).replace(/\_\{([^}]*)\}?/g,replSubGrp).replace(/\_([^_])/g,replSubGrp).replace(/\-\>/g,"\u2794").replace(/deg/g,"\u00b0").replace(/rad/g,"\u221a").replace(/pm/g,"\u00b1").replace(/\<\=/g,"\u2264").replace(/\>\=/,"\u2265").replace(/\/=/g,"\u2260").replace(/div/g,"\u00f7").replace(/cdot/g,"\u00b7").replace(/times/g,"\u00d7").replace(/infty/g,"\u221e").replace(/~=/g,"\u2248").replace(/cents/g,"\u00a2").replace(/intgrl/g,"\u222b");
+input = input.replace(/pi/g,"\u03c0").replace(/theta/g,"\u03b8").replace(/alpha/g,"\u03b1").replace(/beta/g,"\u03b2").replace(/phi/g,"\u03c6").replace(/sigma/g,"\u03a3").replace(/delta/g,"\u03b4").replace(/mu/g,"\u03bc");
+input = input.replace(/null/g,"\u2205").replace(/intersect/g,"\u2229").replace(/union/g,"\u222a").replace(/subset/g,"\u2282");
+input = input.replace(/nline/g,"<─┼───┼───┼───┼───┼───┼───┼───┼───┼─>\n ");
+input = input.replace(/triggrid/g,"  ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐\n  │   │   │   │   │   │   │   │   │   │   │   │\n  │   │   │   │   │   │   │   │   │   │   │   │\n  │   │   │   │   │   │   │   │   │   │   │   │\n  ├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤\n-5π -2π -3π  -π  -π   0   π   π  3π  2π  5π  3π\n  2   │   2   │   2   │   2   │   2   │   2   │\n  │   │   │   │   │   │   │   │   │   │   │   │\n  └───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘");
+input = input.replace(/grid/g,"┌─┬─┬─┬─┬─┬─┬─┬─┬─┬─┐\n├─┼─┼─┼─┼─┼─┼─┼─┼─┼─┤\n├─┼─┼─┼─┼─┼─┼─┼─┼─┼─┤\n├─┼─┼─┼─┼─┼─┼─┼─┼─┼─┤\n├─┼─┼─┼─┼─┼─┼─┼─┼─┼─┤\n├─┼─┼─┼─┼─┼─┼─┼─┼─┼─┤\n├─┼─┼─┼─┼─┼─┼─┼─┼─┼─┤\n├─┼─┼─┼─┼─┼─┼─┼─┼─┼─┤\n├─┼─┼─┼─┼─┼─┼─┼─┼─┼─┤\n├─┼─┼─┼─┼─┼─┼─┼─┼─┼─┤\n└─┴─┴─┴─┴─┴─┴─┴─┴─┴─┘");
+//input = input.replace(/([^\/]*)\/\/([^\/]*)/,fracFunc);
+
+var string = input;
+var matched = string.match(/\{[^{}\/]*\/[^{}\/]*\}?/), fracs = [];
+if(!matched)return input;
+while(matched)
+{
+	var frac = {num:matched[0].substring(1,matched[0].indexOf("/")), den:matched[0].substring(matched[0].indexOf("/")+1,matched[0].length+(matched[0].indexOf("}")!=-1?-1:0)), index:matched.index};
+	if(frac.num.length < frac.den.length)
+	{
+		var nSpaces = (frac.den.length - frac.num.length)>>1;
+		var spaceArr1 = new Array(nSpaces), spaceArr2 = new Array(frac.den.length - nSpaces - frac.num.length);
+		spaceArr1.fill(" "), spaceArr2.fill(" ");
+		frac.num = spaceArr1.join("") + frac.num + spaceArr2.join("");
+		frac.len = frac.den.length;
+	}
+	else
+	{
+		var nSpaces = (frac.num.length - frac.den.length)>>1;
+		var spaceArr1 = new Array(nSpaces), spaceArr2 = new Array(frac.num.length - nSpaces - frac.den.length);
+		spaceArr1.fill(" "), spaceArr2.fill(" ");
+		frac.den = spaceArr1.join("") + frac.den + spaceArr2.join("");
+		frac.len = frac.num.length;
+	}
+	var dashArr = new Array(frac.len);
+	dashArr.fill("\u2014");
+	string = string.substring(0,matched.index) + dashArr.join("") + string.substring(matched.index + matched[0].length);
+	fracs.push(frac);
+	matched = string.match(/\{[^}\/]*\/[^}\/]*\}?/);
+}
+var topLine = "";
+var botLine = "";
+var curLoc = 0;
+for(var i = 0; i < fracs.length; i++)
+{
+	var spaceArr = new Array(fracs[i].index - curLoc);
+	spaceArr.fill(" ");
+	topLine += spaceArr.join("") + fracs[i].num;
+	botLine += spaceArr.join("") + fracs[i].den;
+	curLoc = fracs[i].index + fracs[i].len;
+}
+string = topLine + "\n" + string + "\n" + botLine;
+
+return string;
+
+}
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        }),
+        t.applyTextEditorListeners = t.resetTextListeners = void 0;
+        const r = a(o(3267))
+          , n = o(4937)
+          , i = o(103)
+          , s = o(6704)
+          , c = a(o(3151))
+          , l = e=>!e.shiftKey && e.code == c.default.ENTER || e.code == c.default.ESCAPE || e.code == c.default.DELETE;
+        function d(e) {
+            l(e) && (e.preventDefault(),
+            e.stopPropagation())
+        }
+        function u(e) {
+            if (l(e))
+                return e.preventDefault(),
+                e.stopPropagation(),
+                n.updateCanvasForText(),
+                !1;
+            var t = $("#text-editor")
+              , o = t.data("current-point-text-name");
+            if (o) {
+                var a = "";
+                tmpDiv.innerHTML = t[0].innerHTML.replace(/<div>/gi, "<div>\n"), a = replaceMathML(tmpDiv.innerText);
+                r.default.project.activeLayer.children[o] && r.default.project.activeLayer.children[o].set({
+                    content: a,
+                    fillColor: s.canvasState.activeColorRgb
+                }),
+                i.globalSocketObj.emit("text:update", n.getPageNum(), o, a)
+            }
+        }
+        function p(e) {
+            var t, o;
+            e.preventDefault();
+            var a = null === (o = null === (t = e.originalEvent || e) || void 0 === t ? void 0 : t.clipboardData) || void 0 === o ? void 0 : o.getData("text/plain");
+            window.document.execCommand("insertText", !1, a)
+        }
+        t.resetTextListeners = function(e) {
+            e.off("blur.updateCanvas", n.updateCanvasForText).off("keydown.updateText", d).off("keyup.updateText", u).off("paste", p)
+        }
+        ,
+        t.applyTextEditorListeners = function(e, t) {
+            e.off("paste", p),
+            e.data("current-point-text-name", t).on("blur.updateCanvas", n.updateCanvasForText).on("keydown.updateText", d).on("keyup.updateText", u).on("paste", p).show().focus()
+        }
+    },
     8659: function(e, t, o) {
         "use strict";
         var a = this && this.__importDefault || function(e) {
@@ -7033,10 +7229,9 @@ break;
                 n.updateCanvasForText();
                 for (var l = 0; l < r.default.project.layers.length; l++)
                     r.default.project.layers[l].visible = !1;
-                if (void 0 === r.default.project.layers["page-" + e])
-                    return console.error("undefined page!!"),
-                    i.canvasState.setAspectRatio(i.staticGlobals.DefaultAspectRatio),
-                    t ? n.onWindowResize(t, o, !1) : n.onWindowResize(!1, o, !1);
+                void 0 === r.default.project.layers["page-" + e] && (console.error("undefined page!!"),
+                i.canvasState.setAspectRatio(i.staticGlobals.DefaultAspectRatio),
+                e = 0),
                 r.default.project.layers["page-" + e].visible = !0,
                 r.default.project.layers["page-" + e].bringToFront(),
                 r.default.project.layers["page-" + e].activate(),
@@ -7129,7 +7324,7 @@ break;
             value: !0
         }),
         t.globalSocketObj = void 0;
-        const r = a(o(751))
+        const r = a(o(4428))
           , n = o(6704)
           , i = r.default.connect("/", {
             query: "auth=" + btoa(window.location.pathname + window.location.search) + "&token=" + n.staticGlobals.authToken
@@ -7250,7 +7445,7 @@ break;
                 {
                 	this.isAsync = true;
                 	this.setAsyncPageNum(e),
-                $(".async").css("color", "#04e644")
+                	$(".async").css("color", "#04e644")
                 }
             }
             setAsyncPageNum(e) {
@@ -7532,8 +7727,8 @@ break;
         });
         t.default = class {
             static printBuildInfo() {
-                var e = new Date("2021-08-31T02:53:00.962Z");
-                console.log(`Whiteboard Build Info:\n----\nGit Version: d93d663\nGit Commit Hash: d93d6631f277d5f512301518bca41160e5f23176\nGit Branch: release\nBuild Timestamp: ${e.toDateString()} ${e.toTimeString()}`)
+                var e = new Date("2022-01-26T05:52:34.712Z");
+                console.log(`Whiteboard Build Info:\n----\nGit Version: 62a0cd0\nGit Commit Hash: 62a0cd02b41d16d8c57a093eaca873f2bb6b8b82\nGit Branch: production\nBuild Timestamp: ${e.toDateString()} ${e.toTimeString()}`)
             }
         }
     },
@@ -7672,9 +7867,20 @@ break;
             o(4937)) : console.error("Canvas is missing! Cannot start paper.")
         }
     },
-        6316: function() {},
-    2878: function() {}
-}, 0, [[2595, 666, 796, 286, 169, 298, 770, 924, 765, 812, 476, 983, 544, 138, 856, 584, 195, 293, 593, 956, 142, 389, 672], [6992, 666, 796, 286, 169, 298, 770, 924, 765, 812, 476, 983, 544, 138, 856, 584, 195, 293, 593, 956, 142, 389, 672]]]);
+    858: function() {},
+    4158: function() {}
+}, function(e) {
+    var t = function(t) {
+        return e(e.s = t)
+    };
+    e.O(0, [796, 286, 169, 298, 770, 924, 765, 812, 476, 983, 544, 138, 856, 584, 195, 293, 593, 956, 142, 389, 672], (function() {
+        return t(2595),
+        t(6992)
+    }
+    ));
+    e.O()
+}
+]);
 
 
 };
