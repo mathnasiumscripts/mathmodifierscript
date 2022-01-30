@@ -6,8 +6,7 @@
 // @run-at       document-end
 // ==/UserScript==
 
-
-var wbClient = "/client/js/app-bb9d1b73241351989ea1.js";
+var wbClient = "/client/js/app-72c09ce3952c5d92fc9b.js";
 
 var modInfo = {
     "table1":{col:"#00ff00",inl:"KC",tnum:"T1",tutoring:true,super:true,incenter:true},
