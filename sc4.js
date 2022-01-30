@@ -2280,16 +2280,7 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
                 re.push([t.x, t.y])
             } else if ("draw" == J || "pencil" == J) {
                 var o;
-                (o = e.point).y += c.staticGlobals.CursorOffsetY / r().project.view.getZoom(),
-                q && (q.add(o),
-                F.path.push([o.x, o.y]),
-                V || (i.globalSocketObj.emit("draw:progress", F.name, F.path),
-                W = setInterval((function() {
-                    0 != F.path.length && (i.globalSocketObj.emit("draw:progress", F.name, F.path),
-                    F.path = new Array)
-                }
-                ), c.staticGlobals.SOCKET_UPDATE_INTERVAL)),
-                V = !0)
+                (o = e.point).y += c.staticGlobals.CursorOffsetY / r().project.view.getZoom();
                 if(q)
                 {
                 	if(!e.modifiers.shift)
@@ -2298,11 +2289,11 @@ var fontSize = $(".font-size")[0].options[nextIndex].value;
 				        F.path.push([o.x, o.y]),
 				        V || (i.globalSocketObj.emit("draw:progress", F.name, F.path),
 				        W = setInterval((function() {
-				            0 != M.path.length && (i.globalSocketObj.emit("draw:progress", F.name, F.path),
+				            0 != F.path.length && (i.globalSocketObj.emit("draw:progress", F.name, F.path),
 				            F.path = new Array)
 				        }
 				        ), c.staticGlobals.SOCKET_UPDATE_INTERVAL)),
-				        F = !0)
+				        V = !0)
 					}
 					else
 					{
