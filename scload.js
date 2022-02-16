@@ -13,12 +13,34 @@ if(!localStorage.getItem("disallowScript"))
 
 (function(){
     console.log(window.location.href);
-if(window.location.href.indexOf(".craniumcafe.com/meetings/")>-1)
-    document.getElementById("audio-alert") ? document.body.appendChild(sc) : window.addEventListener("load",function(){document.body.appendChild(sc)});
-if(window.location.href.indexOf(".craniumcafe.com/d/")==-1)return;
+    if(window.location.href.indexOf(".craniumcafe.com/meetings/")>-1)
+        document.getElementById("audio-alert") ? document.body.appendChild(sc) : window.addEventListener("load",function(){document.body.appendChild(sc)});
+    if(window.location.href.indexOf(".craniumcafe.com/d/")==-1)return;
+    var link = window.location.href;
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET",link);
+    webpackChunkconexed_whiteboard_client = [];
+    xhr.onload = function()
+    {
+        var html = xhr.responseText
+      .replace(/<script\b[\s\S]*?<\/script>/g, s => {
+        if (s.includes('client/js/app-')) {
+          return '';
+        } else {
+          return s;
+        }
+      })
+    document.open();
+    document.write(html);
+    document.close();
+        window.scriptLoaded = true;
+        document.head.appendChild(sc);
+  };xhr.send();
+    
     console.log("IS OBSERVING NOW");
     window.scriptLoaded = true;
     console.log(window.scriptLoaded);
+    /*
   var observer = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
       Array.from(document.querySelectorAll('script')).forEach(s => {
@@ -35,7 +57,7 @@ if(window.location.href.indexOf(".craniumcafe.com/d/")==-1)return;
       });
     });
   });
-
+*/
 function observe(){if(!document.documentElement)return setTimeout(observe,10);observer.observe(document.documentElement,{childList: true, subtree: true})};
 observe();
 window.disconnectObserver = function(){observer.disconnect()};
