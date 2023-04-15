@@ -543,6 +543,7 @@ function loadStableScript()
   s.src = window.stableSource;
   document.body.appendChild(s);
 }
+/*
 Array.from(document.querySelectorAll('script')).forEach(s => {
         if (s.src && (s.src.indexOf("client/js/app-") !== -1)) {
             if(window.disconnectObserver)window.disconnectObserver();
@@ -550,7 +551,7 @@ Array.from(document.querySelectorAll('script')).forEach(s => {
    setTimeout(function(){document.getElementById("tool-hints-modal").outerHTML = "<div id=\"tool-hints-modal\" style=\"display: flex;z-index:999999999\" onclick=\"window.changeScriptAllowance();window.location.reload()\"><i class=\"far fa-3x\" style=\"color:green;font-weight:bold;font-size:56px\">✓</i></div>"},5000);
         }
 });
-
+*/
 if(window.stableSource)window.unstableScript = window.stableSource.indexOf(wbClient) < 0;
 
 if(window.unstableScript)
