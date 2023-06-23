@@ -937,7 +937,7 @@ function getUnsigned()
         console.log(c);
         if(!c) return setTimeout(clickCheck,1000);
         c.click();
-        if(document.body.outerHTML.indexOf("Mathnasium is online") == -1 && window.mod.super && window.mod.hasTable8 && window.isTheChosenOne)
+        if(document.body.outerHTML.indexOf("Mathnasium is online") == -1 && window.mod.super && window.mod.hasTable8 && window.isTheChosenOne && !window.flipnameflag)
         {
             if(document.getElementsByClassName("active")[0].innerText == "USERS")
             {
