@@ -17,7 +17,7 @@ var modInfo = {
     "table6":{col:"#00ff00",inl:"NR",tnum:"T6",tutoring:true},
     "7table":{col:"#8e76c5",inl:"🐈 NV",tnum:"T7",tutoring:true,incenter:true,immune:true,super:true,listener:true},
     "table9":{col:"#ff00ff",inl:"🌸 LY",tnum:"T9",incenter:true, super:true, extraTables:["2595782","3595782","4595782","5595782","6595782","7595782","8595782"], hasTable8:true,listener:true},
-    "table10":{col:"#ff9900",inl:"AC",tnum:"T10",tutoring:true},
+    "table10":{col:"#ff9900",inl:"SM",tnum:"T10",tutoring:true},
     "table11":{col:"#b4a7d6",inl:"VA",tnum:"T11",tutoring:true},
     "table12":{col:"#a61c00",inl:"QU",tnum:"T12",tutoring:true},
     "table15":{col:"#4a86e8",inl:"NR",tnum:"T15",tutoring:true},
