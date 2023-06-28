@@ -10,7 +10,7 @@
 var wbClient = "/client/js/app-42615ea6e8068030a191.js";
 
 var modInfo = {
-    "table1":{col:"#00ff00",inl:"KC",tnum:"T1",tutoring:true,super:true,incenter:true},
+    "table1":{col:"#00ff00",inl:"KAC",tnum:"T1",tutoring:true,super:true,incenter:true},
     "table2":{col:"#9900ff",inl:"🌻 ZP",tnum:"T2",tutoring:true,incenter:true,immune:true,super:true,specialSmileys:"💰🚀🏎🛫🚴‍🎡🦖🦕🐕🐩🐌👀☂️"},
     "table3":{col:"#32f16b",inl:"BS",tnum:"T3",tutoring:true},
     "table5":{col:"#f1c232",inl:"🦖 PS",tnum:"T5",tutoring:true,incenter:true,hasTable8:true,super:true,listener:false,extraTables:["2209357","3209357"]},
