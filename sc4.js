@@ -422,7 +422,7 @@ function UserMetric(u)
     if(u.className && u.className.indexOf("user-list-entry")>-1)
     {
         this.ref = "div";
-        this.name = u.innerText;
+        this.name = u.innerText.trim();
         this.isOnline = u.className.indexOf("offline") == -1;
         var breakoutRoom = u.parentNode;
         this.roomName = null;
